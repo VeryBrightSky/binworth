@@ -70,6 +70,55 @@ h1{margin:0;font-weight:850;font-stretch:120%;font-size:clamp(38px,10.6vw,80px);
 .replay{left:5%;bottom:6%;transform:translateZ(50px);font:700 8px/1 Archivo,sans-serif;font-size:3.4cqw;padding:2.2cqw 3.4cqw;border-radius:999px;border:0;background:#fff;color:#000;cursor:pointer;box-shadow:0 .7cqw 0 rgba(0,0,0,.3)}
 .replay[hidden]{display:none}
 .demo-cap{font-size:13px;color:var(--mute);margin:4px 2px 0}
+.scanplane:after{content:"";position:absolute;inset:0;background:#fff;opacity:0}
+.bin.snap .scanplane:after{animation:flash .45s ease-out}
+@keyframes flash{0%{opacity:.85}100%{opacity:0}}
+.vf{inset:-3.5%;transform:translateZ(64px);pointer-events:none;opacity:0;transition:opacity .25s;
+  --c:#000;--l:9cqw;--w:1.1cqw;background:
+  linear-gradient(var(--c),var(--c)) 0 0/var(--l) var(--w),linear-gradient(var(--c),var(--c)) 0 0/var(--w) var(--l),
+  linear-gradient(var(--c),var(--c)) 100% 0/var(--l) var(--w),linear-gradient(var(--c),var(--c)) 100% 0/var(--w) var(--l),
+  linear-gradient(var(--c),var(--c)) 0 100%/var(--l) var(--w),linear-gradient(var(--c),var(--c)) 0 100%/var(--w) var(--l),
+  linear-gradient(var(--c),var(--c)) 100% 100%/var(--l) var(--w),linear-gradient(var(--c),var(--c)) 100% 100%/var(--w) var(--l);background-repeat:no-repeat}
+.bin.scanning .vf{opacity:1;animation:vf .5s ease-in-out infinite alternate}
+@keyframes vf{from{transform:translateZ(64px) scale(1.025)}to{transform:translateZ(64px) scale(1)}}
+
+/* game */
+.game h2.sec{max-width:none}
+.gcard{border:2px solid var(--ink);border-radius:18px;box-shadow:6px 6px 0 var(--ink);padding:18px 18px 20px;background:#fff;max-width:1000px;scroll-margin-top:12px}
+.ghead{display:flex;justify-content:space-between;align-items:center;font-weight:700;font-size:14px;margin-bottom:14px}
+.dots{display:flex;gap:6px}
+.dots i{width:12px;height:12px;border-radius:50%;border:2px solid var(--ink);background:#fff}
+.dots i.ok{background:var(--sticker2)}.dots i.no{background:var(--sticker)}
+.listing{display:flex;justify-content:space-between;gap:14px;align-items:flex-start}
+.listing b{font-size:18px;line-height:1.25;font-weight:700}
+.listing small{display:block;color:var(--mute);font-size:13px;margin-top:3px}
+.listing .ask{font-weight:850;font-stretch:112%;font-size:24px;line-height:1;white-space:nowrap}
+.mini-stage{perspective:900px;padding:10px 2px 18px}
+.bin.mini{--rx:11deg}
+.gq{font-weight:800;font-stretch:110%;font-size:21px;line-height:1.15;margin:4px 0 12px}
+.gopts{display:grid;gap:10px}
+.gopts button{font:inherit;font-weight:700;font-size:18px;padding:14px 16px;border:2px solid var(--ink);border-radius:12px;background:#fff;color:#000;box-shadow:0 3px 0 var(--ink);cursor:pointer;text-align:left;display:flex;justify-content:space-between;align-items:center;gap:10px;-webkit-tap-highlight-color:transparent;transition:background .2s}
+.gopts button:not([disabled]):active{transform:translateY(2px);box-shadow:0 1px 0 var(--ink)}
+.gopts button[disabled]{cursor:default}
+.gopts button.right{background:var(--sticker2)}
+.gopts button.wrong{background:#ffd5c2}
+.gopts button.wrong span:first-child{text-decoration:line-through}
+.gopts .mk{font-family:var(--marker);font-weight:400;font-size:16px;white-space:nowrap}
+.gres{margin:16px 0 0;font-size:17px}
+.gres:empty{display:none}
+.gres p{margin:0 0 6px}
+.gres .gain{display:inline-block;font-family:var(--marker);font-size:19px;background:var(--sticker2);padding:4px 12px;border-radius:999px;transform:rotate(-2deg);margin-top:4px}
+.gres .gain.flat{background:var(--tape)}
+.gbtn{margin-top:16px;width:100%;font:inherit;font-weight:800;font-stretch:110%;font-size:19px;padding:15px;border:0;border-radius:10px;background:var(--ink);color:#fff;cursor:pointer}
+.gbtn[hidden]{display:none}
+.gend h3{font-weight:850;font-stretch:118%;font-size:clamp(34px,8vw,52px);line-height:.95;letter-spacing:-.02em;margin:4px 0 10px}
+.gend h3:focus{outline:none}
+.gend p{margin:0 0 6px;font-size:18px;max-width:40ch}
+.gend .big{font-family:var(--marker);font-size:46px;line-height:1;color:var(--tub);margin:10px 0 4px}
+.gend .row{display:grid;gap:10px;margin-top:18px;max-width:420px}
+.gend .row button{font:inherit;font-weight:800;font-size:18px;padding:14px;border-radius:10px;cursor:pointer;border:2px solid var(--ink);background:#fff;color:#000}
+.gend .row button.go{background:var(--sticker);box-shadow:0 3px 0 var(--ink)}
+.gfine{font-size:13px;color:var(--mute);margin:12px 0 0}
 
 /* form */
 .signup{max-width:470px}
@@ -156,6 +205,8 @@ footer p{margin:0 0 6px;max-width:72ch}
   .two{display:grid;grid-template-columns:.9fr 1.1fr;gap:60px;align-items:start}
   .paths{grid-template-columns:1fr 1fr}
   .facts{grid-template-columns:1fr 1fr 1fr}
+  .gplay{display:grid;grid-template-columns:1.1fr .9fr;gap:36px;align-items:center}
+  .gcard{padding:26px 28px 28px}
   .sticky{display:none}
 }
 @media (max-width:360px){.tape p{font-size:8cqw}.opts label{padding:9px 12px;font-size:14px}}
@@ -184,6 +235,7 @@ footer p{margin:0 0 6px;max-width:72ch}
           <div class="upper" aria-hidden="true"><svg class="pile" id="pileB" viewBox="22 18 456 364" preserveAspectRatio="xMidYMid slice" aria-hidden="true"></svg></div>
           <div class="scanplane" aria-hidden="true"><div class="scanbar"></div></div>
           <div class="rim" aria-hidden="true"></div>
+          <div class="vf" aria-hidden="true"></div>
           <div class="tape" aria-hidden="true"><p><span>LEGO bin</span><span class="was">$20<svg class="strike" viewBox="0 0 120 20" preserveAspectRatio="none" aria-hidden="true"><path d="M3 13 C 30 7, 70 12, 117 6"/></svg></span></p></div>
           <div aria-hidden="true" class="tag" style="--x:30%;--y:42%;--r:-6deg" data-at=".42"><i>rare figure</i>$52</div>
           <div aria-hidden="true" class="tag" style="--x:70%;--y:36%;--r:5deg" data-at=".36"><i>set, mostly there</i>$68</div>
@@ -218,6 +270,17 @@ footer p{margin:0 0 6px;max-width:72ch}
   </div>
   </main>
 </div>
+
+<section class="game" id="game" aria-labelledby="h-game">
+  <div class="page">
+    <h2 class="sec" id="h-game">Would you flip it?</h2>
+    <p class="sub">Three bins off Marketplace. Guess what each one is really worth, then scan it.</p>
+    <div class="gcard" id="gcard">
+      <noscript><p>Turn on JavaScript to play.</p></noscript>
+    </div>
+    <p class="gfine">Practice bins. Example values, not real listings.</p>
+  </div>
+</section>
 
 <section aria-labelledby="h-paths">
   <div class="page">
@@ -338,13 +401,23 @@ var CONFIG = {
 var reduceMotion = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 /* ---- the pile: generic studded bricks on two depth layers ---- */
-(function () {
-  var NS = "http://www.w3.org/2000/svg", A = document.getElementById("pileA"), B = document.getElementById("pileB");
-  var seed = 7; function rnd() { seed = (seed * 16807) % 2147483647; return seed / 2147483647; }
-  var colors = ["#d7261e", "#f5c400", "#ffffff", "#1d1d1d", "#2c9b45", "#9aa0a6", "#ff8a1c", "#8fd0ff", "#6b3fa0", "#d7261e", "#f5c400", "#ffffff"];
+var PALETTES = {
+  mixed: ["#d7261e", "#f5c400", "#ffffff", "#1d1d1d", "#2c9b45", "#9aa0a6", "#ff8a1c", "#8fd0ff", "#6b3fa0", "#d7261e", "#f5c400", "#ffffff"],
+  duplo: ["#e3342f", "#ffd21f", "#2a7de1", "#3fae49", "#ffffff", "#ff8a1c", "#e3342f", "#ffd21f"],
+  vintage: ["#9aa0a6", "#1f4ea8", "#d7261e", "#f5c400", "#1d1d1d", "#ffffff", "#9aa0a6", "#c9cdd2"]
+};
+var SIZES = {
+  mixed: [[2, 4], [2, 2], [1, 4], [2, 3], [1, 2], [2, 6], [1, 1], [2, 2], [1, 3]],
+  duplo: [[2, 2], [2, 4], [2, 3], [1, 2], [2, 2], [2, 4]]
+};
+function drawPile(A, B, o) {
+  var NS = "http://www.w3.org/2000/svg", seed = o.seed;
+  function rnd() { seed = (seed * 16807) % 2147483647; return seed / 2147483647; }
+  var colors = PALETTES[o.palette] || PALETTES.mixed, sizes = SIZES[o.palette] || SIZES.mixed, U = o.U || 14, R = U * .315;
   function el(n, a) { var e = document.createElementNS(NS, n); for (var k in a) e.setAttribute(k, a[k]); return e; }
-  A.appendChild(el("rect", { x: 0, y: 0, width: 500, height: 400, fill: "#1d4f9e" }));
-  var sizes = [[2, 4], [2, 2], [1, 4], [2, 3], [1, 2], [2, 6], [1, 1], [2, 2], [1, 3]], U = 14;
+  while (A.firstChild) A.removeChild(A.firstChild);
+  while (B.firstChild) B.removeChild(B.firstChild);
+  A.appendChild(el("rect", { x: 0, y: 0, width: 500, height: 400, fill: o.bg || "#1d4f9e" }));
   function brick(target, x, y, shade) {
     var s = sizes[Math.floor(rnd() * sizes.length)], h = s[0], w = s[1];
     var rot = Math.floor(rnd() * 8) * 22.5 + (rnd() * 10 - 5), c = colors[Math.floor(rnd() * colors.length)];
@@ -353,14 +426,27 @@ var reduceMotion = window.matchMedia && matchMedia("(prefers-reduced-motion: red
     g.appendChild(el("rect", { x: -W / 2, y: -H / 2, width: W, height: H, rx: 2.5, fill: c, stroke: "rgba(0,0,0,.25)", "stroke-width": 1 }));
     for (var r = 0; r < h; r++) for (var q = 0; q < w; q++) {
       var cx = -W / 2 + U / 2 + q * U, cy = -H / 2 + U / 2 + r * U;
-      g.appendChild(el("circle", { cx: cx + .6, cy: cy + .8, r: 4.4, fill: "rgba(0,0,0,.22)" }));
-      g.appendChild(el("circle", { cx: cx, cy: cy, r: 4.4, fill: c, stroke: "rgba(255,255,255,.35)", "stroke-width": 1 }));
+      g.appendChild(el("circle", { cx: cx + .6, cy: cy + .8, r: R, fill: "rgba(0,0,0,.22)" }));
+      g.appendChild(el("circle", { cx: cx, cy: cy, r: R, fill: c, stroke: "rgba(255,255,255,.35)", "stroke-width": 1 }));
     }
     target.appendChild(g);
   }
-  for (var i = 0; i < 125; i++) brick(A, 28 + rnd() * 444, 26 + rnd() * 348, .35);
-  for (var j = 0; j < 38; j++) brick(B, 40 + rnd() * 420, 34 + rnd() * 332, .5);
-})();
+  for (var i = 0; i < o.n[0]; i++) brick(A, 28 + rnd() * 444, 26 + rnd() * 348, .35);
+  for (var j = 0; j < o.n[1]; j++) brick(B, 40 + rnd() * 420, 34 + rnd() * 332, .5);
+}
+function countUp(el, to, ms, delay) {
+  if (reduceMotion) { el.textContent = "$" + to; return; }
+  el.textContent = "$0";
+  setTimeout(function () {
+    var t0 = performance.now();
+    (function step(now) {
+      var p = Math.min(1, (now - t0) / ms);
+      el.textContent = "$" + Math.round(to * (1 - Math.pow(1 - p, 3)));
+      if (p < 1) requestAnimationFrame(step);
+    })(t0);
+  }, delay || 0);
+}
+drawPile(document.getElementById("pileA"), document.getElementById("pileB"), { seed: 7, palette: "mixed", U: 14, n: [125, 38] });
 
 /* ---- 3D tilt: follows pointer or finger, idles with a slow sway ---- */
 (function () {
@@ -391,15 +477,15 @@ var reduceMotion = window.matchMedia && matchMedia("(prefers-reduced-motion: red
 
 /* ---- the scan: one orchestrated moment, replayable ---- */
 (function () {
-  var bin = document.getElementById("demo"), tags = bin.querySelectorAll(".tag"), btn = document.getElementById("replay"), timers = [];
+  var bin = document.getElementById("demo"), tags = bin.querySelectorAll(".tag"), btn = document.getElementById("replay"), sum = bin.querySelector(".total b"), timers = [];
   function each(fn) { for (var i = 0; i < tags.length; i++) fn(tags[i]); }
-  function reset() { timers.forEach(clearTimeout); timers = []; bin.classList.remove("scanning", "done"); each(function (t) { t.classList.remove("on"); }); btn.hidden = true; }
+  function reset() { timers.forEach(clearTimeout); timers = []; bin.classList.remove("scanning", "done", "snap"); each(function (t) { t.classList.remove("on"); }); btn.hidden = true; }
   function run() {
     reset();
     if (reduceMotion) { each(function (t) { t.classList.add("on"); }); bin.classList.add("done"); btn.hidden = false; return; }
-    void bin.offsetWidth; bin.classList.add("scanning");
+    void bin.offsetWidth; bin.classList.add("snap", "scanning");
     each(function (t) { timers.push(setTimeout(function () { t.classList.add("on"); }, 1500 * (+t.getAttribute("data-at")) + 120)); });
-    timers.push(setTimeout(function () { bin.classList.remove("scanning"); bin.classList.add("done"); timers.push(setTimeout(function () { btn.hidden = false; }, 900)); }, 1600));
+    timers.push(setTimeout(function () { bin.classList.remove("scanning", "snap"); bin.classList.add("done"); countUp(sum, 287, 750, 450); timers.push(setTimeout(function () { btn.hidden = false; }, 1300)); }, 1600));
   }
   btn.addEventListener("click", run);
   var started = false;
@@ -409,9 +495,103 @@ var reduceMotion = window.matchMedia && matchMedia("(prefers-reduced-motion: red
   window.__runScan = run;
 })();
 
+/* ---- game: would you flip it? ---- */
+(function () {
+  var card = document.getElementById("gcard");
+  var ROUNDS = [
+    { title: "Big tub of LEGO, 12 lb", where: "Listed 3 hours ago, 6 miles away", ask: 40, worth: 135,
+      pile: { seed: 21, palette: "mixed", U: 14, n: [120, 36] }, tub: ["#2f6fd0", "#1d4f9e"],
+      opts: ["Under $60", "$110 to $160", "Over $250"], ans: 1,
+      items: [["3 Star Wars figures", 45, 30, 38, -5], ["Technic gears and beams", 30, 68, 40, 4], ["12 lb of bricks", 60, 38, 70, -3]],
+      note: "The figures alone cover the asking price." },
+    { title: "Kids building blocks, big bin", where: "Listed yesterday, 2 miles away", ask: 25, worth: 32,
+      pile: { seed: 5, palette: "duplo", U: 22, n: [46, 16] }, tub: ["#e0453a", "#a8281f"],
+      opts: ["$25 to $40", "$80 to $120", "Over $200"], ans: 0,
+      items: [["Duplo, about 6 lb", 24, 34, 44, -4], ["A few regular bricks", 8, 62, 66, 5]],
+      note: "Mostly Duplo, which sells for less. Not every bin is a win, so scan before you pay." },
+    { title: "Old LEGO from the attic, 90s", where: "Listed 20 minutes ago, 11 miles away", ask: 30, worth: 251,
+      pile: { seed: 99, palette: "vintage", U: 14, n: [115, 34] }, tub: ["#7b8088", "#50545a"],
+      opts: ["$30 to $60", "$100 to $150", "$220 to $280"], ans: 2,
+      items: [["6 vintage space figures", 96, 30, 40, -6], ["Classic set, mostly there", 85, 70, 34, 4], ["8 lb of bricks", 48, 46, 66, 3], ["Old baseplate", 22, 22, 82, -3]],
+      note: "Older figures and sets are where bins hide real money." }
+  ];
+  var i = 0, results = [], timers = [];
+  function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
+  function dots() { var h = ""; for (var k = 0; k < ROUNDS.length; k++) h += '<i class="' + (results[k] === true ? "ok" : results[k] === false ? "no" : "") + '"></i>'; return h; }
+  function render() {
+    timers.forEach(clearTimeout); timers = [];
+    var r = ROUNDS[i], h = "";
+    h += '<div class="ghead"><span>Bin ' + (i + 1) + ' of ' + ROUNDS.length + '</span><span class="dots" role="img" aria-label="' + results.filter(Boolean).length + ' right so far">' + dots() + '</span></div>';
+    h += '<div class="gplay"><div>';
+    h += '<div class="listing"><div><b>' + esc(r.title) + '</b><small>' + esc(r.where) + '</small></div><span class="ask">$' + r.ask + '</span></div>';
+    h += '<div class="stage mini-stage" aria-hidden="true"><div class="bin mini" id="gbin" style="--tub:' + r.tub[0] + ';--tub-d:' + r.tub[1] + '">';
+    h += '<div class="floor"><svg class="pile" id="gA" viewBox="0 0 500 400" preserveAspectRatio="xMidYMid slice"></svg></div>';
+    h += '<div class="upper"><svg class="pile" id="gB" viewBox="22 18 456 364" preserveAspectRatio="xMidYMid slice"></svg></div>';
+    h += '<div class="scanplane"><div class="scanbar"></div></div><div class="rim"></div><div class="vf"></div>';
+    h += '<div class="tape"><p><span>Asking</span><span class="was">$' + r.ask + '<svg class="strike" viewBox="0 0 120 20" preserveAspectRatio="none"><path d="M3 13 C 30 7, 70 12, 117 6"/></svg></span></p></div>';
+    r.items.forEach(function (it) { h += '<div class="tag" style="--x:' + it[2] + '%;--y:' + it[3] + '%;--r:' + it[4] + 'deg" data-at="' + (it[3] / 100) + '"><i>' + esc(it[0]) + '</i>$' + it[1] + '</div>'; });
+    h += '<div class="total"><small>worth</small><b>$' + r.worth + '</b></div></div></div>';
+    h += '</div><div>';
+    h += '<p class="gq" id="gq">What is this bin really worth?</p><div class="gopts" role="group" aria-labelledby="gq">';
+    r.opts.forEach(function (o, k) { h += '<button type="button" data-k="' + k + '"><span>' + esc(o) + '</span><span class="mk"></span></button>'; });
+    h += '</div><div class="gres" id="gres" aria-live="polite"></div><button type="button" class="gbtn" id="gnext" hidden></button></div></div>';
+    card.innerHTML = h;
+    drawPile(document.getElementById("gA"), document.getElementById("gB"), Object.assign({ bg: r.tub[1] }, r.pile));
+    card.querySelectorAll(".gopts button").forEach(function (b) { b.addEventListener("click", function () { pick(+b.getAttribute("data-k")); }); });
+    document.getElementById("gnext").addEventListener("click", next);
+  }
+  function pick(k) {
+    var r = ROUNDS[i], ok = k === r.ans, bin = document.getElementById("gbin"), btns = card.querySelectorAll(".gopts button");
+    results[i] = ok;
+    btns.forEach(function (b, n) { b.disabled = true; if (n === r.ans) { b.classList.add("right"); b.querySelector(".mk").textContent = "worth it"; } else if (n === k) { b.classList.add("wrong"); b.querySelector(".mk").textContent = "your guess"; } });
+    card.querySelector(".dots").innerHTML = dots();
+    var top = bin.getBoundingClientRect().top;
+    if (top < 0 && !reduceMotion) bin.scrollIntoView({ behavior: "smooth", block: "center" });
+    var tags = bin.querySelectorAll(".tag"), sum = bin.querySelector(".total b");
+    function finish() {
+      var gain = r.worth - r.ask, res = document.getElementById("gres"), nx = document.getElementById("gnext");
+      res.innerHTML = '<p><b>' + (ok ? "Called it." : "Not quite.") + '</b> Worth $' + r.worth + ' on a $' + r.ask + ' ask. ' + esc(r.note) + '</p>' +
+        '<span class="gain' + (gain < 20 ? " flat" : "") + '">' + (gain < 20 ? "+$" + gain + ", barely worth the gas" : "+$" + gain + " if you flip it") + '</span>';
+      nx.textContent = i < ROUNDS.length - 1 ? "Next bin" : "See your score";
+      nx.hidden = false;
+    }
+    if (reduceMotion) { tags.forEach(function (t) { t.classList.add("on"); }); bin.classList.add("done"); finish(); return; }
+    void bin.offsetWidth; bin.classList.add("snap", "scanning");
+    tags.forEach(function (t) { timers.push(setTimeout(function () { t.classList.add("on"); }, 1500 * (+t.getAttribute("data-at")) + 120)); });
+    timers.push(setTimeout(function () { bin.classList.remove("scanning", "snap"); bin.classList.add("done"); countUp(sum, r.worth, 700, 450); }, 1600));
+    timers.push(setTimeout(finish, 2350));
+  }
+  function next() {
+    if (i < ROUNDS.length - 1) { i++; render(); var b = card.querySelector(".gopts button"); card.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "start" }); if (b) b.focus({ preventScroll: true }); return; }
+    end();
+  }
+  function end() {
+    var right = results.filter(Boolean).length, hid = ROUNDS.reduce(function (a, r) { return a + Math.max(0, r.worth - r.ask); }, 0);
+    var head = right === 3 ? "3 for 3. You've got the eye." : right === 2 ? "2 of 3. Not bad." : right + " of 3. Bins are tricky.";
+    card.innerHTML = '<div class="gend"><div class="ghead"><span>Your score</span><span class="dots" role="img" aria-label="' + right + ' of 3 right">' + dots() + '</span></div>' +
+      '<h3 tabindex="-1">' + head + '</h3><p>These three bins hid</p><p class="big">$' + hid + '</p><p>in profit, on $95 of asking prices. PriceMyBin finds it from one photo, before you pay.</p>' +
+      '<div class="row"><button type="button" class="go" data-g="join">Get early access</button><button type="button" data-g="share">Challenge a friend</button><button type="button" data-g="again">Play again</button></div></div>';
+    var hd = card.querySelector("h3"); card.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "start" }); hd.focus({ preventScroll: true });
+    card.querySelectorAll("[data-g]").forEach(function (b) {
+      b.addEventListener("click", function () {
+        var g = b.getAttribute("data-g");
+        if (g === "again") { i = 0; results = []; render(); card.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "start" }); return; }
+        if (g === "join") { var f = document.getElementById("join"), a1 = document.getElementById("a1"); if (a1 && !a1.checked && !document.querySelector("input[name=goal]:checked")) a1.checked = true; if (!f || !f.querySelector("input[type=email]")) { f = document.getElementById("join2"); } f.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "center" }); var inp = f.querySelector("input[type=email]"); if (inp) setTimeout(function () { inp.focus({ preventScroll: true }); }, reduceMotion ? 0 : 450); return; }
+        if (g === "share") {
+          var url = location.origin + location.pathname + "?src=game#game", txt = "I got " + right + " of 3 on this LEGO bin flipping game. Can you beat it?";
+          if (navigator.share) navigator.share({ title: "Would you flip it?", text: txt, url: url }).catch(function () {});
+          else if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(txt + " " + url).then(function () { b.textContent = "Link copied"; }, function () { b.textContent = url; });
+          else b.textContent = url;
+        }
+      });
+    });
+  }
+  render();
+})();
+
 /* ---- sticky join bar on phones: shows when no signup form is on screen ---- */
 (function () {
-  var bar = document.getElementById("sticky"), forms = [document.getElementById("join"), document.getElementById("join2")];
+  var bar = document.getElementById("sticky"), forms = [document.getElementById("join"), document.getElementById("join2"), document.getElementById("gcard")];
   if (!("IntersectionObserver" in window)) return;
   var seen = new Map(), joined = false, pastHero = false;
   function update() { var anyForm = false; seen.forEach(function (v) { if (v) anyForm = true; }); var on = pastHero && !anyForm && !joined; bar.classList.toggle("show", on); bar.setAttribute("aria-hidden", on ? "false" : "true"); bar.tabIndex = on ? 0 : -1; }
