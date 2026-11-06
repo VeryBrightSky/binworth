@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="robots" content="noindex">
+<title>PriceMyBin share card</title>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Permanent+Marker&display=block" rel="stylesheet">
+<style>
+:root{--ink:#000;--tape:#efdcae;--tub:#2f6fd0;--tub-d:#1d4f9e;--sticker:#ff5b14;--sticker2:#c6f432;--marker:"Permanent Marker",cursive}
+*{box-sizing:border-box}
+html,body{margin:0;width:1200px;height:630px;overflow:hidden;background:#fff;font-family:Archivo,sans-serif;color:#000}
+.card{position:relative;width:1200px;height:630px;display:grid;grid-template-columns:600px 1fr;align-items:center;padding:0 0 0 64px}
+.brand{position:absolute;left:64px;top:52px;display:flex;align-items:center;gap:12px;font-weight:800;font-stretch:112%;font-size:34px;letter-spacing:-.01em}
+.brand svg{width:44px;height:34px}
+h1{margin:-6px 0 0;font-weight:850;font-stretch:118%;font-size:78px;line-height:.92;letter-spacing:-.03em;max-width:540px}
+.url{position:absolute;left:64px;bottom:50px;font-family:var(--marker);font-size:36px;background:var(--sticker2);padding:6px 20px 4px;border-radius:999px;transform:rotate(-2deg);box-shadow:0 4px 0 #000}
+.stage{position:relative;height:630px;perspective:1400px}
+.bin{position:absolute;left:6px;top:104px;width:500px;height:400px;transform:rotateX(12deg) rotateY(-10deg) rotateZ(2deg);transform-style:preserve-3d;container-type:inline-size}
+.bin>*{position:absolute}
+.floor,.upper{inset:0;border-radius:18px;overflow:hidden}
+.floor{background:var(--tub-d)}
+.upper{inset:4.4%;border-radius:9px;transform:translateZ(14px)}
+.pile{width:100%;height:100%;display:block}
+.rim{inset:0;border-radius:18px;transform:translateZ(26px);border:22px solid var(--tub);box-shadow:inset 0 0 0 2px rgba(255,255,255,.18),inset 0 12px 20px rgba(0,0,0,.35),0 30px 50px rgba(0,0,0,.28)}
+.tape{left:5%;top:5.5%;transform:translateZ(46px) rotate(-3.5deg);padding:16px 26px 13px;background:var(--tape);
+ clip-path:polygon(0 8%,3% 0,6% 8%,9% 1%,12% 7%,88% 5%,91% 0,94% 7%,97% 1%,100% 6%,98% 50%,100% 95%,96% 100%,93% 93%,90% 100%,87% 94%,13% 96%,10% 100%,7% 93%,4% 100%,0 94%,2% 50%)}
+.tape p{margin:0;font-family:var(--marker);font-size:38px;line-height:1;white-space:nowrap;display:flex;gap:.35em}
+.was{position:relative}
+.strike{position:absolute;left:-10%;top:22%;width:124%;height:.45em;overflow:visible}
+.strike path{fill:none;stroke:#000;stroke-width:6;stroke-linecap:round}
+.tag{left:var(--x);top:var(--y);transform:translate3d(-50%,-50%,58px) rotate(var(--r));background:var(--sticker2);border-radius:999px;padding:9px 16px;font-family:var(--marker);font-size:27px;line-height:1;white-space:nowrap;box-shadow:0 5px 0 rgba(0,0,0,.3)}
+.tag i{font:700 14px/1 Archivo,sans-serif;font-style:normal;display:block;margin-bottom:4px}
+.total{right:4%;bottom:5%;width:168px;height:168px;border-radius:50%;background:var(--sticker);display:grid;place-items:center;align-content:center;transform:translateZ(80px) rotate(8deg);box-shadow:inset 0 0 0 5px rgba(255,255,255,.25),0 8px 0 rgba(0,0,0,.3)}
+.total small{font:700 17px/1 Archivo,sans-serif;margin-bottom:6px}
+.total b{font-family:var(--marker);font-weight:400;font-size:58px;line-height:.9}
+</style></head><body>
+<div class="card">
+  <div class="brand"><svg viewBox="0 0 26 20"><rect x="1" y="6" width="24" height="13" rx="2" fill="#2f6fd0"/><rect x="5" y="2" width="5" height="5" rx="1.2" fill="#2f6fd0"/><rect x="16" y="2" width="5" height="5" rx="1.2" fill="#2f6fd0"/></svg>PriceMyBin</div>
+  <h1>That $20 LEGO® bin is worth $287.</h1>
+  <div class="url">pricemybin.com</div>
+  <div class="stage"><div class="bin">
+    <div class="floor"><svg class="pile" id="pileA" viewBox="0 0 500 400" preserveAspectRatio="xMidYMid slice"></svg></div>
+    <div class="upper"><svg class="pile" id="pileB" viewBox="22 18 456 364" preserveAspectRatio="xMidYMid slice"></svg></div>
+    <div class="rim"></div>
+    <div class="tape"><p><span>LEGO bin</span><span class="was">$20<svg class="strike" viewBox="0 0 120 20" preserveAspectRatio="none"><path d="M3 13 C 30 7, 70 12, 117 6"/></svg></span></p></div>
+    <div class="tag" style="--x:30%;--y:42%;--r:-6deg"><i>rare figure</i>$52</div>
+    <div class="tag" style="--x:70%;--y:34%;--r:5deg"><i>set, mostly there</i>$68</div>
+    <div class="tag" style="--x:42%;--y:66%;--r:3deg"><i>14 more figures</i>$74</div>
+    <div class="tag" style="--x:20%;--y:84%;--r:-4deg"><i>9 lb of bricks</i>$93</div>
+    <div class="total"><small>bin total</small><b>$287</b></div>
+  </div></div>
+</div>
+<script>
+var PALETTES = {
+  mixed: ["#d7261e", "#f5c400", "#ffffff", "#1d1d1d", "#2c9b45", "#9aa0a6", "#ff8a1c", "#8fd0ff", "#6b3fa0", "#d7261e", "#f5c400", "#ffffff"],
+  duplo: ["#e3342f", "#ffd21f", "#2a7de1", "#3fae49", "#ffffff", "#ff8a1c", "#e3342f", "#ffd21f"],
+  vintage: ["#9aa0a6", "#1f4ea8", "#d7261e", "#f5c400", "#1d1d1d", "#ffffff", "#9aa0a6", "#c9cdd2"],
+  technic: ["#9aa0a6", "#1d1d1d", "#f5c400", "#d7261e", "#c9cdd2", "#1d1d1d", "#9aa0a6"]
+};
+var SIZES = {
+  mixed: [[2, 4], [2, 2], [1, 4], [2, 3], [1, 2], [2, 6], [1, 1], [2, 2], [1, 3]],
+  duplo: [[2, 2], [2, 4], [2, 3], [1, 2], [2, 2], [2, 4]],
+  technic: [[1, 6], [1, 8], [1, 4], [1, 10], [1, 3], [2, 2], [1, 6]]
+};
+function drawPile(A, B, o) {
+  var NS = "http://www.w3.org/2000/svg", seed = o.seed;
+  function rnd() { seed = (seed * 16807) % 2147483647; return seed / 2147483647; }
+  var colors = PALETTES[o.palette] || PALETTES.mixed, sizes = SIZES[o.palette] || SIZES.mixed, U = o.U || 14, R = U * .315;
+  function el(n, a) { var e = document.createElementNS(NS, n); for (var k in a) e.setAttribute(k, a[k]); return e; }
+  while (A.firstChild) A.removeChild(A.firstChild);
+  while (B.firstChild) B.removeChild(B.firstChild);
+  A.appendChild(el("rect", { x: 0, y: 0, width: 500, height: 400, fill: o.bg || "#1d4f9e" }));
+  function brick(target, x, y, shade) {
+    var s = sizes[Math.floor(rnd() * sizes.length)], h = s[0], w = s[1];
+    var rot = Math.floor(rnd() * 8) * 22.5 + (rnd() * 10 - 5), c = colors[Math.floor(rnd() * colors.length)];
+    var g = el("g", { transform: "translate(" + x + " " + y + ") rotate(" + rot + ")" }), W = w * U, H = h * U;
+    g.appendChild(el("rect", { x: -W / 2 + 2, y: -H / 2 + 3.5, width: W, height: H, rx: 2.5, fill: "rgba(0,0,0," + shade + ")" }));
+    g.appendChild(el("rect", { x: -W / 2, y: -H / 2, width: W, height: H, rx: 2.5, fill: c, stroke: "rgba(0,0,0,.25)", "stroke-width": 1 }));
+    for (var r = 0; r < h; r++) for (var q = 0; q < w; q++) {
+      var cx = -W / 2 + U / 2 + q * U, cy = -H / 2 + U / 2 + r * U;
+      g.appendChild(el("circle", { cx: cx + .6, cy: cy + .8, r: R, fill: "rgba(0,0,0,.22)" }));
+      g.appendChild(el("circle", { cx: cx, cy: cy, r: R, fill: c, stroke: "rgba(255,255,255,.35)", "stroke-width": 1 }));
+    }
+    target.appendChild(g);
+  }
+  for (var i = 0; i < o.n[0]; i++) brick(A, 28 + rnd() * 444, 26 + rnd() * 348, .35);
+  for (var j = 0; j < o.n[1]; j++) brick(B, 40 + rnd() * 420, 34 + rnd() * 332, .5);
+}
+drawPile(document.getElementById("pileA"), document.getElementById("pileB"), { seed: 7, palette: "mixed", U: 14, n: [125, 38] });
+</script></body></html>
