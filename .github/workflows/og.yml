@@ -1,0 +1,28 @@
+name: Build share images
+on:
+  push:
+    paths:
+      - og-card.html
+      - icon-card.html
+      - .github/workflows/og.yml
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Render images with headless Chrome
+        run: |
+          FLAGS="--headless=new --no-sandbox --disable-gpu --hide-scrollbars --force-device-scale-factor=1"
+          google-chrome $FLAGS --window-size=1200,630 --virtual-time-budget=15000 --screenshot="$PWD/og.png" "file://$PWD/og-card.html"
+          google-chrome $FLAGS --window-size=180,180 --virtual-time-budget=3000 --screenshot="$PWD/apple-touch-icon.png" "file://$PWD/icon-card.html"
+          file og.png apple-touch-icon.png
+      - name: Commit images
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add og.png apple-touch-icon.png
+          git diff --cached --quiet || git commit -m "Render share images"
+          git push
