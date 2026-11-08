@@ -1,29 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="nojs">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>PriceMyBin | That $20 LEGO® bin is worth more than $20</title>
+<title>PriceMyBin | That $20 LEGO® bin might be hiding a $985 figure</title>
 <meta name="description" content="Snap a LEGO bin before you buy it or sell it. PriceMyBin spots the minifigures and sets that matter and tells you what the whole bin is worth.">
 <meta property="og:type" content="website">
-<meta property="og:title" content="That $20 LEGO® bin is worth $287">
+<meta property="og:title" content="That $20 LEGO® bin might be hiding a $985 figure">
 <meta property="og:description" content="Snap a bin before you buy it or sell it. Join the PriceMyBin waitlist.">
 <meta property="og:url" content="https://pricemybin.com/">
 <meta property="og:site_name" content="PriceMyBin">
 <meta property="og:image" content="https://pricemybin.com/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="A LEGO bin marked $20 with price tags on the pieces inside adding up to $287">
+<meta property="og:image:alt" content="Three real LEGO minifigures rising out of a bin of loose bricks, with price stickers: $545, $985 and $342">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="That $20 LEGO® bin is worth $287">
+<meta name="twitter:title" content="That $20 LEGO® bin might be hiding a $985 figure">
 <meta name="twitter:description" content="Snap a bin before you buy it or sell it. Join the PriceMyBin waitlist.">
 <meta name="twitter:image" content="https://pricemybin.com/og.png">
 <link rel="canonical" href="https://pricemybin.com/">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#ffffff">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23ff5b14'/%3E%3Crect x='5' y='13' width='22' height='13' rx='2'/%3E%3Crect x='8' y='8' width='6' height='6' rx='1.5'/%3E%3Crect x='18' y='8' width='6' height='6' rx='1.5'/%3E%3C/svg%3E">
+<link rel="preload" as="image" href="img/bin-sm.webp" media="(max-width:700px)"><link rel="preload" as="image" href="img/bin.webp" media="(min-width:701px)">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Permanent+Marker&display=swap" rel="stylesheet">
+<script>document.documentElement.className="js"</script>
 <style>
 :root{--paper:#fff;--ink:#000;--tape:#efdcae;--tub:#2f6fd0;--tub-d:#1d4f9e;--tub-l:#4b86e0;--sticker:#ff5b14;--sticker2:#c6f432;--mute:#5a5f66;--line:#e6e6e6;--marker:"Permanent Marker","Comic Sans MS",cursive}
 *{box-sizing:border-box}
@@ -239,6 +241,82 @@ footer p{margin:0 0 6px;max-width:72ch}
   .sticky{display:none}
 }
 @media (max-width:360px){.tape p{font-size:8cqw}.opts label{padding:9px 12px;font-size:14px}}
+
+/* ===== v2: real pile, real figures ===== */
+.hero2{display:grid;gap:18px;padding:10px 0 40px}
+.hero2 .copy{display:grid;gap:14px}
+@media (min-width:900px){.hero2{grid-template-columns:1fr 1.08fr;column-gap:52px;row-gap:22px;padding:26px 0 70px;align-items:start}.hero2 .copy{grid-column:1;padding-top:18px}.hero2 h1{font-size:clamp(46px,5vw,66px)}.hero2 .tubwrap{grid-column:2;grid-row:1 / span 2}.hero2 form{grid-column:1}}
+.tubwrap{margin:8px -6px 0}
+.tub{--lip:58px;position:relative;background:var(--tub);border-radius:24px;padding:12px 12px 0;box-shadow:inset 0 2px 0 var(--tub-l),0 22px 34px -20px rgba(0,0,0,.55)}
+.tub .photo{position:relative;aspect-ratio:4/3;border-radius:14px 14px 0 0;overflow:hidden;background:#333}
+.tub .photo img{display:block;width:100%;height:100%;object-fit:cover}
+.tub .photo:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 35%,rgba(0,0,0,.42) 100%)}
+.tape2{position:absolute;left:18px;top:-15px;z-index:3;background:var(--tape);font-family:var(--marker);font-size:clamp(19px,4.6vw,27px);line-height:1;padding:10px 16px 9px;transform:rotate(-3deg);box-shadow:0 3px 8px rgba(0,0,0,.35)}
+.tape2 s{text-decoration-thickness:3px;text-decoration-color:var(--sticker);margin-left:4px}
+.pulled{position:absolute;left:12px;right:12px;bottom:var(--lip);height:76%;display:flex;justify-content:space-around;align-items:flex-end;overflow:hidden;pointer-events:none;z-index:1}
+.pf{position:relative;margin:0;width:31%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:6px}
+.pf img{display:block;max-width:100%;max-height:74%;width:auto;height:auto;filter:drop-shadow(0 10px 10px rgba(0,0,0,.6));transform:translateY(0)}
+.pf .stk{position:relative;transform:rotate(-5deg);z-index:2}
+.pf:nth-child(2) .stk{transform:rotate(4deg)}
+.stk{display:inline-block;font-family:var(--marker);font-size:clamp(22px,5.4vw,34px);line-height:1;background:var(--sticker2);color:#000;padding:8px 13px 7px;border-radius:10px;border:2px solid #000;box-shadow:3px 3px 0 #000;white-space:nowrap;font-variant-numeric:tabular-nums}
+.stk i{font-style:normal;font-family:Archivo,sans-serif;font-weight:700;font-size:.42em;vertical-align:middle;margin-left:3px}
+.lip{position:relative;z-index:2;height:var(--lip);margin:0 -12px;border-radius:0 0 24px 24px;background:linear-gradient(180deg,var(--tub) 0,var(--tub-d) 100%);box-shadow:inset 0 3px 0 rgba(255,255,255,.18);display:flex;justify-content:space-around;align-items:center;padding:0 12px;color:#fff}
+.lip span{width:31%;text-align:center;font-size:12px;line-height:1.2;opacity:.92}
+.lip b{display:block;font-size:14px;font-weight:800;opacity:1}
+.tubcap{margin:10px 6px 0;font-size:13px;line-height:1.4;color:var(--mute)}
+/* the one orchestrated moment: figures rise out of the bin, prices count up */
+.js .tub:not(.go) .pf img,.js .tub:not(.go) .pf .stk{opacity:0}
+.js .tub:not(.go) .pf img{transform:translateY(105%)}
+.tub.go .pf img{transition:transform .7s cubic-bezier(.2,1.25,.4,1) calc(var(--d) * .32s + .15s)}
+.tub.go .pf .stk{transition:opacity .2s calc(var(--d) * .32s + .55s)}
+@media (prefers-reduced-motion:reduce){.js .tub:not(.go) .pf img,.js .tub:not(.go) .pf .stk{opacity:1;transform:none}.tub.go .pf img,.tub.go .pf .stk{transition:none}}
+@media (max-width:370px){.tape2{font-size:16px;padding:7px 11px 6px;left:12px;top:-12px}.pulled{height:72%}.pf .stk{font-size:19px;padding:6px 9px 5px}.lip span{font-size:10.5px}.lip b{font-size:12.5px}}
+@media (min-width:900px){.tub{--lip:66px}.lip span{font-size:13px}.lip b{font-size:16px}}
+
+/* figure gallery */
+.pull{border-top:2px solid var(--line)}
+.chips2{display:flex;gap:8px;overflow-x:auto;padding:4px 2px 14px;margin:0 -22px;padding-left:22px;padding-right:22px;scrollbar-width:none}
+.chips2::-webkit-scrollbar{display:none}
+.chip2{flex:none;font:700 15px/1 Archivo,sans-serif;padding:11px 15px;border-radius:999px;border:2px solid #000;background:#fff;color:#000;cursor:pointer}
+.chip2[aria-pressed=true]{background:#000;color:#fff}
+.figgrid{list-style:none;margin:6px 0 0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+@media (min-width:700px){.figgrid{grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}}
+@media (min-width:1000px){.figgrid{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.fcard{position:relative;border:2px solid #000;border-radius:16px;background:#fff;padding:0 0 14px;box-shadow:4px 4px 0 #000;overflow:hidden}
+.fcard[hidden]{display:none}
+.ftray{aspect-ratio:1/1.12;display:flex;align-items:flex-end;justify-content:center;padding:50px 8px 8px;border-bottom:2px solid #000;
+  background-color:#e4e4e1;background-image:radial-gradient(circle at center,#efefec 0 4.5px,#cfcfcb 5.5px 6.5px,transparent 7.5px);background-size:22px 22px}
+.ftray img{display:block;max-width:86%;max-height:100%;width:auto;height:auto;filter:drop-shadow(0 6px 6px rgba(0,0,0,.25))}
+.fcard .stk{position:absolute;top:10px;right:10px;font-size:22px;padding:6px 10px 5px;transform:rotate(4deg)}
+.fcard:nth-child(3n+2) .stk{transform:rotate(-3deg)}
+.fcard h3{margin:12px 12px 2px;font-weight:800;font-size:18px;line-height:1.15}
+.ffrom{margin:0 12px;font-size:13px;line-height:1.35;color:var(--mute)}
+.flook{margin:8px 12px 0;font-size:13.5px;line-height:1.38}
+.flook b{display:inline-block;background:var(--sticker2);font-size:11.5px;font-weight:800;padding:2px 6px;border-radius:5px;margin-right:4px}
+.showall{margin:20px auto 0;display:block}
+.showall[hidden]{display:none}
+@media (max-width:699px){.ftray{padding:34px 4px 6px;aspect-ratio:1/1.08}.fcard .stk{font-size:18px;padding:5px 8px 4px;top:7px;right:7px}.ftray img{height:97%}}
+@media (max-width:380px){.fcard h3{font-size:16px}.flook{font-size:12.5px}.fcard .stk{font-size:19px}}
+
+/* real photos in sections */
+.wideph{display:block;width:100%;height:auto;aspect-ratio:3/2;object-fit:cover;border:2px solid #000;border-radius:18px;box-shadow:6px 6px 0 #000;margin:4px 0 26px}
+.whygrid{display:grid;gap:8px}
+@media (min-width:900px){.whygrid{grid-template-columns:1fr 1fr;gap:44px;align-items:center}.whygrid .wideph{margin:0}.whygrid .facts{grid-template-columns:1fr;gap:18px}.paths ~ .x{}.wideph{max-height:380px}}
+
+/* fixes, round 2 */
+html,body{overflow-x:clip}
+.game{overflow-x:clip}
+@media (min-width:700px){.chips2{flex-wrap:wrap;overflow:visible;margin:0;padding:4px 0 16px}}
+@media (max-width:699px){.figgrid:not(.open) .m12{display:none}}
+.ftray img{height:var(--fh,94%);max-height:none;width:auto;max-width:100%;object-fit:contain}
+
+.figsearch{display:block;margin:4px 0 12px}
+.figsearch input{width:100%;max-width:420px;font:500 17px/1.2 Archivo,sans-serif;padding:13px 16px;border:2px solid #000;border-radius:12px;background:#fff;color:#000}
+.figsearch input:focus{outline:3px solid var(--tub);outline-offset:2px}
+.nofig{margin:14px 0 0;font-weight:600}
+.socials{display:flex;gap:10px;flex-wrap:wrap;margin:6px 0 14px}
+.socials a{font-weight:700;font-size:15px;color:#000;text-decoration:none;border:2px solid #000;border-radius:999px;padding:8px 14px;background:#fff}
+.socials a:hover{background:var(--sticker2)}
 </style>
 </head>
 <body>
@@ -253,32 +331,23 @@ footer p{margin:0 0 6px;max-width:72ch}
   </header>
 
   <main>
-  <div class="hero">
-    <h1>That $20 LEGO® bin is worth $287.</h1>
-
-    <div class="demo-wrap">
-      <div class="stage" id="stage">
-        <p class="sr-only" id="demo-desc">Animated example: a storage bin of loose LEGO bricks labeled $20. A scan finds a rare figure worth $52, a set worth $68, more figures worth $74 and bulk bricks worth $93, for a total of $287.</p>
-        <div class="bin" id="demo">
-          <div class="floor" aria-hidden="true"><svg class="pile" id="pileA" viewBox="0 0 500 400" preserveAspectRatio="xMidYMid slice" aria-hidden="true"></svg></div>
-          <div class="upper" aria-hidden="true"><svg class="pile" id="pileB" viewBox="22 18 456 364" preserveAspectRatio="xMidYMid slice" aria-hidden="true"></svg></div>
-          <div class="scanplane" aria-hidden="true"><div class="scanbar"></div></div>
-          <div class="rim" aria-hidden="true"></div>
-          <div class="vf" aria-hidden="true"></div>
-          <div class="tape" aria-hidden="true"><p><span>LEGO bin</span><span class="was">$20<svg class="strike" viewBox="0 0 120 20" preserveAspectRatio="none" aria-hidden="true"><path d="M3 13 C 30 7, 70 12, 117 6"/></svg></span></p></div>
-          <div aria-hidden="true" class="tag" style="--x:30%;--y:42%;--r:-6deg" data-at=".42"><i>rare figure</i>$52</div>
-          <div aria-hidden="true" class="tag" style="--x:70%;--y:36%;--r:5deg" data-at=".36"><i>set, mostly there</i>$68</div>
-          <div aria-hidden="true" class="tag" style="--x:46%;--y:64%;--r:3deg" data-at=".64"><i>14 more figures</i>$74</div>
-          <div aria-hidden="true" class="tag" style="--x:22%;--y:80%;--r:-4deg" data-at=".80"><i>9 lb of bricks</i>$93</div>
-          <div class="total" aria-hidden="true"><small>bin total</small><b>$287</b></div>
-          <button class="replay" type="button" id="replay" hidden aria-label="Play the example scan again">Scan again</button>
-        </div>
-      </div>
-      <p class="demo-cap">Example scan of one garage-sale bin. <a href="#game">Think you can price one? Try it.</a></p>
+  <div class="hero2">
+    <div class="copy">
+      <h1>That $20 LEGO® bin might be hiding a $985 figure.</h1>
+      <p class="lede">Snap a bin before you buy it or sell it. PriceMyBin spots the minifigures and sets buyers pay for and tells you what the whole bin is worth.</p>
     </div>
-
-    <p class="lede">Snap a bin before you buy it or sell it. PriceMyBin spots the minifigures and sets buyers pay for and tells you what the whole bin is worth.</p>
-
+    <div class="tubwrap">
+      <div class="tub" id="tub">
+        <div class="photo">
+          <picture><source media="(max-width:700px)" srcset="img/bin-sm.webp"><img src="img/bin.webp" width="1400" height="1050" alt="A big mixed pile of used LEGO bricks" fetchpriority="high"></picture>
+        </div>
+        <div class="tape2" aria-hidden="true">LEGO bin <s>$20</s></div>
+        <p class="sr-only">Three real figures from old LEGO sets: Villager from Minecraft (2016), worth $545. Bane from Batman (2007), worth $985. Grima from Lord of the Rings (2013), worth $342.</p>
+        <div class="pulled" aria-hidden="true"><figure class="pf" style="--d:0"><span class="stk" data-v="545">$545</span><img src="img/figs/min029.webp" width="180" height="440" alt="LEGO Villager minifigure"></figure><figure class="pf" style="--d:1"><span class="stk" data-v="985">$985</span><img src="img/figs/bat021.webp" width="280" height="440" alt="LEGO Bane minifigure"></figure><figure class="pf" style="--d:2"><span class="stk" data-v="342">$342</span><img src="img/figs/lor072.webp" width="372" height="422" alt="LEGO Grima Wormtongue minifigure"></figure></div>
+        <div class="lip" aria-hidden="true"><span><b>Villager</b>Minecraft, 2016</span><span><b>Bane</b>Batman, 2007</span><span><b>Grima</b>LOTR, 2013</span></div>
+      </div>
+      <p class="tubcap">Real figures and values (BrickEconomy, Nov 7, 2026). The pile is a stock photo, not the bin these came from.</p>
+    </div>
     <form class="signup" id="join" novalidate>
       <div class="body">
         <label class="q" for="email1">Get the app first. We'll email you once, when it's out.</label>
@@ -300,6 +369,55 @@ footer p{margin:0 0 6px;max-width:72ch}
   </main>
 </div>
 
+<section class="pull" id="figures" aria-labelledby="h-pull">
+  <div class="page">
+    <h2 class="sec" id="h-pull">Pull these before you sell a bin</h2>
+    <p class="sub">Every figure from our <a href="https://www.tiktok.com/@pricemybin" rel="noopener">videos</a>, with what it sells for now. Check yours against the photo and the "look for" line.</p>
+    <label class="figsearch"><span class="sr-only">Search figures by name</span><input id="figq" type="search" placeholder="Search a name, like Boba Fett" autocomplete="off" spellcheck="false"></label>
+    <div class="chips2" role="group" aria-label="Filter by theme"><button type="button" class="chip2" aria-pressed="true" data-t="all">All</button><button type="button" class="chip2" aria-pressed="false" data-t="Star Wars">Star Wars</button><button type="button" class="chip2" aria-pressed="false" data-t="Batman">Batman</button><button type="button" class="chip2" aria-pressed="false" data-t="Castle">Castle</button><button type="button" class="chip2" aria-pressed="false" data-t="Minecraft">Minecraft</button><button type="button" class="chip2" aria-pressed="false" data-t="Lord of the Rings">Lord of the Rings</button><button type="button" class="chip2" aria-pressed="false" data-t="Ninjago">Ninjago</button><button type="button" class="chip2" aria-pressed="false" data-t="Pirates">Pirates</button><button type="button" class="chip2" aria-pressed="false" data-t="Harry Potter">Harry Potter</button><button type="button" class="chip2" aria-pressed="false" data-t="Minifigures">Minifigures</button></div>
+    <ul class="figgrid" id="figgrid">
+<li class="fcard" data-t="Star Wars"><div class="ftray"><img loading="lazy" decoding="async" src="img/figs/sw0107.webp" width="281" height="440" alt="LEGO Boba Fett minifigure"></div><span class="stk">$3,302</span><h3>Boba Fett</h3><p class="ffrom">2003, Cloud City (10123)</p><p class="flook"><b>Look for</b> printed arms and legs, not plain gray</p></li>
+<li class="fcard" data-t="Star Wars"><div class="ftray"><img loading="lazy" decoding="async" src="img/figs/sw0158.webp" width="277" height="440" alt="LEGO chrome gold C‑3PO minifigure"></div><span class="stk">$1,193 <i>used</i></span><h3>Chrome gold C‑3PO</h3><p class="ffrom">random 2007 Star Wars sets</p><p class="flook"><b>Look for</b> mirror-shiny gold, not the normal dull gold</p></li>
+<li class="fcard" data-t="Batman"><div class="ftray"><img loading="lazy" decoding="async" src="img/figs/bat021.webp" width="280" height="440" alt="LEGO Bane minifigure"></div><span class="stk">$985</span><h3>Bane</h3><p class="ffrom">2007, The Bat-Tank (7787)</p><p class="flook"><b>Look for</b> black mask with red eyes, bare chest, blue legs</p></li>
+<li class="fcard" data-t="Star Wars"><div class="ftray"><img loading="lazy" decoding="async" src="img/figs/sw0105.webp" width="400" height="434" alt="LEGO Lando Calrissian minifigure"></div><span class="stk">$731</span><h3>Lando Calrissian</h3><p class="ffrom">2003, Cloud City (10123)</p><p class="flook"><b>Look for</b> light blue shirt, yellow cape</p></li>
+<li class="fcard" data-t="Castle"><div class="ftray"><img loading="lazy" decoding="async" src="img/figs/cas203.webp" width="273" height="440" alt="LEGO Green Ninja minifigure"></div><span class="stk">$614</span><h3>Green Ninja</h3><p class="ffrom">2000, Ninja minifig pack (3346)</p><p class="flook"><b>Look for</b> all green, wrap mask, gold scale armor print</p></li>
+<li class="fcard" data-t="Star Wars"><div class="ftray"><img loading="lazy" decoding="async" src="img/figs/sw0103.webp" width="268" height="440" alt="LEGO Luke Skywalker minifigure"></div><span class="stk">$548</span><h3>Luke Skywalker</h3><p class="ffrom">2003, Cloud City (10123)</p><p class="flook"><b>Look for</b> tan shirt with chest pockets, printed tan legs</p></li>
+<li class="fcard" data-t="Minecraft"><div class="ftray"><img loading="lazy" decoding="async" src="img/figs/min029.webp" width="180" height="440" alt="LEGO Villager minifigure"></div><span class="stk">$545</span><h3>Villager</h3><p class="ffrom">2016, The Village (21128)</p><p class="flook"><b>Look for</b> white top with a gray stripe, brown legs</p></li>
+<li class="fcard" data-t="Batman"><div class="ftray"><img loading="lazy" decoding="async" src="img/figs/bat015.webp" width="250" height="440" alt="LEGO Nightwing minifigure"></div><span class="stk">$488</span><h3>Nightwing</h3><p class="ffrom">2006, Arkham Asylum (7785)</p><p class="flook"><b>Look for</b> spiky black hair, blue bird across a black suit</p></li>
+<li class="fcard m12" data-t="Castle"><div class="ftray"><img loading="lazy" decoding="async" src="img/figs/cas167.webp" width="220" height="440" alt="LEGO Armored Knight minifigure"></div><span class="stk">$408</span><h3>Armored Knight</h3><p class="ffrom">1992, Black Knight&#x27;s Castle (6086)</p><p class="flook"><b>Look for</b> gray armor, helmet with a white dragon plume</p></li>
+<li class="fcard m12" data-t="Batman"><div class="ftray"><img loading="lazy" decoding="async" src="img/figs/bat009.webp" width="400" height="416" alt="LEGO Robin minifigure"></div><span class="stk">$384</span><h3>Robin</h3><p class="ffrom">2006, The Batcave (7783)</p><p class="flook"><b>Look for</b> red vest with an R, yellow cape, green legs</p></li>
+<li class="fcard m12" data-t="Star Wars"><div class="ftray"><img loading="lazy" decoding="async" src="img/figs/sw0218.webp" width="374" height="423" alt="LEGO chrome black Darth Vader minifigure"></div><span class="stk">$376 <i>used</i></span><h3>Chrome black Darth Vader</h3><p class="ffrom">random 2009 Star Wars sets</p><p class="flook"><b>Look for</b> mirror-shiny black, not normal matte black</p></li>
+<li class="fcard m12" data-t="Batman"><div class="ftray"><img loading="lazy" decoding="async" src="img/figs/bat016.webp" width="235" height="440" alt="LEGO Scarecrow minifigure"></div><span class="stk">$373</span><h3>Scarecrow</h3><p class="ffrom">2006-07, Arkham Asylum (7785) or Batcopter (7786)</p><p class="flook"><b>Look for</b> glow-in-the-dark face, black hat, brown shirt</p></li>
+<li class="fcard more" data-t="Batman"><div class="ftray"><img loading="lazy" decoding="async" src="img/figs/bat011c01.webp" width="394" height="395" alt="LEGO Mr. Freeze minifigure"></div><span class="stk">$348</span><h3>Mr. Freeze</h3><p class="ffrom">2006, The Batcave (7783)</p><p class="flook"><b>Look for</b> clear dome helmet, blue suit, freeze gun with a hose</p></li>
+<li class="fcard more" data-t="Lord of the Rings"><div class="ftray"><img loading="lazy" decoding="async" src="img/figs/lor072.webp" width="372" height="422" alt="LEGO Grima Wormtongue minifigure"></div><span class="stk">$342</span><h3>Grima Wormtongue</h3><p class="ffrom">2013, Tower of Orthanc (10237)</p><p class="flook"><b>Look for</b> black hair and cape, dark red top with a gold chain</p></li>
+<li class="fcard more" data-t="Castle"><div class="ftray"><img loading="lazy" decoding="async" src="img/figs/cas006.webp" width="251" height="440" alt="LEGO Forestman minifigure"></div><span class="stk">$328</span><h3>Forestman (Castle)</h3><p class="ffrom">1996, Dark Forest Fortress (6079)</p><p class="flook"><b>Look for</b> brown hat with a blue feather, blue arms</p></li>
+<li class="fcard more" data-t="Ninjago"><div class="ftray"><img loading="lazy" decoding="async" src="img/figs/njo252.webp" width="271" height="440" alt="LEGO Nya (Airjitzu) minifigure"></div><span class="stk">$310</span><h3>Nya (Airjitzu)</h3><p class="ffrom">2016, Airjitzu Battle Grounds (70590)</p><p class="flook"><b>Look for</b> dark red mask and suit, blue arms</p></li>
+<li class="fcard more" data-t="Batman"><div class="ftray"><img loading="lazy" decoding="async" src="img/figs/bat026.webp" width="277" height="440" alt="LEGO Harley Quinn minifigure"></div><span class="stk">$296</span><h3>Harley Quinn</h3><p class="ffrom">2008, The Batcycle (7886)</p><p class="flook"><b>Look for</b> red and black jester hat, diamond print on the legs</p></li>
+<li class="fcard more" data-t="Lord of the Rings"><div class="ftray"><img loading="lazy" decoding="async" src="img/figs/lor074.webp" width="275" height="440" alt="LEGO Saruman minifigure"></div><span class="stk">$232</span><h3>Saruman</h3><p class="ffrom">2013, Tower of Orthanc (10237)</p><p class="flook"><b>Look for</b> long white hair and beard, white robe with a printed belt</p></li>
+<li class="fcard more" data-t="Pirates"><div class="ftray"><img loading="lazy" decoding="async" src="img/figs/pi001.webp" width="235" height="440" alt="LEGO Imperial Guard Admiral minifigure"></div><span class="stk">$205</span><h3>Imperial Guard Admiral</h3><p class="ffrom">1995, Imperial Outpost (6263)</p><p class="flook"><b>Look for</b> black hat with white trim, gold shoulders, red coat</p></li>
+<li class="fcard more" data-t="Harry Potter"><div class="ftray"><img loading="lazy" decoding="async" src="img/figs/hp069.webp" width="291" height="440" alt="LEGO Voldemort minifigure"></div><span class="stk">$203</span><h3>Voldemort</h3><p class="ffrom">2005, Graveyard Duel (4766)</p><p class="flook"><b>Look for</b> glow-in-the-dark head, gray fuzzy cape</p></li>
+<li class="fcard more" data-t="Ninjago"><div class="ftray"><img loading="lazy" decoding="async" src="img/figs/njo069.webp" width="259" height="440" alt="LEGO NRG Zane minifigure"></div><span class="stk">$186</span><h3>NRG Zane</h3><p class="ffrom">2012, spinner set (9590)</p><p class="flook"><b>Look for</b> light blue with a white ice print</p></li>
+<li class="fcard more" data-t="Ninjago"><div class="ftray"><img loading="lazy" decoding="async" src="img/figs/njo061.webp" width="265" height="440" alt="LEGO Jay NRG minifigure"></div><span class="stk">$171 <i>used</i></span><h3>Jay NRG</h3><p class="ffrom">2012, spinner set (9570)</p><p class="flook"><b>Look for</b> blue with lightning print all over</p></li>
+<li class="fcard more" data-t="Ninjago"><div class="ftray"><img loading="lazy" decoding="async" src="img/figs/njo014.webp" width="376" height="440" alt="LEGO Samukai minifigure"></div><span class="stk">$171</span><h3>Samukai</h3><p class="ffrom">2011, Garmadon&#x27;s Dark Fortress (2505)</p><p class="flook"><b>Look for</b> 4-armed skeleton, black chest armor</p></li>
+<li class="fcard more" data-t="Lord of the Rings"><div class="ftray"><img loading="lazy" decoding="async" src="img/figs/lor021.webp" width="249" height="440" alt="LEGO King Theoden minifigure"></div><span class="stk">$167</span><h3>King Theoden</h3><p class="ffrom">2012, The Battle of Helm&#x27;s Deep (9474)</p><p class="flook"><b>Look for</b> brown helmet and armor with gold swirls, red arms</p></li>
+<li class="fcard more" data-t="Ninjago"><div class="ftray"><img loading="lazy" decoding="async" src="img/figs/njo016.webp" width="263" height="440" alt="LEGO Jay DX minifigure"></div><span class="stk">$137 <i>used</i></span><h3>Jay DX</h3><p class="ffrom">2011, Lightning Dragon Battle (2521)</p><p class="flook"><b>Look for</b> blue ninja with a gold dragon on the chest</p></li>
+<li class="fcard more" data-t="Minecraft"><div class="ftray"><img loading="lazy" decoding="async" src="img/figs/min044.webp" width="264" height="440" alt="LEGO Steve in armor minifigure"></div><span class="stk">$123</span><h3>Steve in armor</h3><p class="ffrom">2017, The Jungle Temple (21132)</p><p class="flook"><b>Look for</b> orange-brown helmet and armor, blue arms</p></li>
+<li class="fcard more" data-t="Pirates"><div class="ftray"><img loading="lazy" decoding="async" src="img/figs/pi012.webp" width="247" height="440" alt="LEGO Tattoo McGoo minifigure"></div><span class="stk">$122</span><h3>Tattoo McGoo</h3><p class="ffrom">1996, Red Beard Runner (6289)</p><p class="flook"><b>Look for</b> black bandana, dark red vest with an anchor</p></li>
+<li class="fcard more" data-t="Harry Potter"><div class="ftray"><img loading="lazy" decoding="async" src="img/figs/hp073.webp" width="319" height="440" alt="LEGO Death Eater minifigure"></div><span class="stk">$114</span><h3>Death Eater</h3><p class="ffrom">2005, Graveyard Duel (4766)</p><p class="flook"><b>Look for</b> black skull mask, blond hair, gray cape</p></li>
+<li class="fcard more" data-t="Pirates"><div class="ftray"><img loading="lazy" decoding="async" src="img/figs/pi016.webp" width="247" height="440" alt="LEGO Armada Captain minifigure"></div><span class="stk">$114</span><h3>Armada Captain</h3><p class="ffrom">1996, Armada Flagship (6280)</p><p class="flook"><b>Look for</b> black helmet with a white plume, silver armor</p></li>
+<li class="fcard more" data-t="Ninjago"><div class="ftray"><img loading="lazy" decoding="async" src="img/figs/njo154.webp" width="270" height="440" alt="LEGO Lloyd Possessed minifigure"></div><span class="stk">$109 <i>used</i></span><h3>Lloyd Possessed</h3><p class="ffrom">2015, City of Stiix (70732)</p><p class="flook"><b>Look for</b> black hood and shoulder armor over dark green</p></li>
+<li class="fcard more" data-t="Harry Potter"><div class="ftray"><img loading="lazy" decoding="async" src="img/figs/hp049.webp" width="275" height="440" alt="LEGO Professor Trelawney minifigure"></div><span class="stk">$104</span><h3>Professor Trelawney</h3><p class="ffrom">2004, Hogwarts Castle (4757)</p><p class="flook"><b>Look for</b> pink hat, round glasses, blue robe</p></li>
+<li class="fcard more" data-t="Minecraft"><div class="ftray"><img loading="lazy" decoding="async" src="img/figs/min046.webp" width="145" height="440" alt="LEGO Witch minifigure"></div><span class="stk">$75</span><h3>Witch</h3><p class="ffrom">2017, The Witch Hut (21133)</p><p class="flook"><b>Look for</b> black pointed hat with a green gem, purple robe</p></li>
+<li class="fcard more" data-t="Minifigures"><div class="ftray"><img loading="lazy" decoding="async" src="img/figs/col014.webp" width="252" height="440" alt="LEGO Forestman minifigure"></div><span class="stk">$39</span><h3>Forestman (Series 1)</h3><p class="ffrom">2010, Minifigures Series 1 (8683), sold for $1.99</p><p class="flook"><b>Look for</b> green hat with a red feather and a quiver</p></li>
+<li class="fcard more" data-t="Minifigures"><div class="ftray"><img loading="lazy" decoding="async" src="img/figs/col005.webp" width="265" height="440" alt="LEGO Zombie minifigure"></div><span class="stk">$32</span><h3>Zombie</h3><p class="ffrom">2010, Minifigures Series 1 (8683), sold for $1.99</p><p class="flook"><b>Look for</b> gray face, red eyes, torn suit and brown tie</p></li>
+<li class="fcard more" data-t="Minifigures"><div class="ftray"><img loading="lazy" decoding="async" src="img/figs/col004.webp" width="249" height="440" alt="LEGO Circus Clown minifigure"></div><span class="stk">$30</span><h3>Circus Clown</h3><p class="ffrom">2010, Minifigures Series 1 (8683), sold for $1.99</p><p class="flook"><b>Look for</b> red afro, lime shirt, one red and one blue leg</p></li>
+    </ul>
+    <p class="nofig" id="nofig" hidden>No figure by that name in our videos yet. The app will price any figure.</p>
+    <button type="button" class="gbtn showall" id="showall">Show all 35 figures</button>
+    <p class="gfine">Values: BrickEconomy, checked Nov 7, 2026. Prices marked "used" are Brickset used averages (BrickLink sales). Prices change. Figure photos: BrickEconomy.</p>
+  </div>
+</section>
+
 <section class="game" id="game" aria-labelledby="h-game">
   <div class="page">
     <h2 class="sec" id="h-game">Would you flip it?</h2>
@@ -315,6 +433,7 @@ footer p{margin:0 0 6px;max-width:72ch}
   <div class="page">
     <h2 class="sec" id="h-paths">Two ways people use a bin scan</h2>
     <p class="sub">Same photo, different question.</p>
+    <img class="wideph" src="img/hands.webp" width="1100" height="733" loading="lazy" decoding="async" alt="Several hands holding up LEGO minifigures">
     <div class="paths">
       <div class="path flip">
         <span class="badge">buying</span>
@@ -342,10 +461,13 @@ footer p{margin:0 0 6px;max-width:72ch}
   <div class="page">
     <h2 class="sec" id="h-why">Why a bin is worth more than it looks</h2>
     <p class="sub">Most bins get priced by eye or by the pound. The money is usually in a handful of pieces.</p>
+    <div class="whygrid">
+    <img class="wideph" src="img/hiding.webp" width="1100" height="733" loading="lazy" decoding="async" alt="One LEGO minifigure half buried in a pile of loose bricks">
     <div class="facts">
       <div class="fact"><b>$3 to $12</b><p>what loose used LEGO usually sells for per pound, depending on the mix.</p></div>
       <div class="fact"><b>1 figure</b><p>can be worth more than the rest of the bin. Older Star Wars and Harry Potter figures are the usual suspects.</p></div>
       <div class="fact"><b>2 to 4x</b><p>what an unsorted bin can bring once the figures and sets are pulled and sold on their own.</p></div>
+    </div>
     </div>
   </div>
 </section>
@@ -385,6 +507,7 @@ footer p{margin:0 0 6px;max-width:72ch}
     <h2 class="sec" id="h-faq">Questions</h2>
     <div class="faq">
       <details><summary>When does it come out?</summary><p>We're building it now. Waitlist members get it first, plus free scans at launch.</p></details>
+      <details><summary>Which figures should I look for?</summary><p>Start with the <a href="#figures">figures from our videos</a>. Older Star Wars, Batman, Ninjago and Minecraft figures are worth checking first. Each one has a "look for" line so you can tell it apart from the common versions.</p></details>
       <details><summary>Where do the prices come from?</summary><p>Recent sold prices for used LEGO, not store prices and not guesses.</p></details>
       <details><summary>iPhone or Android?</summary><p>iPhone first, Android right after. Join and we'll tell you when yours is ready.</p></details>
       <details><summary>Do you buy LEGO?</summary><p>No. PriceMyBin tells you what a bin is worth so you can buy or sell it at the right price, wherever you want.</p></details>
@@ -411,8 +534,11 @@ footer p{margin:0 0 6px;max-width:72ch}
 
 <footer>
   <div class="page">
+    <p><b>New finds every day on @pricemybin</b></p>
+    <div class="socials"><a href="https://www.tiktok.com/@pricemybin" rel="noopener">TikTok</a><a href="https://www.instagram.com/pricemybin/" rel="noopener">Instagram</a><a href="https://www.youtube.com/channel/UCI_UlNWVlPmrmZvnFdnWmtg" rel="noopener">YouTube</a></div>
     <p>LEGO® is a trademark of the LEGO Group, which does not sponsor, authorize, or endorse PriceMyBin.</p>
-    <p>We use your email only to tell you when PriceMyBin launches. Values shown are an example.</p>
+    <p>We use your email only to tell you when PriceMyBin launches. The $287 bin and the practice bins are examples. Figure values: BrickEconomy and Brickset, checked Nov 7, 2026.</p>
+    <p>Photos: Rick Mason, Vlad Hilitanu and Denny Muller on Unsplash. Figure images: BrickEconomy.</p>
   </div>
 </footer>
 
@@ -477,55 +603,6 @@ function countUp(el, to, ms, delay) {
     })(t0);
   }, delay || 0);
 }
-drawPile(document.getElementById("pileA"), document.getElementById("pileB"), { seed: 7, palette: "mixed", U: 14, n: [125, 38] });
-
-/* ---- 3D tilt: follows pointer or finger, idles with a slow sway ---- */
-(function () {
-  var stage = document.getElementById("stage"), bin = document.getElementById("demo");
-  if (reduceMotion || !bin.style.setProperty) return;
-  var tx = 0, ty = 0, cx = 0, cy = 0, active = false, t0 = performance.now(), visible = true;
-  function aim(clientX, clientY) {
-    var r = stage.getBoundingClientRect();
-    var px = Math.max(-1, Math.min(1, ((clientX - r.left) / r.width - .5) * 2));
-    var py = Math.max(-1, Math.min(1, ((clientY - r.top) / r.height - .5) * 2));
-    tx = px * 14; ty = -py * 10; active = true;
-  }
-  stage.addEventListener("pointermove", function (e) { aim(e.clientX, e.clientY); });
-  stage.addEventListener("pointerleave", function () { active = false; });
-  stage.addEventListener("touchmove", function (e) { if (e.touches[0]) aim(e.touches[0].clientX, e.touches[0].clientY); }, { passive: true });
-  stage.addEventListener("touchend", function () { active = false; });
-  if ("IntersectionObserver" in window) new IntersectionObserver(function (e) { visible = e[0].isIntersecting; }).observe(stage);
-  (function loop(now) {
-    if (visible) {
-      if (!active) { var t = (now - t0) / 1000; tx = Math.sin(t * .6) * 9; ty = 6 + Math.sin(t * .45) * 3; }
-      cx += (tx - cx) * .08; cy += (ty - cy) * .08;
-      bin.style.setProperty("--ry", cx.toFixed(2) + "deg");
-      bin.style.setProperty("--rx", cy.toFixed(2) + "deg");
-    }
-    requestAnimationFrame(loop);
-  })(t0);
-})();
-
-/* ---- the scan: one orchestrated moment, replayable ---- */
-(function () {
-  var bin = document.getElementById("demo"), tags = bin.querySelectorAll(".tag"), btn = document.getElementById("replay"), sum = bin.querySelector(".total b"), timers = [];
-  function each(fn) { for (var i = 0; i < tags.length; i++) fn(tags[i]); }
-  function reset() { timers.forEach(clearTimeout); timers = []; bin.classList.remove("scanning", "done", "snap"); each(function (t) { t.classList.remove("on"); }); btn.hidden = true; }
-  function run() {
-    reset();
-    if (reduceMotion) { each(function (t) { t.classList.add("on"); }); bin.classList.add("done"); btn.hidden = false; return; }
-    void bin.offsetWidth; bin.classList.add("snap", "scanning");
-    each(function (t) { timers.push(setTimeout(function () { t.classList.add("on"); }, 1500 * (+t.getAttribute("data-at")) + 120)); });
-    timers.push(setTimeout(function () { bin.classList.remove("scanning", "snap"); bin.classList.add("done"); countUp(sum, 287, 750, 450); timers.push(setTimeout(function () { btn.hidden = false; }, 1300)); }, 1600));
-  }
-  btn.addEventListener("click", run);
-  var started = false;
-  function go() { if (!started) { started = true; setTimeout(run, 450); } }
-  if ("IntersectionObserver" in window) new IntersectionObserver(function (e, o) { if (e[0].isIntersecting) { go(); o.disconnect(); } }, { threshold: .4 }).observe(bin);
-  else go();
-  window.__runScan = run;
-})();
-
 /* ---- game: would you flip it? ---- */
 (function () {
   var card = document.getElementById("gcard");
@@ -701,7 +778,7 @@ drawPile(document.getElementById("pileA"), document.getElementById("pileB"), { s
   function update() { var anyForm = false; seen.forEach(function (v) { if (v) anyForm = true; }); var on = pastHero && !anyForm && !joined; bar.classList.toggle("show", on); bar.setAttribute("aria-hidden", on ? "false" : "true"); bar.tabIndex = on ? 0 : -1; }
   var io = new IntersectionObserver(function (es) { es.forEach(function (e) { seen.set(e.target, e.isIntersecting); }); update(); });
   forms.forEach(function (f) { io.observe(f); });
-  new IntersectionObserver(function (e) { pastHero = !e[0].isIntersecting && e[0].boundingClientRect.top < 0; update(); }).observe(document.querySelector(".hero h1"));
+  new IntersectionObserver(function (e) { pastHero = !e[0].isIntersecting && e[0].boundingClientRect.top < 0; update(); }).observe(document.querySelector(".hero2 h1"));
   bar.addEventListener("click", function (e) { e.preventDefault(); var f = document.getElementById("join"); f.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "center" }); var i = f.querySelector("input[type=email]"); if (i) setTimeout(function () { i.focus({ preventScroll: true }); }, reduceMotion ? 0 : 450); });
   window.__markJoined = function () { joined = true; update(); };
 })();
@@ -756,6 +833,57 @@ drawPile(document.getElementById("pileA"), document.getElementById("pileB"), { s
     }
     if (act === "share" && navigator.share) navigator.share({ title: "PriceMyBin", text: "That $20 LEGO bin might be worth $287.", url: shareUrl }).catch(function () {});
   });
+})();
+</script>
+
+<script>
+/* hero: figures rise out of the bin, prices count up (the same reveal as the videos) */
+(function () {
+  var tub = document.getElementById("tub"); if (!tub) return;
+  var rm = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+  function count(el, delay) {
+    var v = +el.getAttribute("data-v"), t0 = null;
+    if (rm) return;
+    el.textContent = "$0";
+    setTimeout(function () {
+      (function step(t) { if (!t0) t0 = t; var p = Math.min(1, (t - t0) / 700), e = 1 - Math.pow(1 - p, 3);
+        el.textContent = "$" + Math.round(v * e).toLocaleString("en-US"); if (p < 1) requestAnimationFrame(step); })(performance.now());
+    }, delay);
+  }
+  function go() {
+    tub.classList.add("go");
+    tub.querySelectorAll(".pf .stk").forEach(function (s, i) { count(s, i * 320 + 560); });
+  }
+  if ("IntersectionObserver" in window) new IntersectionObserver(function (e, o) { if (e[0].isIntersecting) { setTimeout(go, 250); o.disconnect(); } }, { threshold: .35 }).observe(tub);
+  else go();
+})();
+/* gallery: theme filter + show all */
+(function () {
+  var grid = document.getElementById("figgrid"); if (!grid) return;
+  var cards = [].slice.call(grid.children), more = document.getElementById("showall"), open = false, theme = "all",
+      q = document.getElementById("figq"), none = document.getElementById("nofig");
+  function apply() {
+    var term = (q.value || "").trim().toLowerCase(), shown = 0, filtering = term || theme !== "all";
+    cards.forEach(function (c) {
+      var hit = (theme === "all" || c.getAttribute("data-t") === theme) &&
+                (!term || c.querySelector("h3").textContent.toLowerCase().indexOf(term) >= 0 || c.getAttribute("data-t").toLowerCase().indexOf(term) >= 0);
+      c.hidden = !hit || (!filtering && !open && c.classList.contains("more"));
+      if (!c.hidden) shown++;
+    });
+    grid.classList.toggle("open", open || !!filtering);
+    more.hidden = open || !!filtering;
+    none.hidden = shown > 0;
+  }
+  q.addEventListener("input", apply);
+  document.querySelectorAll(".chip2").forEach(function (b) {
+    b.addEventListener("click", function () {
+      theme = b.getAttribute("data-t");
+      document.querySelectorAll(".chip2").forEach(function (x) { x.setAttribute("aria-pressed", x === b ? "true" : "false"); });
+      apply();
+    });
+  });
+  more.addEventListener("click", function () { open = true; grid.classList.add("open"); apply(); });
+  apply();
 })();
 </script>
 </body>
