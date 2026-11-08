@@ -132,7 +132,7 @@ h1{margin:0;font-weight:850;font-stretch:120%;font-size:clamp(38px,10.6vw,80px);
 .gfig.best .tag:before{content:"Pull this one";position:absolute;left:50%;bottom:100%;transform:translate(-50%,-.6cqw);white-space:nowrap;background:#000;color:#fff;border-radius:999px;padding:1cqw 2.2cqw;font:800 9.5px/1 Archivo,sans-serif;font-size:max(9.5px,2.3cqw)}
 .havehint{margin:0 0 10px;font-size:15px;color:var(--mute)}
 .havehint b{color:#000}
-.tally{position:sticky;top:10px;z-index:5;display:flex;align-items:center;justify-content:space-between;gap:12px;background:#000;color:#fff;border:2px solid #000;border-radius:14px;padding:10px 10px 10px 16px;margin:0 0 14px;box-shadow:0 6px 0 var(--sticker)}
+.tally{position:sticky;top:18px;z-index:5;display:flex;align-items:center;justify-content:space-between;gap:12px;background:#000;color:#fff;border:2px solid #000;border-radius:14px;padding:10px 10px 10px 16px;margin:0 0 14px;box-shadow:0 6px 0 var(--sticker)}
 .tally.empty{background:#fff;color:#000;box-shadow:none;border:2px dashed #000}
 .tally.empty .tfull,.tally:not(.empty) .tempty{display:none}
 .tally.empty .tclear{visibility:hidden}
@@ -307,7 +307,7 @@ footer p{margin:0 0 6px;max-width:72ch}
 .tub .photo:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 35%,rgba(0,0,0,.42) 100%)}
 .tape2{position:absolute;left:18px;top:-15px;z-index:3;background:var(--tape);font-family:var(--marker);font-size:clamp(19px,4.6vw,27px);line-height:1;padding:10px 16px 9px;transform:rotate(-3deg);box-shadow:0 3px 8px rgba(0,0,0,.35)}
 .tape2 s{text-decoration:none;position:relative;margin-left:4px}.tape2 s:after{content:"";position:absolute;left:-3px;right:-3px;top:46%;height:2px;background:#000;transform:rotate(-8deg)}
-.pulled{position:absolute;left:12px;right:12px;bottom:var(--lip);height:76%;display:flex;justify-content:space-around;align-items:flex-end;overflow:hidden;pointer-events:none;z-index:1}
+.pulled{position:absolute;left:12px;right:12px;bottom:var(--lip);height:76%;display:flex;justify-content:space-around;align-items:flex-end;clip-path:inset(-140px -40px 0 -40px);pointer-events:none;z-index:1}
 .pf{position:relative;margin:0;width:31%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:6px}
 .pf img{display:block;max-width:100%;max-height:74%;width:auto;height:auto;filter:drop-shadow(0 10px 10px rgba(0,0,0,.6));transform:translateY(0)}
 .pf .stk{position:relative;transform:rotate(-5deg);z-index:2}
@@ -341,7 +341,7 @@ footer p{margin:0 0 6px;max-width:72ch}
 .fcard .flook{margin-bottom:12px}
 .fcard .have{margin-top:auto}
 .fcard[hidden]{display:none}
-.ftray{aspect-ratio:1/1.12;display:flex;align-items:flex-end;justify-content:center;padding:50px 8px 8px;border-bottom:2px solid #000;
+.ftray{contain:size;aspect-ratio:1/1.12;display:flex;align-items:flex-end;justify-content:center;padding:50px 8px 8px;border-bottom:2px solid #000;
   background-color:#e4e4e1;background-image:radial-gradient(circle at center,#efefec 0 4.5px,#cfcfcb 5.5px 6.5px,transparent 7.5px);background-size:22px 22px}
 .ftray img{display:block;max-width:86%;max-height:100%;width:auto;height:auto;filter:drop-shadow(0 6px 6px rgba(0,0,0,.25))}
 .fcard .stk{position:absolute;top:10px;right:10px;font-size:22px;padding:6px 10px 5px;transform:rotate(4deg);text-decoration:none;color:#000;z-index:2}
@@ -445,6 +445,56 @@ main p a,.faq p a,.legal a,.fromvid a,.sent .linkish{text-decoration-thickness:1
   .flinks a:hover::after{transform:scaleX(1)}
   input[type=email]:hover{border-color:var(--tub)}
 }
+
+/* ---- LEGO moments ---- */
+/* orange buttons are 1xN bricks: a row of studs on top that rides along when you press */
+button.join::after,.gbtn.lock::after,.sticky::after{content:"";position:absolute;left:16px;right:16px;top:-6px;height:6px;pointer-events:none;--s:var(--sticker);
+  background:radial-gradient(4px 1.6px at 50% 55%,rgba(255,255,255,.55) 98%,#0000),radial-gradient(9px 6px at 50% 100%,var(--s) 96%,#0000 100%),radial-gradient(10.5px 7.2px at 50% 100%,#a83600 96%,#0000 100%);
+  background-size:30px 6px;background-repeat:space no-repeat;background-position:center top}
+/* "How it will work": each step is a 2x2 brick that drops and clicks into place */
+ol.how li{grid-template-columns:56px 1fr;gap:16px;align-items:start}
+ol.how li:before{width:56px;height:48px;display:flex;align-items:center;justify-content:center;padding:9px 0 0;box-sizing:border-box;font-size:24px;font-stretch:110%;color:#000;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 56 48'%3E%3Crect x='8' y='2' width='14' height='9' rx='3' fill='%23ff5b14' stroke='%23000' stroke-width='2'/%3E%3Crect x='34' y='2' width='14' height='9' rx='3' fill='%23ff5b14' stroke='%23000' stroke-width='2'/%3E%3Crect x='1' y='8' width='54' height='39' rx='5' fill='%23ff5b14' stroke='%23000' stroke-width='2'/%3E%3Crect x='5' y='12' width='46' height='3' rx='1.5' fill='%23fff' opacity='.4'/%3E%3Crect x='11' y='4' width='5' height='2' rx='1' fill='%23fff' opacity='.55'/%3E%3Crect x='37' y='4' width='5' height='2' rx='1' fill='%23fff' opacity='.55'/%3E%3C/svg%3E") center/contain no-repeat;transform-origin:50% 100%}
+ol.how li:nth-child(2):before{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 56 48'%3E%3Crect x='8' y='2' width='14' height='9' rx='3' fill='%232f6fd0' stroke='%23000' stroke-width='2'/%3E%3Crect x='34' y='2' width='14' height='9' rx='3' fill='%232f6fd0' stroke='%23000' stroke-width='2'/%3E%3Crect x='1' y='8' width='54' height='39' rx='5' fill='%232f6fd0' stroke='%23000' stroke-width='2'/%3E%3Crect x='5' y='12' width='46' height='3' rx='1.5' fill='%23fff' opacity='.4'/%3E%3Crect x='11' y='4' width='5' height='2' rx='1' fill='%23fff' opacity='.55'/%3E%3Crect x='37' y='4' width='5' height='2' rx='1' fill='%23fff' opacity='.55'/%3E%3C/svg%3E");color:#fff}
+ol.how li:nth-child(3):before{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 56 48'%3E%3Crect x='8' y='2' width='14' height='9' rx='3' fill='%23c6f432' stroke='%23000' stroke-width='2'/%3E%3Crect x='34' y='2' width='14' height='9' rx='3' fill='%23c6f432' stroke='%23000' stroke-width='2'/%3E%3Crect x='1' y='8' width='54' height='39' rx='5' fill='%23c6f432' stroke='%23000' stroke-width='2'/%3E%3Crect x='5' y='12' width='46' height='3' rx='1.5' fill='%23fff' opacity='.4'/%3E%3Crect x='11' y='4' width='5' height='2' rx='1' fill='%23fff' opacity='.55'/%3E%3Crect x='37' y='4' width='5' height='2' rx='1' fill='%23fff' opacity='.55'/%3E%3C/svg%3E")}
+.js ol.how:not(.in) li:before{opacity:0;transform:translateY(-70px)}
+.js ol.how:not(.in) li>div{opacity:0;transform:translateX(-10px)}
+ol.how.in li:before{animation:brickdrop .62s var(--ease) backwards;animation-delay:calc(var(--i) * .2s)}
+ol.how.in li>div{transition:opacity .4s var(--ease),transform .4s var(--ease);transition-delay:calc(var(--i) * .2s + .3s)}
+ol.how li{position:relative}
+ol.how li:not(:last-child):after{content:"";position:absolute;left:25px;top:52px;bottom:-20px;width:6px;background:radial-gradient(circle at 50% 50%,#c9ccd1 2.5px,#0000 3px) 0 0/6px 9px repeat-y;opacity:0;transition:opacity .4s var(--ease) calc(var(--i) * .2s + .5s)}
+ol.how.in li:not(:last-child):after{opacity:1}
+ol.how li:nth-child(1){--i:0}ol.how li:nth-child(2){--i:1}ol.how li:nth-child(3){--i:2}
+form.ok button.join::after{animation:studclick .28s var(--spring)}
+@keyframes studclick{0%{transform:none}35%{transform:translateY(2px) scaleY(.6)}100%{transform:none}}
+@keyframes brickdrop{0%{opacity:0;transform:translateY(-70px)}55%{opacity:1;transform:translateY(0) scale(1.08,.86)}75%{transform:translateY(-5px) scale(.97,1.03)}100%{opacity:1;transform:none}}
+@media (hover:hover){ol.how li:before{transition:transform .25s var(--spring)}ol.how li:hover:before{transform:translateY(-4px) rotate(-4deg)}}
+/* the last section sits on a blue baseplate that drifts as you scroll */
+.last{position:relative;isolation:isolate;overflow:hidden}
+.last::before{content:"";position:absolute;left:0;right:0;top:-80px;bottom:0;z-index:-1;pointer-events:none;background-image:radial-gradient(circle at 50% 46%,rgba(255,255,255,.05) 5.5px,#0000 6px),radial-gradient(circle at 50% 54%,rgba(0,0,0,.11) 6.5px,#0000 7px);background-size:26px 26px}
+.last .signup .body{background:var(--tub);box-shadow:0 0 0 18px var(--tub),0 0 0 20px rgba(0,0,0,.16);border-radius:8px}
+@media (max-width:699px){.last .signup .body{box-shadow:none;border-radius:0;margin-inline:-22px;padding-inline:22px;border-block:2px solid rgba(0,0,0,.16);padding-block:16px}}
+@supports (animation-timeline:view()){
+  .last::before{animation:plate linear both;animation-timeline:view();animation-range:entry 0% exit 100%}
+  @keyframes plate{from{transform:translateY(0)}to{transform:translateY(78px)}}
+  /* hero: the pulled figures keep rising out of the bin as you scroll past */
+  .pulled .pf{animation:rise linear both;animation-timeline:scroll(root);animation-range:0 420px}
+  .pulled .pf:nth-child(2){animation-name:rise2}
+  @keyframes rise{to{transform:translateY(-7%)}}
+  @keyframes rise2{to{transform:translateY(-12%)}}
+}
+/* gallery: price stickers get stamped on as each card scrolls in */
+.js .fcard:not(.seen) .stk{opacity:0}
+.fcard.seen .stk{animation:stamp .42s var(--ease) both;animation-delay:var(--sd,0s)}
+@keyframes stamp{0%{opacity:0;scale:1.8}55%{opacity:1;scale:.9}80%{scale:1.05}100%{opacity:1;scale:1}}
+/* tally: one brick per figure you've found, stacked on the bar */
+.tstack{position:absolute;left:14px;top:-13px;display:flex;gap:2px;pointer-events:none}
+.tally.empty .tstack{display:none}
+.tstack:after{content:attr(data-more);font-family:var(--marker);font-size:13px;line-height:1;background:#000;color:#fff;border-radius:6px;padding:2px 5px;margin:-3px 0 0 4px}
+.tstack:not([data-more^="+"]):after{display:none}
+.tstack i{position:relative;width:20px;height:10px;background:currentColor;border-radius:2px 2px 0 0;box-shadow:inset 0 -2px 0 rgba(0,0,0,.28);animation:tdrop .4s var(--spring) both}
+.tstack i:before{content:"";position:absolute;left:3px;right:3px;top:-3px;height:3px;background:radial-gradient(3px 3px at 22% 100%,currentColor 96%,#0000),radial-gradient(3px 3px at 78% 100%,currentColor 96%,#0000)}
+@keyframes tdrop{from{transform:translateY(-22px);opacity:0}}
+@media (prefers-reduced-motion:reduce){.pulled .pf,.last::before,.fcard.seen .stk{animation:none!important}.js .fcard:not(.seen) .stk{opacity:1}.js ol.how:not(.in) li:before,.js ol.how:not(.in) li>div{opacity:1;transform:none}ol.how.in li:before{animation:none}}
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{transition-duration:.01ms!important;animation-duration:.01ms!important;animation-iteration-count:1!important}
   .fcard:hover,.fcard:hover .ftray img,.fcard:hover .stk,.chip2:hover,.soc a:hover,button.join:hover,.sticky:hover{transform:none}
@@ -866,15 +916,19 @@ function countUp(el, to, ms, delay) {
   /* brick burst: little studded bricks pop out of an element */
   function brickBurst(fromEl) {
     if (reduceMotion || !fromEl) return;
-    if (!burst) { burst = document.createElement("canvas"); burst.id = "burst"; burst.setAttribute("aria-hidden", "true"); document.body.appendChild(burst); }
+    if (!burst) { burst = document.createElement("canvas"); burst.id = "burst"; burst.setAttribute("aria-hidden", "true"); }
+    var host = fromEl.closest("dialog[open]") || document.body; if (burst.parentNode !== host) host.appendChild(burst);
     var c = burst, dpr = Math.min(2, window.devicePixelRatio || 1), W = innerWidth, H = innerHeight;
     c.width = W * dpr; c.height = H * dpr; c.style.width = W + "px"; c.style.height = H + "px";
     var ctx = c.getContext("2d"); ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     var rc = fromEl.getBoundingClientRect(), ox = rc.left + rc.width / 2, oy = rc.top + rc.height / 2;
     var cols = ["#d7261e", "#f5c400", "#2a7de1", "#3fae49", "#ff8a1c", "#ffffff", "#c6f432"], P = [];
-    for (var k = 0; k < 46; k++) {
-      var a = -Math.PI / 2 + (Math.random() - .5) * 2.4, sp = 7 + Math.random() * 9, w = Math.random() < .5 ? 2 : 1;
-      P.push({ x: ox, y: oy, vx: Math.cos(a) * sp, vy: Math.sin(a) * sp, r: Math.random() * 6, vr: (Math.random() - .5) * .3, c: cols[k % cols.length], w: w, s: 9 + Math.random() * 4 });
+    var inDlg = host !== document.body, N = inDlg ? 22 : 46;
+    for (var k = 0; k < N; k++) {
+      var a = inDlg ? (k % 2 ? 0 : Math.PI) + (Math.random() - .5) * 1.1 : -Math.PI / 2 + (Math.random() - .5) * 2.4, sp = inDlg ? 4 + Math.random() * 5 : 7 + Math.random() * 9, w = Math.random() < .5 ? 2 : 1;
+      var px = ox, py = oy;
+      if (inDlg) { var dr = host.getBoundingClientRect(); px = k % 2 ? dr.left + 14 : dr.right - 14; py = dr.top + 30; a = (k % 2 ? Math.PI : 0) + (Math.random() - .5) * .9 - (k % 2 ? -.35 : .35); }
+      P.push({ x: px, y: py, vx: Math.cos(a) * sp, vy: Math.sin(a) * sp, r: Math.random() * 6, vr: (Math.random() - .5) * .3, c: cols[k % cols.length], w: w, s: 9 + Math.random() * 4 });
     }
     var t0 = performance.now();
     (function frame(now) {
@@ -1040,6 +1094,7 @@ function showUrl(btn, url) {
       if (fixd) { fixedFrom = email; email = fixd; input.value = fixd; }
       busy = true; window.__joinBusy = true; err.textContent = ""; btn.disabled = true; btn.textContent = "Joining...";
       var done = function () {
+        if (window.__brickBurst) window.__brickBurst(btn);
         busy = false; window.__joinBusy = false;
         window.lastSignup = { email: email, source: source };
         replacing = "";
@@ -1092,6 +1147,23 @@ function showUrl(btn, url) {
 </script>
 
 <script>
+/* LEGO moments: the steps drop in like bricks */
+(function () {
+  /* the button's studs click once when the email looks complete */
+  document.addEventListener("input", function (ev) {
+    var i = ev.target; if (!i || i.type !== "email" || !i.form) return;
+    var ok = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(i.value.trim());
+    if (ok !== i.form.classList.contains("ok")) i.form.classList.toggle("ok", ok);
+  });
+  var rm = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var how = document.querySelector("ol.how");
+  if (how) { if (rm || !("IntersectionObserver" in window)) how.classList.add("in");
+    else new IntersectionObserver(function (e, o) { if (e[0].isIntersecting) { how.classList.add("in"); o.disconnect(); } }, { threshold: .3 }).observe(how); }
+  var cards = document.querySelectorAll(".fcard");
+  if (rm || !("IntersectionObserver" in window)) cards.forEach(function (c) { c.classList.add("seen"); });
+  else { var io = new IntersectionObserver(function (es) { var k = 0; es.forEach(function (e) { if (e.isIntersecting) { e.target.style.setProperty("--sd", (k++ * .07) + "s"); e.target.classList.add("seen"); io.unobserve(e.target); } }); }, { threshold: .35 });
+    cards.forEach(function (c) { io.observe(c); }); }
+})();
 /* hero: figures rise out of the bin, prices count up (the same reveal as the videos) */
 (function () {
   var tub = document.getElementById("tub"); if (!tub) return;
@@ -1121,7 +1193,13 @@ function showUrl(btn, url) {
   /* "I have this": a running total of the figures you found, at real prices */
   var tally = document.getElementById("tally"), tnum = document.getElementById("tnum"), tsum = document.getElementById("tsum"), have = [];
   function priceOf(c) { var st = c.querySelector(".stk"); return st ? +st.textContent.replace(/used/, "").replace(/[^0-9]/g, "") : 0; }
+  var stack = document.createElement("span"), SC = ["#ff5b14", "#2f6fd0", "#c6f432", "#ffd21f", "#e3000b"];
+  stack.className = "tstack"; stack.setAttribute("aria-hidden", "true"); tally.appendChild(stack);
   function sumUp(pop) {
+    var want = Math.min(have.length, 12);
+    while (stack.children.length < want) { var bk = document.createElement("i"); bk.style.color = SC[stack.children.length % SC.length]; stack.appendChild(bk); }
+    while (stack.children.length > want) stack.removeChild(stack.lastChild);
+    stack.setAttribute("data-more", have.length > 12 ? "+" + (have.length - 12) : "");
     var n = have.length, total = have.reduce(function (a, c) { return a + priceOf(c); }, 0);
     tally.classList.toggle("empty", n === 0);
     var hid = have.filter(function (c) { return c.hidden || !c.offsetParent; }).length;
