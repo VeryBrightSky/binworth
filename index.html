@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>PriceMyBin | That $20 LEGO® bin might be hiding a $985 figure</title>
-<meta name="description" content="We're building PriceMyBin: snap a LEGO bin before you buy or sell it, and it will spot the minifigures and sets that matter and tell you what the whole bin is worth. Join the waitlist.">
+<meta name="description" content="We're building PriceMyBin: snap a LEGO bin and it will spot the figures worth pulling and price the whole bin. Join the waitlist.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="That $20 LEGO® bin might be hiding a $985 figure">
 <meta property="og:description" content="Snap a bin before you buy it or sell it. Join the PriceMyBin waitlist.">
@@ -18,6 +18,7 @@
 <meta name="twitter:title" content="That $20 LEGO® bin might be hiding a $985 figure">
 <meta name="twitter:description" content="Snap a bin before you buy it or sell it. Join the PriceMyBin waitlist.">
 <meta name="twitter:image" content="https://pricemybin.com/og.png">
+<meta name="twitter:image:alt" content="Three LEGO minifigures with price stickers: $545, $985 and $342">
 <link rel="canonical" href="https://pricemybin.com/">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#ffffff">
@@ -173,6 +174,9 @@ button.join[disabled]{opacity:.6;cursor:default}
 .jd{width:min(440px,calc(100% - 24px));max-width:none;max-height:calc(100% - 24px);margin:max(12px,env(safe-area-inset-top)) auto auto;padding:22px 20px 18px;border:2px solid #000;border-radius:16px;background:#fff;color:#000;box-shadow:0 20px 60px rgba(0,0,0,.35);overflow:auto;overscroll-behavior:contain}
 .thanks .row{margin-bottom:16px}
 .jdone{display:none}
+.copybox{display:block;width:100%;margin-top:10px;font:inherit;font-size:16px;padding:10px 12px;border:2px solid var(--ink);border-radius:10px;background:#fff;color:#000}
+@media (orientation:landscape) and (max-height:500px) and (max-width:899px){.tubwrap{max-width:calc(92vh * 1.23);margin-inline:auto}}
+@media (max-width:300px){.tape2{font-size:14px!important;padding:5px 9px 4px!important}}
 .jd .thanks .jdone{display:block;margin-top:4px;width:100%;background:var(--sticker);border:0;box-shadow:0 3px 0 var(--ink);font-weight:800;font-size:19px;padding:15px}
 html:has(.jd[open]) .sticky{transform:translateY(160%)}
 .jd .spread{display:none}
@@ -244,7 +248,7 @@ ol.how b{display:block;font-size:19px;margin-bottom:2px}
 .last{background:var(--tub);color:#fff;border-top:0}
 .last .sub{color:#fff}
 .last input[type=email]{border-color:#fff}
-.last .err{color:#ffe14d}
+.last .err{color:#fff;background:#7a0010;padding:8px 12px;border-radius:8px}
 .last a:focus-visible,.last button:focus-visible,.last input:focus{outline-color:#fff}
 footer{padding:22px 0 calc(34px + env(safe-area-inset-bottom));font-size:13px;color:var(--mute)}
 footer p{margin:0 0 6px;max-width:72ch}
@@ -372,8 +376,71 @@ html,body{overflow-x:clip}
 .signup .legal{margin:8px 0 0;font-size:12.5px;line-height:2;color:var(--mute)}
 .signup .legal a{color:inherit;text-decoration:underline}
 .last .signup .legal{color:#fff}
+/* ===== Lively layer: things react when you point at them or press them ===== */
+:root{--spring:cubic-bezier(.2,1.6,.4,1);--ease:cubic-bezier(.2,.8,.2,1)}
+/* header link: the orange underline thickens and reaches past the text */
+.toplink{border-bottom:0;position:relative;padding:12px 0 6px;transition:color .2s}
+.toplink::after{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;background:var(--sticker);border-radius:2px;transform-origin:left;transition:height .22s var(--ease),left .22s var(--ease),right .22s var(--ease)}
+.brand svg{transition:transform .35s var(--spring)}
+/* bricks you can press: lift on hover, push in on press */
+button.join,.gbtn.lock,.gend .row button.go,.jd .thanks .jdone{position:relative;overflow:hidden;transition:transform .18s var(--spring),box-shadow .18s var(--ease),background-color .2s}
+.sticky{overflow:hidden;transition:transform .3s var(--spring),box-shadow .18s var(--ease)}
+button.join::after,.gbtn.lock::after,.gend .row button.go::after,.sticky::after{content:"";position:absolute;top:0;bottom:0;left:-60%;width:40%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.55),transparent);transform:skewX(-18deg);pointer-events:none;opacity:0}
+button.join:active,.gbtn.lock:active,.gend .row button.go:active,.jd .thanks .jdone:active,.sticky:active{transform:translateY(3px)!important;box-shadow:0 0 0 var(--ink)!important;transition-duration:.06s}
+.gbtn,.gend .row button,.thanks button,.chip2,.soc a,.goalq .row button,.jx{transition:transform .18s var(--spring),box-shadow .18s var(--ease),background-color .18s,color .18s,border-color .18s}
+.gbtn:active,.gend .row button:active,.thanks button:active,.chip2:active,.soc a:active,.goalq .row button:active{transform:scale(.95)}
+.jx:active{transform:scale(.9) rotate(90deg)}
+/* the orange bar bounces in once when it first shows up */
+.sticky.show.hello{animation:hello .7s var(--spring)}
+@keyframes hello{0%{transform:translateY(160%)}60%{transform:translateY(-8px)}100%{transform:none}}
+/* figure cards: pulled off the tray */
+.fcard{transition:transform .22s var(--spring),box-shadow .22s var(--ease)}
+.ftray img{transition:transform .3s var(--spring)}
+.fcard .stk{transition:transform .3s var(--spring)}
+.fcard:active{transform:translate(2px,2px);box-shadow:2px 2px 0 #000}
+/* FAQ: plus turns into an x, answer slides in */
+.faq summary:after{content:"+"!important;transition:transform .25s var(--spring);display:inline-block}
+.faq details[open] summary:after{transform:rotate(45deg)}
+.faq details[open] p{animation:faqin .28s var(--ease)}
+@keyframes faqin{from{opacity:0;transform:translateY(-6px)}}
+/* text links: underline grows */
+main p a,.faq p a,.legal a,.fromvid a,.sent .linkish{text-decoration-thickness:1.5px;text-underline-offset:3px;transition:text-decoration-thickness .15s,text-underline-offset .15s,color .15s}
+.flinks a{position:relative;align-self:flex-start;width:fit-content}
+.flinks a::after{content:"";position:absolute;left:0;bottom:4px;height:2px;width:100%;background:var(--sticker);transform:scaleX(0);transform-origin:left;transition:transform .25s var(--ease)}
+.flinks a:hover{text-decoration:none!important}
+.soc a svg{transition:transform .3s var(--spring)}
+/* goal chips after joining */
+.goalq .row button:hover{background:#000;color:#fff}
+@media (hover:hover){
+  .toplink:hover::after{height:5px;left:-4px;right:-4px}
+  .brand:hover svg{transform:translateY(-3px) rotate(-6deg)}
+  button.join:hover,.gbtn.lock:hover,.gend .row button.go:hover,.sticky:hover{transform:translateY(-3px);box-shadow:0 6px 0 var(--ink)}
+  .jd .thanks .jdone:hover{transform:translateY(-3px);box-shadow:0 6px 0 var(--ink)}
+  button.join:hover::after,.gbtn.lock:hover::after,.gend .row button.go:hover::after,.sticky:hover::after{opacity:1;animation:shine .7s var(--ease)}
+  .gbtn:not(.lock):hover{transform:translateY(-2px);box-shadow:0 4px 0 var(--sticker)}
+  .gend .row button:not(.go):hover,.thanks button:not(.jdone):hover{transform:translateY(-2px);box-shadow:0 4px 0 var(--ink)}
+  .chip2:hover{background:var(--sticker2);transform:translateY(-2px)}
+  .chip2[aria-pressed=true]:hover{background:#000}
+  .fcard:hover{transform:translate(-3px,-5px);box-shadow:8px 10px 0 #000}
+  .fcard:hover .ftray img{transform:translateY(-6px) scale(1.05) rotate(-2deg)}
+  .fcard:hover .stk{transform:rotate(-6deg) scale(1.08)}
+  .faq summary:hover{color:var(--tub)}
+  .faq summary:hover:after{transform:scale(1.25)}
+  .faq details[open] summary:hover:after{transform:rotate(45deg) scale(1.25)}
+  main p a:hover,.faq p a:hover,.legal a:hover,.fromvid a:hover,.sent .linkish:hover{text-decoration-thickness:3px;text-underline-offset:4px;text-decoration-color:var(--sticker)}
+  .flinks a:hover::after{transform:scaleX(1)}
+  .soc a:hover{transform:translateY(-2px)}
+  .soc a:hover svg{transform:rotate(-10deg) scale(1.15)}
+  .jx:hover{transform:rotate(90deg)}
+  input[type=email]:hover{border-color:var(--tub)}
+}
+@keyframes shine{from{left:-60%}to{left:130%}}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{transition-duration:.01ms!important;animation-duration:.01ms!important;animation-iteration-count:1!important}
+  .fcard:hover,.fcard:hover .ftray img,.fcard:hover .stk,.chip2:hover,.soc a:hover,button.join:hover,.sticky:hover{transform:none}
+}
 </style>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"PriceMyBin","url":"https://pricemybin.com/","logo":"https://pricemybin.com/apple-touch-icon.png","email":"hello@pricemybin.com","sameAs":["https://www.tiktok.com/@pricemybin","https://www.instagram.com/pricemybin/","https://www.youtube.com/channel/UCI_UlNWVlPmrmZvnFdnWmtg"]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"PriceMyBin","url":"https://pricemybin.com/","logo":"https://pricemybin.com/apple-touch-icon.png","email":"hello@pricemybin.com","sameAs":["https://www.tiktok.com/@pricemybin","https://www.youtube.com/@pricemybin"]}</script>
 </head>
 <body>
 <a class="skip" href="#join">Skip to the waitlist</a>
@@ -403,7 +470,7 @@ html,body{overflow-x:clip}
         <div class="pulled" aria-hidden="true"><figure class="pf" style="--d:0"><span class="stk" data-v="545">$545</span><img src="img/figs/min029.webp" width="178" height="440" alt="LEGO Villager minifigure"></figure><figure class="pf" style="--d:1"><span class="stk" data-v="985">$985</span><img src="img/figs/bat021.webp" width="280" height="440" alt="LEGO Bane minifigure"></figure><figure class="pf" style="--d:2"><span class="stk" data-v="342">$342</span><img src="img/figs/lor072.webp" width="372" height="422" alt="LEGO Grima Wormtongue minifigure"></figure></div>
         <div class="lip" aria-hidden="true"><span><b>Villager</b>Minecraft, 2016</span><span><b>Bane</b>Batman, 2007</span><span><b>Grima</b>LOTR, 2013</span></div>
       </div>
-      <p class="tubcap">Real figures and values (BrickEconomy, Nov 7, 2026). The pile is a stock photo, not the bin these came from.</p>
+      <p class="tubcap">Real figures and values (BrickEconomy, Nov 7, 2026). The pile is a stock photo.</p>
     </div>
     <form class="signup" id="join" novalidate>
       <div class="body">
@@ -439,7 +506,7 @@ html,body{overflow-x:clip}
 <li class="fcard m12" data-t="Batman"><div class="ftray"><img loading="lazy" decoding="async" src="img/figs/bat016.webp" width="235" height="440" alt="LEGO Scarecrow minifigure"></div><span class="stk">$373</span><h3>Scarecrow</h3><p class="ffrom">2006-07, Arkham Asylum (7785) or Batcopter (7786)</p><p class="flook"><b>Look for</b> glow-in-the-dark face, black hat, brown shirt</p></li>
 <li class="fcard more" data-t="Batman"><div class="ftray"><img loading="lazy" decoding="async" src="img/figs/bat011c01.webp" width="384" height="391" alt="LEGO Mr. Freeze minifigure"></div><span class="stk">$348</span><h3>Mr. Freeze</h3><p class="ffrom">2006, The Batcave (7783)</p><p class="flook"><b>Look for</b> clear dome helmet, blue suit, freeze gun with a hose</p></li>
 <li class="fcard more" data-t="Lord of the Rings"><div class="ftray"><img loading="lazy" decoding="async" src="img/figs/lor072.webp" width="372" height="422" alt="LEGO Grima Wormtongue minifigure"></div><span class="stk">$342</span><h3>Grima Wormtongue</h3><p class="ffrom">2013, Tower of Orthanc (10237)</p><p class="flook"><b>Look for</b> black hair and cape, dark red top with a gold chain</p></li>
-<li class="fcard more" data-t="Castle"><div class="ftray"><img loading="lazy" decoding="async" src="img/figs/cas006.webp" width="253" height="440" alt="LEGO Forestman minifigure"></div><span class="stk">$328</span><h3>Forestman (Castle)</h3><p class="ffrom">1996, Dark Forest Fortress (6079)</p><p class="flook"><b>Look for</b> brown hat with a blue feather, blue arms</p></li>
+<li class="fcard more" data-t="Castle"><div class="ftray"><img loading="lazy" decoding="async" src="img/figs/cas006.webp" width="253" height="440" alt="LEGO Castle Forestman minifigure"></div><span class="stk">$328</span><h3>Forestman (Castle)</h3><p class="ffrom">1996, Dark Forest Fortress (6079)</p><p class="flook"><b>Look for</b> brown hat with a blue feather, blue arms</p></li>
 <li class="fcard more" data-t="Ninjago"><div class="ftray"><img loading="lazy" decoding="async" src="img/figs/njo252.webp" width="270" height="440" alt="LEGO Nya (Airjitzu) minifigure"></div><span class="stk">$310</span><h3>Nya (Airjitzu)</h3><p class="ffrom">2016, Airjitzu Battle Grounds (70590)</p><p class="flook"><b>Look for</b> dark red mask and suit, blue arms</p></li>
 <li class="fcard more" data-t="Batman"><div class="ftray"><img loading="lazy" decoding="async" src="img/figs/bat026.webp" width="274" height="440" alt="LEGO Harley Quinn minifigure"></div><span class="stk">$296</span><h3>Harley Quinn</h3><p class="ffrom">2008, The Batcycle (7886)</p><p class="flook"><b>Look for</b> red and black jester hat, diamond print on the legs</p></li>
 <li class="fcard more" data-t="Lord of the Rings"><div class="ftray"><img loading="lazy" decoding="async" src="img/figs/lor074.webp" width="274" height="440" alt="LEGO Saruman minifigure"></div><span class="stk">$232</span><h3>Saruman</h3><p class="ffrom">2013, Tower of Orthanc (10237)</p><p class="flook"><b>Look for</b> long white hair and beard, white robe with a printed belt</p></li>
@@ -457,13 +524,13 @@ html,body{overflow-x:clip}
 <li class="fcard more" data-t="Ninjago"><div class="ftray"><img loading="lazy" decoding="async" src="img/figs/njo154.webp" width="269" height="440" alt="LEGO Lloyd Possessed minifigure"></div><span class="stk">$109 <i>used</i></span><h3>Lloyd Possessed</h3><p class="ffrom">2015, City of Stiix (70732)</p><p class="flook"><b>Look for</b> black hood and shoulder armor over dark green</p></li>
 <li class="fcard more" data-t="Harry Potter"><div class="ftray"><img loading="lazy" decoding="async" src="img/figs/hp049.webp" width="275" height="440" alt="LEGO Professor Trelawney minifigure"></div><span class="stk">$104</span><h3>Professor Trelawney</h3><p class="ffrom">2004, Hogwarts Castle (4757)</p><p class="flook"><b>Look for</b> pink hat, round glasses, blue robe</p></li>
 <li class="fcard more" data-t="Minecraft"><div class="ftray"><img loading="lazy" decoding="async" src="img/figs/min046.webp" width="144" height="440" alt="LEGO Witch minifigure"></div><span class="stk">$75</span><h3>Witch</h3><p class="ffrom">2017, The Witch Hut (21133)</p><p class="flook"><b>Look for</b> black pointed hat with a green gem, purple robe</p></li>
-<li class="fcard more" data-t="Minifigures"><div class="ftray"><img loading="lazy" decoding="async" src="img/figs/col014.webp" width="252" height="440" alt="LEGO Forestman minifigure"></div><span class="stk">$39</span><h3>Forestman (Series 1)</h3><p class="ffrom">2010, Minifigures Series 1 (8683), sold for $1.99</p><p class="flook"><b>Look for</b> green hat with a red feather and a quiver</p></li>
+<li class="fcard more" data-t="Minifigures"><div class="ftray"><img loading="lazy" decoding="async" src="img/figs/col014.webp" width="252" height="440" alt="LEGO Series 1 Forestman minifigure"></div><span class="stk">$39</span><h3>Forestman (Series 1)</h3><p class="ffrom">2010, Minifigures Series 1 (8683), sold for $1.99</p><p class="flook"><b>Look for</b> green hat with a red feather and a quiver</p></li>
 <li class="fcard more" data-t="Minifigures"><div class="ftray"><img loading="lazy" decoding="async" src="img/figs/col005.webp" width="264" height="440" alt="LEGO Zombie minifigure"></div><span class="stk">$32</span><h3>Zombie</h3><p class="ffrom">2010, Minifigures Series 1 (8683), sold for $1.99</p><p class="flook"><b>Look for</b> gray face, red eyes, torn suit and brown tie</p></li>
 <li class="fcard more" data-t="Minifigures"><div class="ftray"><img loading="lazy" decoding="async" src="img/figs/col004.webp" width="247" height="440" alt="LEGO Circus Clown minifigure"></div><span class="stk">$30</span><h3>Circus Clown</h3><p class="ffrom">2010, Minifigures Series 1 (8683), sold for $1.99</p><p class="flook"><b>Look for</b> red afro, lime shirt, one red and one blue leg</p></li>
     </ul>
-    <p class="nofig" id="nofig" hidden>No match in our videos yet. Check the spelling or try another name.</p>
+    <p class="nofig" id="nofig" role="status" hidden>No match in our videos yet. Check the spelling or try another name.</p>
     <button type="button" class="gbtn showall" id="showall">Show all 35 figures</button>
-    <div class="followrow"><span>New finds every day at <b>@pricemybin</b></span><div class="soc"><a href="https://www.tiktok.com/@pricemybin" rel="noopener" target="_blank" aria-label="PriceMyBin on TikTok (opens in a new tab)"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M16.6 3c.3 2.2 1.6 3.6 3.9 3.8v2.6c-1.4.1-2.6-.3-3.9-1.1v5.6c0 3.6-2.6 5.9-5.8 5.9-3.4 0-5.8-2.7-5.5-6 .3-3 2.8-5.2 6.1-4.9v2.7c-1.6-.3-3.2.6-3.4 2.2-.2 1.6 1 3 2.7 3 1.6 0 2.8-1.1 2.8-3.1V3h3z"/></svg><span>TikTok</span></a><a href="https://www.instagram.com/pricemybin/" rel="noopener" target="_blank" aria-label="PriceMyBin on Instagram (opens in a new tab)"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.4" cy="6.6" r="1.3" fill="currentColor"/></svg><span>Instagram</span></a><a href="https://www.youtube.com/channel/UCI_UlNWVlPmrmZvnFdnWmtg" rel="noopener" target="_blank" aria-label="PriceMyBin on YouTube (opens in a new tab)"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="4" fill="currentColor"/><path d="M10 9v6l5.2-3z" fill="#fff"/></svg><span>YouTube</span></a></div></div>
+    <div class="followrow"><span>New finds every day at <b>@pricemybin</b></span><div class="soc"><a href="https://www.tiktok.com/@pricemybin" rel="noopener" target="_blank" aria-label="PriceMyBin on TikTok (opens in a new tab)"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M16.6 3c.3 2.2 1.6 3.6 3.9 3.8v2.6c-1.4.1-2.6-.3-3.9-1.1v5.6c0 3.6-2.6 5.9-5.8 5.9-3.4 0-5.8-2.7-5.5-6 .3-3 2.8-5.2 6.1-4.9v2.7c-1.6-.3-3.2.6-3.4 2.2-.2 1.6 1 3 2.7 3 1.6 0 2.8-1.1 2.8-3.1V3h3z"/></svg><span>TikTok</span></a><a href="https://www.youtube.com/@pricemybin" rel="noopener" target="_blank" aria-label="PriceMyBin on YouTube (opens in a new tab)"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="4" fill="currentColor"/><path d="M10 9v6l5.2-3z" fill="#fff"/></svg><span>YouTube</span></a></div></div>
     <p class="gfine">Values: BrickEconomy, checked Nov 7, 2026. Prices marked "used" are Brickset used averages (BrickLink sales). Prices change. Figure photos: BrickEconomy.</p>
   </div>
 </section>
@@ -562,7 +629,7 @@ html,body{overflow-x:clip}
       <details><summary>Where do the prices come from?</summary><p>The figure values on this page come from BrickEconomy and from Brickset used averages based on BrickLink sales, checked Nov 7, 2026. The app will price bins from recent sold prices for used LEGO, not store prices and not guesses.</p></details>
       <details><summary>iPhone or Android?</summary><p>iPhone first, Android right after. Join and we'll tell you when yours is ready.</p></details>
       <details><summary>What do you do with my email?</summary><p>We use it to tell you when the app launches, and that's it. We never sell it. You can ask us to delete it anytime at hello@pricemybin.com. Details are in our <a href="privacy/">Privacy Policy</a>.</p></details>
-      <details><summary>Do you buy LEGO?</summary><p>No. PriceMyBin tells you what a bin is worth so you can buy or sell it at the right price, wherever you want.</p></details>
+      <details><summary>Do you buy LEGO?</summary><p>No. PriceMyBin will tell you what a bin is worth so you can buy or sell it at the right price, wherever you want.</p></details>
     </div>
   </div>
 </section>
@@ -590,11 +657,11 @@ html,body{overflow-x:clip}
     <div class="fgrid">
       <div class="fbrand">
         <a class="brand" href="./" aria-label="PriceMyBin home"><svg viewBox="0 0 26 20" aria-hidden="true"><rect x="1" y="6" width="24" height="13" rx="2" fill="#2f6fd0"/><rect x="5" y="2" width="5" height="5" rx="1.2" fill="#2f6fd0"/><rect x="16" y="2" width="5" height="5" rx="1.2" fill="#2f6fd0"/></svg>PriceMyBin</a>
-        <p>Know what a LEGO bin is worth before you buy it or sell it.</p>
+        <p>Coming soon: know what a LEGO bin is worth before you buy or sell it.</p>
       </div>
       <div class="ffollow">
         <p class="fh">New finds every day at <b>@pricemybin</b></p>
-        <div class="soc"><a href="https://www.tiktok.com/@pricemybin" rel="noopener" target="_blank" aria-label="PriceMyBin on TikTok (opens in a new tab)"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M16.6 3c.3 2.2 1.6 3.6 3.9 3.8v2.6c-1.4.1-2.6-.3-3.9-1.1v5.6c0 3.6-2.6 5.9-5.8 5.9-3.4 0-5.8-2.7-5.5-6 .3-3 2.8-5.2 6.1-4.9v2.7c-1.6-.3-3.2.6-3.4 2.2-.2 1.6 1 3 2.7 3 1.6 0 2.8-1.1 2.8-3.1V3h3z"/></svg><span>TikTok</span></a><a href="https://www.instagram.com/pricemybin/" rel="noopener" target="_blank" aria-label="PriceMyBin on Instagram (opens in a new tab)"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.4" cy="6.6" r="1.3" fill="currentColor"/></svg><span>Instagram</span></a><a href="https://www.youtube.com/channel/UCI_UlNWVlPmrmZvnFdnWmtg" rel="noopener" target="_blank" aria-label="PriceMyBin on YouTube (opens in a new tab)"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="4" fill="currentColor"/><path d="M10 9v6l5.2-3z" fill="#fff"/></svg><span>YouTube</span></a></div>
+        <div class="soc"><a href="https://www.tiktok.com/@pricemybin" rel="noopener" target="_blank" aria-label="PriceMyBin on TikTok (opens in a new tab)"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M16.6 3c.3 2.2 1.6 3.6 3.9 3.8v2.6c-1.4.1-2.6-.3-3.9-1.1v5.6c0 3.6-2.6 5.9-5.8 5.9-3.4 0-5.8-2.7-5.5-6 .3-3 2.8-5.2 6.1-4.9v2.7c-1.6-.3-3.2.6-3.4 2.2-.2 1.6 1 3 2.7 3 1.6 0 2.8-1.1 2.8-3.1V3h3z"/></svg><span>TikTok</span></a><a href="https://www.youtube.com/@pricemybin" rel="noopener" target="_blank" aria-label="PriceMyBin on YouTube (opens in a new tab)"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="4" fill="currentColor"/><path d="M10 9v6l5.2-3z" fill="#fff"/></svg><span>YouTube</span></a></div>
       </div>
       <nav class="flinks" aria-label="Site">
         <a href="privacy/">Privacy Policy</a>
@@ -620,7 +687,7 @@ html,body{overflow-x:clip}
   <form class="signup" id="join3" novalidate>
     <div class="body">
       <p class="jdh" id="jd-h">Get PriceMyBin first</p>
-      <p class="jds">Free scans at launch. One email when it's out, nothing else.</p>
+      <p class="jds">Free scans at launch. We only email you about the launch.</p>
       <label class="sr-only" for="email3">Your email</label>
       <input id="email3" name="email" type="email" inputmode="email" autocomplete="email" spellcheck="false" autocorrect="off" enterkeyhint="go" placeholder="you@email.com" required aria-describedby="err3" autofocus>
       <button class="join" type="submit">Join the waitlist</button>
@@ -776,13 +843,13 @@ function countUp(el, to, ms, delay) {
     if (top < 0 && !reduceMotion) bin.scrollIntoView({ behavior: "smooth", block: "center" });
     var tags = bin.querySelectorAll(".tag"), sum = bin.querySelector(".total b");
     function finish() {
-      card.querySelector(".dots").innerHTML = dots();
+      var dd = card.querySelector(".dots"); dd.innerHTML = dots(); dd.setAttribute("aria-label", scores.filter(Boolean).length + " of " + rounds.length + " done");
       pin.style.setProperty("--at", Math.min(1, r.worth / r.max)); pin.classList.add("show");
       var gain = r.worth - r.ask, head = t === "g" ? "Nailed it." : t === "y" ? "Close." : "Way off.";
       var off = Math.abs(guess - r.worth);
       var res = document.getElementById("gres"), nx = document.getElementById("gnext");
       res.innerHTML = '<p><b>' + head + '</b> You said $' + guess + '. It\'s worth $' + r.worth + (off ? ', so you were $' + off + ' ' + (guess > r.worth ? "high" : "low") + '.' : ' exactly.') + ' ' + esc(r.note) + '</p>' +
-        '<span class="chip ' + t + '">' + a + '% eye</span><span class="chip t">' + (gain >= 20 ? "+$" + gain + " flip" : gain > 0 ? "+$" + gain + ", barely worth the gas" : "pass on this one") + '</span>';
+        '<span class="chip ' + t + '">' + a + '% eye</span><span class="chip t">' + (gain <= 0 ? "pass on this one" : gain / r.ask < .5 ? "+$" + gain + ", thin for the work" : "+$" + gain + " flip") + '</span>';
       nx.textContent = i < rounds.length - 1 ? "Next bin" : "See your score";
       nx.hidden = false;
       if (hadFocus) nx.focus({ preventScroll: true });
@@ -805,8 +872,8 @@ function countUp(el, to, ms, delay) {
     var head = avg >= 85 ? "You've got the eye." : avg >= 65 ? "Solid instincts." : avg >= 40 ? "Some money left on the table." : "Bins are tricky.";
     var hid = rounds.reduce(function (a, r) { return a + Math.max(0, r.worth - r.ask); }, 0), asked = rounds.reduce(function (a, r) { return a + r.ask; }, 0);
     card.innerHTML = '<div class="gend"><div class="ghead"><span>Your bin eye</span><span class="dots" role="img" aria-label="Final results">' + dots() + '</span></div>' +
-      '<p class="big" aria-hidden="true">' + avg + '%</p><h3 tabindex="-1">' + head + '</h3>' +
-      '<p>These bins hid $' + hid + ' on $' + asked + ' of asking prices.' + (best && avg > best ? ' New best, up from ' + best + '%.' : best ? ' Your best is ' + Math.max(best, avg) + '%.' : '') + ' PriceMyBin is being built to read a bin from one photo, so you won\'t have to eyeball it.</p>' +
+      '<p class="big" aria-hidden="true">' + avg + '%</p><h3 tabindex="-1"><span class="sr-only">Your bin eye: ' + avg + '%. </span>' + head + '</h3>' +
+      '<p>These bins were worth $' + rounds.reduce(function (a, r) { return a + r.worth; }, 0) + ' against $' + asked + ' in asking prices.' + (best && avg > best ? ' New best, up from ' + best + '%.' : best ? ' Your best is ' + Math.max(best, avg) + '%.' : '') + ' PriceMyBin is being built to read a bin from one photo, so you won\'t have to eyeball it.</p>' +
       '<div class="row">' + (window.__isJoined && window.__isJoined() ? '' : '<button type="button" class="go" data-g="join">Get early access</button>') + '<button type="button" data-g="share">Challenge a friend</button><button type="button" data-g="again">Play 3 new bins</button></div></div>';
     var hd = card.querySelector("h3"); card.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "start" }); hd.focus({ preventScroll: true });
     if (avg >= 85) brickBurst(card.querySelector(".big"));
@@ -818,8 +885,8 @@ function countUp(el, to, ms, delay) {
         if (g === "share") {
           var url = location.origin + location.pathname + "?src=game#game", txt = "My LEGO bin eye: " + avg + "% " + grid() + "\nCan you price a bin better?";
           if (navigator.share) navigator.share({ title: "Would you flip it?", text: txt, url: url }).catch(function () {});
-          else if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(txt + "\n" + url).then(function () { b.textContent = "Score copied"; }, function () { b.textContent = url; });
-          else b.textContent = url;
+          else if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(txt + "\n" + url).then(function () { flash(b, "Score copied"); }, function () { showUrl(b, url); });
+          else showUrl(b, url);
         }
       });
     });
@@ -861,7 +928,7 @@ function countUp(el, to, ms, delay) {
   var bar = document.getElementById("sticky"), forms = [document.getElementById("join"), document.getElementById("join2"), document.getElementById("gcard")];
   if (!("IntersectionObserver" in window)) return;
   var seen = new Map(), joined = false, pastHero = false;
-  function update() { var anyForm = false; seen.forEach(function (v) { if (v) anyForm = true; }); var on = !anyForm && !joined; bar.classList.toggle("show", on); bar.setAttribute("aria-hidden", on ? "false" : "true"); bar.tabIndex = on ? 0 : -1; }
+  function update() { var anyForm = false; seen.forEach(function (v) { if (v) anyForm = true; }); var on = !anyForm && !joined; if (on && !bar.__said) { bar.__said = true; bar.classList.add("hello"); bar.addEventListener("animationend", function () { bar.classList.remove("hello"); }, { once: true }); } bar.classList.toggle("show", on); bar.setAttribute("aria-hidden", on ? "false" : "true"); bar.tabIndex = on ? 0 : -1; }
   var io = new IntersectionObserver(function (es) { es.forEach(function (e) { seen.set(e.target, e.isIntersecting); }); update(); });
   forms.forEach(function (f) { io.observe(f); });
   new IntersectionObserver(function (e) { pastHero = !e[0].isIntersecting && e[0].boundingClientRect.top < 0; update(); }).observe(document.querySelector(".hero2 h1"));
@@ -870,6 +937,14 @@ function countUp(el, to, ms, delay) {
   bar.addEventListener("click", function (e) { e.preventDefault(); if (window.__openJoin && window.__openJoin()) return; var j2 = document.getElementById("join2"), f = (j2 && window.scrollY + innerHeight > j2.getBoundingClientRect().top + window.scrollY - innerHeight * .5) ? j2 : document.getElementById("join"); f.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "center" }); var i = f.querySelector("input[type=email]"); if (i) setTimeout(function () { i.focus({ preventScroll: true }); }, reduceMotion ? 0 : 450); });
   window.__markJoined = function (v) { joined = v !== false; update(); };
 })();
+
+/* ---- shared: copy feedback, and a selectable link when the clipboard is blocked (in-app browsers) ---- */
+function flash(btn, msg) { var o = btn.getAttribute("data-label") || btn.textContent; btn.setAttribute("data-label", o); btn.textContent = msg; clearTimeout(btn.__t); btn.__t = setTimeout(function () { btn.textContent = o; }, 2200); }
+function showUrl(btn, url) {
+  var box = btn.parentNode.querySelector(".copybox");
+  if (!box) { box = document.createElement("input"); box.className = "copybox"; box.readOnly = true; box.setAttribute("aria-label", "Link to copy"); btn.parentNode.appendChild(box); }
+  box.value = url; box.focus(); box.select(); flash(btn, "Press and hold to copy");
+}
 
 /* ---- join dialog: opens in the same tap, so phones raise the keyboard right away ---- */
 (function () {
@@ -887,7 +962,8 @@ function countUp(el, to, ms, delay) {
     if (inp) inp.focus();
     return true;
   };
-  function close() { if (d.open) d.close(); }
+  function close() { if (window.__joinBusy) return; if (d.open) d.close(); }
+  d.addEventListener("cancel", function (e) { if (window.__joinBusy) e.preventDefault(); });
   x.addEventListener("click", close);
   d.addEventListener("click", function (e) { if (e.target === d) { var r = d.getBoundingClientRect(); if (e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom) close(); } });
   d.addEventListener("close", function () {
@@ -990,9 +1066,9 @@ function countUp(el, to, ms, delay) {
       if (!okEmail(email)) { err.textContent = "That email doesn't look right. Check it and try again."; input.setAttribute("aria-invalid", "true"); input.focus(); return; }
       var fixd = typo(email);
       if (fixd) { fixedFrom = email; email = fixd; input.value = fixd; }
-      busy = true; err.textContent = ""; btn.disabled = true; btn.textContent = "Joining...";
+      busy = true; window.__joinBusy = true; err.textContent = ""; btn.disabled = true; btn.textContent = "Joining...";
       var done = function () {
-        busy = false;
+        busy = false; window.__joinBusy = false;
         window.lastSignup = { email: email, source: source };
         replacing = "";
         try { localStorage.setItem("bw_joined", "1"); } catch (e) {}
@@ -1007,8 +1083,8 @@ function countUp(el, to, ms, delay) {
         if (oldEmail && oldEmail !== email && CONFIG.ENTRY_GOAL) { var n = {}; n[CONFIG.ENTRY_EMAIL] = email; n[CONFIG.ENTRY_GOAL] = "Replaces " + oldEmail; if (CONFIG.ENTRY_SOURCE) n[CONFIG.ENTRY_SOURCE] = source; post(n).catch(function () {}); }
         done();
       }, function () {
-        busy = false; btn.disabled = false; btn.textContent = "Join the waitlist";
-        err.textContent = "That didn't go through. Check your connection and tap Join again.";
+        busy = false; window.__joinBusy = false; btn.disabled = false; btn.textContent = "Join the waitlist";
+        err.textContent = "That didn't go through. Check your connection and try again.";
         input.focus();
       });
     });
@@ -1022,11 +1098,10 @@ function countUp(el, to, ms, delay) {
       showForms(replacing, host);
       return;
     }
-    if (act === "done") { if (dlg && dlg.open) dlg.close(); return; }
+    if (act === "done") { if (dlg && dlg.open && !window.__joinBusy) dlg.close(); return; }
     if (act === "copy") {
-      var ok = function () { t.textContent = "Link copied"; };
-      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(shareUrl).then(ok, function () { t.textContent = shareUrl; });
-      else t.textContent = shareUrl;
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(shareUrl).then(function () { flash(t, "Link copied"); }, function () { showUrl(t, shareUrl); });
+      else showUrl(t, shareUrl);
     }
     if (act === "share" && navigator.share) navigator.share({ title: "PriceMyBin", text: "That $20 LEGO bin might be hiding a $985 figure.", url: shareUrl }).catch(function () {});
     var g = t.getAttribute("data-goal");
@@ -1094,7 +1169,11 @@ function countUp(el, to, ms, delay) {
       apply();
     });
   });
-  more.addEventListener("click", function () { open = true; grid.classList.add("open"); apply(); });
+  more.addEventListener("click", function () {
+    var firstHidden = cards.filter(function (c) { return c.hidden || getComputedStyle(c).display === "none"; })[0];
+    open = true; grid.classList.add("open"); apply();
+    if (firstHidden) { firstHidden.setAttribute("tabindex", "-1"); firstHidden.focus({ preventScroll: true }); }
+  });
   apply();
 })();
 </script>

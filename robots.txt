@@ -3,5 +3,7 @@ Allow: /
 Disallow: /tt/
 Disallow: /ig/
 Disallow: /yt/
+Disallow: /og-card.html
+Disallow: /icon-card.html
 
 Sitemap: https://pricemybin.com/sitemap.xml
