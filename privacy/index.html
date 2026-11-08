@@ -16,7 +16,7 @@
 *{box-sizing:border-box}html{-webkit-text-size-adjust:100%}
 body{margin:0;background:#fff;color:var(--ink);font:400 17px/1.62 Archivo,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
 .wrap{max-width:760px;margin:0 auto;padding:0 22px}
-.top{display:flex;align-items:center;justify-content:space-between;padding:16px 0 4px}
+.top{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px 0 4px}.toplink{white-space:nowrap}@media (max-width:340px){.brand{font-size:16px!important}.toplink{font-size:13.5px!important}}
 .brand{display:flex;align-items:center;gap:8px;font-weight:800;font-stretch:112%;font-size:19px;color:#000;text-decoration:none}
 .brand svg{width:26px;height:20px}
 .toplink{font-weight:700;font-size:15px;color:#000;text-decoration:none;border-bottom:2px solid var(--sticker);padding:4px 0}
@@ -48,7 +48,7 @@ footer nav{display:flex;gap:4px 18px;flex-wrap:wrap;margin-bottom:8px}footer nav
 <section class="tldr" aria-labelledby="tldr-p">
   <h2 id="tldr-p">The short version</h2>
   <ul>
-    <li>If you join the waitlist, we keep your email (and two optional details) so we can tell you when the app launches.</li>
+    <li>If you join the waitlist, we keep your email, one optional answer, and where you came from so we can tell you when the app launches.</li>
     <li>We don't sell your information, we don't use ad trackers or analytics, and we don't share it for advertising.</li>
     <li>You can unsubscribe or ask us to delete your information at any time: email <a href="mailto:hello@pricemybin.com">hello@pricemybin.com</a>.</li>
   </ul>
@@ -64,6 +64,7 @@ footer nav{display:flex;gap:4px 18px;flex-wrap:wrap;margin-bottom:8px}footer nav
   <thead><tr><th scope="col">What</th><th scope="col">Why</th></tr></thead><tbody>
   <tr><td>Your email address</td><td>To tell you when the app launches</td></tr>
   <tr><td>Your answer to "What are you doing with LEGO?" (optional: flipping bins, selling old LEGO, or just curious)</td><td>To decide which features to build first</td></tr>
+  <tr><td>If you fix a typo in your email after joining, a note saying which address it replaces</td><td>So we can delete the wrong address</td></tr>
   <tr><td>Where you came from: a short code from the link you used (like "tt" for TikTok), the name of the website that linked you, or "direct"</td><td>To see which places bring people to the waitlist</td></tr>
 </tbody></table>
 <p>We do not ask for your name, phone number, home address, birthday, payment details, or location.</p>
