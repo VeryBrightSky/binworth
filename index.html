@@ -86,7 +86,7 @@ h1{margin:0;font-weight:850;font-stretch:120%;font-size:clamp(38px,10.6vw,80px);
 .tag i{white-space:normal;line-height:1.1}
 .tag i{font:700 9.5px/1 Archivo,sans-serif;font-size:max(9.5px,2.4cqw);font-style:normal;display:block;margin-bottom:.5cqw}
 .tag.on{opacity:1;transform:translate3d(-50%,-50%,58px) rotate(var(--r,0deg)) scale(1);transition:transform .3s cubic-bezier(.2,1.5,.4,1),opacity .1s}
-.total{right:5%;bottom:6%;width:30%;aspect-ratio:1;border-radius:50%;background:var(--sticker);display:grid;place-items:center;align-content:center;
+.total{right:4%;top:5%;width:27%;aspect-ratio:1;border-radius:50%;background:var(--sticker);display:grid;place-items:center;align-content:center;
   transform:translateZ(120px) rotate(-14deg) scale(1.5);opacity:0;box-shadow:inset 0 0 0 .7cqw rgba(255,255,255,.25),0 1.2cqw 0 rgba(0,0,0,.3)}
 .total small{font:700 11px/1 Archivo,sans-serif;font-size:max(11px,2.6cqw);margin-bottom:.8cqw}
 .total b{font-family:var(--marker);font-weight:400;font-size:20px;font-size:9cqw;line-height:.9}
@@ -116,6 +116,15 @@ h1{margin:0;font-weight:850;font-stretch:120%;font-size:clamp(38px,10.6vw,80px);
 .listing small{display:block;color:var(--mute);font-size:13px;margin-top:3px}
 .listing .ask{font-weight:850;font-stretch:112%;font-size:24px;line-height:1;white-space:nowrap}
 .mini-stage{perspective:900px;padding:10px 2px 18px}
+.gfig{left:var(--x);bottom:9%;height:58%;aspect-ratio:var(--ar,.6);margin:0;transform:translate3d(-50%,0,32px) rotate(var(--r,0deg));transform-origin:50% 100%}
+.gfig img{display:block;width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 1.6cqw 1.4cqw rgba(0,0,0,.55))}
+.gfig .tag{position:absolute;left:50%;top:auto;bottom:40%;max-width:30cqw;text-align:center;z-index:2;transform:translate3d(-50%,0,6px) rotate(calc(var(--r,0deg) * -1)) scale(0)}
+.gfig .tag i{white-space:normal}
+.gfig .tag small{font:700 9.5px/1 Archivo,sans-serif;font-size:max(9.5px,2.4cqw)}
+.gfig.on .tag{opacity:1;transform:translate3d(-50%,0,10px) rotate(calc(var(--r,0deg) * -1)) scale(1);transition:transform .3s cubic-bezier(.2,1.5,.4,1),opacity .1s}
+.bin.scanning .gfig img,.bin.done .gfig img{filter:drop-shadow(0 1.6cqw 1.4cqw rgba(0,0,0,.55)) drop-shadow(0 0 1.4cqw rgba(198,244,50,.0))}
+.gfig.on img{filter:drop-shadow(0 1.6cqw 1.4cqw rgba(0,0,0,.55)) drop-shadow(0 0 .9cqw rgba(198,244,50,.95))}
+.gres .inside{font-size:15px;color:var(--mute);margin-top:-4px}
 .bin.mini{--rx:11deg}
 .gq{font-weight:800;font-stretch:110%;font-size:21px;line-height:1.15;margin:4px 0 6px}
 .gval{display:block;font-family:var(--marker);font-size:58px;line-height:1;margin:4px 0 10px;font-variant-numeric:tabular-nums;transition:transform .12s}
@@ -518,7 +527,7 @@ main p a,.faq p a,.legal a,.fromvid a,.sent .linkish{text-decoration-thickness:1
 <section class="game" id="game" aria-labelledby="h-game">
   <div class="page">
     <h2 class="sec" id="h-game">Would you flip it?</h2>
-    <p class="sub">Three practice bins like the ones on Marketplace. Drag to what you think each one is really worth, then scan it.</p>
+    <p class="sub">Three practice bins with real figures at their real prices. Guess what the figures in each bin are worth, then scan it. The bins and asking prices are made up for practice, and only the figures count.</p>
     <div class="gcard" id="gcard">
       <noscript><p>Turn on JavaScript to play.</p></noscript>
     </div>
@@ -676,37 +685,43 @@ function countUp(el, to, ms, delay) {
 /* ---- game: would you flip it? ---- */
 (function () {
   var card = document.getElementById("gcard");
+  /* Real figures and prices come straight from the gallery cards, so the game and the gallery always agree. */
+  var FIG = {};
+  document.querySelectorAll(".fcard").forEach(function (c) {
+    var im = c.querySelector("img"), st = c.querySelector(".stk"), m = /figs\/([a-z0-9]+)\.webp/.exec(im.getAttribute("src"));
+    if (!m || !st) return;
+    FIG[m[1]] = { src: im.getAttribute("src"), w: +im.getAttribute("width"), h: +im.getAttribute("height"), name: c.querySelector("h3").textContent.trim(),
+      price: +st.textContent.replace(/used/, "").replace(/[^0-9]/g, ""), used: /used/.test(st.textContent) };
+  });
+  /* Practice bins: made-up bins and asking prices, real figures at real prices (BrickEconomy, Nov 7, 2026). Only figures are counted. */
   var POOL = [
-    { title: "Big tub of LEGO, 12 lb", where: "Practice bin", ask: 40, worth: 135, max: 300,
-      pile: { seed: 21, palette: "mixed", U: 14, n: [120, 36] }, tub: ["#2f6fd0", "#1d4f9e"],
-      items: [["3 Star Wars figures", 45, 30, 38, -5], ["Technic gears and beams", 30, 68, 40, 4], ["12 lb of bricks", 60, 38, 70, -3]],
-      note: "The figures alone cover the asking price." },
-    { title: "Kids building blocks, big bin", where: "Practice bin", ask: 25, worth: 32, max: 200,
-      pile: { seed: 5, palette: "duplo", U: 22, n: [46, 16] }, tub: ["#e0453a", "#a8281f"],
-      items: [["Duplo, about 6 lb", 24, 34, 44, -4], ["A few regular bricks", 8, 36, 74, 5]],
-      note: "Mostly Duplo, which sells for less. Not every bin is a win, so scan before you pay." },
-    { title: "Old LEGO from the attic, 90s", where: "Practice bin", ask: 30, worth: 251, max: 400,
-      pile: { seed: 99, palette: "vintage", U: 14, n: [115, 34] }, tub: ["#7b8088", "#50545a"],
-      items: [["6 vintage space figures", 96, 30, 40, -6], ["Classic set, mostly there", 85, 70, 34, 4], ["8 lb of bricks", 48, 46, 66, 3], ["Old baseplate", 22, 22, 82, -3]],
-      note: "Older figures and sets are where bins hide real money." },
-    { title: "Kid's room cleanout, sets mixed", where: "Practice bin", ask: 50, worth: 118, max: 300,
-      pile: { seed: 44, palette: "mixed", U: 14, n: [110, 40] }, tub: ["#2c9b45", "#1d6b2f"],
-      items: [["2 City sets, mostly there", 70, 64, 38, 4], ["8 minifigures", 28, 28, 44, -5], ["5 lb of bricks", 20, 40, 72, 3]],
-      note: "Two sets hiding in the mix more than double it." },
-    { title: "Garage sale box, mostly Technic", where: "Practice bin", ask: 20, worth: 74, max: 200,
-      pile: { seed: 63, palette: "technic", U: 12, n: [130, 40] }, tub: ["#f0a020", "#b37209"],
-      items: [["Motor and battery box", 38, 32, 40, -4], ["Gears, beams and axles", 36, 34, 70, 5]],
-      note: "The motor alone is worth almost double the ask." },
-    { title: "Huge bin, 30 lb, everything", where: "Practice bin", ask: 120, worth: 165, max: 400,
-      pile: { seed: 8, palette: "mixed", U: 12, n: [190, 60] }, tub: ["#6b3fa0", "#4a2a73"],
-      items: [["30 lb of bricks", 150, 40, 46, -3], ["A few figures", 15, 64, 30, 5]],
-      note: "Big bins mostly sell by the pound. Thin margin unless there are figures in it." }
-  ];
+    { title: "Attic tub, 90s pirate stuff", ask: 40, figs: ["pi016", "pi012", "pi001"], tub: ["#2f6fd0", "#1d4f9e"], pile: { seed: 99, palette: "vintage", U: 14, n: [115, 34] },
+      note: "1990s Pirates figures hold their value, especially officers and captains." },
+    { title: "Kid's room cleanout, Minecraft", ask: 25, figs: ["min044", "min046", "min029"], tub: ["#2c9b45", "#1d6b2f"], pile: { seed: 44, palette: "mixed", U: 14, n: [110, 40] },
+      note: "The Villager from The Village (21128) is the one to pull. Minecraft figures are easy to overlook." },
+    { title: "Series 1 minifigure lot, 3 figures", ask: 120, figs: ["col004", "col005", "col014"], tub: ["#e0453a", "#a8281f"], pile: { seed: 5, palette: "mixed", U: 16, n: [70, 20] },
+      note: "These sold for $1.99 in 2010 and are worth more now, just not $120 for three.", trap: true },
+    { title: "Collector's garage, Star Wars", ask: 80, figs: ["sw0103", "sw0105"], tub: ["#6b3fa0", "#4a2a73"], pile: { seed: 21, palette: "mixed", U: 14, n: [120, 36] },
+      note: "Cloud City (10123) figures are some of the most valuable Star Wars figures ever made." },
+    { title: "Batman bin, 2006 to 2008 sets", ask: 50, figs: ["bat009", "bat026", "bat016"], tub: ["#33363d", "#1d1f24"], pile: { seed: 63, palette: "mixed", U: 14, n: [120, 38] },
+      note: "The first wave of LEGO Batman sets (2006 to 2008) is full of figures worth pulling." },
+    { title: "Ninjago bin, lots of spinners", ask: 35, figs: ["njo061", "njo069", "njo154"], tub: ["#f0a020", "#b37209"], pile: { seed: 8, palette: "mixed", U: 13, n: [120, 40] },
+      note: "Early Ninjago figures, like the NRG ninjas from the 2012 spinner sets, are worth checking for." },
+    { title: "Harry Potter castle leftovers", ask: 45, figs: ["hp049", "hp073", "hp069"], tub: ["#7a1f2b", "#521219"], pile: { seed: 31, palette: "vintage", U: 14, n: [110, 34] },
+      note: "2004 and 2005 Harry Potter figures are worth more than most people expect." },
+    { title: "Castle and knights box, 90s", ask: 30, figs: ["cas006", "cas167"], tub: ["#7b8088", "#50545a"], pile: { seed: 12, palette: "vintage", U: 14, n: [115, 34] },
+      note: "Old Castle figures with the right prints are worth pulling before you sell the rest." },
+    { title: "Huge bin, 30 lb, everything", ask: 150, figs: ["col005", "min046"], tub: ["#0f8a8a", "#0a5f5f"], pile: { seed: 77, palette: "mixed", U: 12, n: [190, 60] },
+      note: "Only two figures here. The rest is bulk bricks, so the figures alone don't cover the ask.", trap: true },
+    { title: "Lord of the Rings shelf box", ask: 60, figs: ["lor021", "lor074", "lor072"], tub: ["#5a4632", "#3b2d20"], pile: { seed: 54, palette: "vintage", U: 14, n: [110, 34] },
+      note: "Tower of Orthanc (10237) figures like Grima and Saruman are some of the priciest LOTR figures." }
+  ].filter(function (b) { return b.figs.every(function (id) { return FIG[id]; }); });
+  POOL.forEach(function (b) { b.worth = b.figs.reduce(function (a, id) { return a + FIG[id].price; }, 0); b.max = 1500; });
   var rounds = [], i = 0, scores = [], timers = [], burst = null;
   function shuffle(a) { a = a.slice(); for (var k = a.length - 1; k > 0; k--) { var j = Math.floor(Math.random() * (k + 1)), t = a[k]; a[k] = a[j]; a[j] = t; } return a; }
   function newGame() {
     // always one hidden gem, one trap, one random
-    var gems = [POOL[0], POOL[2], POOL[4]], traps = [POOL[1], POOL[5]];
+    var traps = POOL.filter(function (b) { return b.trap; }), gems = POOL.filter(function (b) { return !b.trap; });
     var pick = [shuffle(gems)[0], shuffle(traps)[0]];
     var rest = shuffle(POOL.filter(function (b) { return pick.indexOf(b) < 0; }));
     pick.push(rest[0]); rounds = shuffle(pick); i = 0; scores = [];
@@ -719,22 +734,27 @@ function countUp(el, to, ms, delay) {
   function render() {
     timers.forEach(clearTimeout); timers = [];
     var r = rounds[i], h = "", ticks = "";
-    var step = r.max <= 200 ? 50 : 100;
+    var step = 500;
     for (var v = 0; v <= r.max; v += step) ticks += '<span style="left:' + (v / r.max * 100) + '%">$' + v + '</span>';
     h += '<div class="ghead"><span>Bin ' + (i + 1) + ' of ' + rounds.length + '</span><span class="dots" role="img" aria-label="' + scores.length + ' of ' + rounds.length + ' done">' + dots() + '</span></div>';
     h += '<div class="gplay"><div>';
-    h += '<div class="listing"><div><b>' + esc(r.title) + '</b><small>' + esc(r.where) + '</small></div><span class="ask">$' + r.ask + '</span></div>';
+    h += '<div class="listing"><div><b>' + esc(r.title) + '</b><small>Practice bin. Real figures, real prices.</small></div><span class="ask">$' + r.ask + '</span></div>';
     h += '<div class="stage mini-stage" aria-hidden="true"><div class="bin mini" id="gbin" style="--tub:' + r.tub[0] + ';--tub-d:' + r.tub[1] + '">';
     h += '<div class="floor"><svg class="pile" id="gA" viewBox="0 0 500 400" preserveAspectRatio="xMidYMid slice"></svg></div>';
     h += '<div class="upper"><svg class="pile" id="gB" viewBox="22 18 456 364" preserveAspectRatio="xMidYMid slice"></svg></div>';
     h += '<div class="scanplane"><div class="scanbar"></div></div><div class="rim"></div><div class="vf"></div>';
     h += '<div class="tape"><p><span>Asking</span><span class="was">$' + r.ask + '<svg class="strike" viewBox="0 0 120 20" preserveAspectRatio="none"><path d="M3 13 C 30 7, 70 12, 117 6"/></svg></span></p></div>';
-    r.items.forEach(function (it) { h += '<div class="tag" style="--x:' + it[2] + '%;--y:' + it[3] + '%;--r:' + it[4] + 'deg" data-at="' + (it[3] / 100) + '"><i>' + esc(it[0]) + '</i>$' + it[1] + '</div>'; });
-    h += '<div class="total"><small>worth</small><b>$' + r.worth + '</b></div></div></div>';
+    var xs = r.figs.length === 2 ? [32, 68] : [24, 50, 76], rot = [-7, 4, -3];
+    r.figs.forEach(function (id, k) {
+      var f = FIG[id];
+      h += '<figure class="gfig" style="--x:' + xs[k] + '%;--r:' + rot[k] + 'deg;--ar:' + (f.w / f.h) + '" data-at="' + (.35 + k * .18) + '"><img src="' + f.src + '" width="' + f.w + '" height="' + f.h + '" alt="" loading="lazy" decoding="async">' +
+        '<figcaption class="tag"><i>' + esc(f.name) + '</i>$' + f.price.toLocaleString("en-US") + (f.used ? ' <small>used</small>' : '') + '</figcaption></figure>';
+    });
+    h += '<div class="total"><small>worth</small><b>$' + r.worth.toLocaleString("en-US") + '</b></div></div></div>';
     h += '</div><div>';
-    h += '<p class="gq" id="gq">They want $' + r.ask + '. What is it really worth?</p>';
+    h += '<p class="gq" id="gq">They want $' + r.ask + '. What are the figures in it worth?</p>';
     h += '<output class="gval" id="gval" for="gr" aria-live="off">$' + r.ask + '</output>';
-    h += '<div class="meter"><input type="range" id="gr" min="0" max="' + r.max + '" step="5" value="' + r.ask + '" aria-labelledby="gq" aria-valuetext="$' + r.ask + '"><div class="ticks" aria-hidden="true">' + ticks + '</div><div class="pin" id="gpin" aria-hidden="true"><b>worth $' + r.worth + '</b></div></div>';
+    h += '<div class="meter"><input type="range" id="gr" min="0" max="' + r.max + '" step="10" value="' + r.ask + '" aria-labelledby="gq" aria-valuetext="$' + r.ask + '"><div class="ticks" aria-hidden="true">' + ticks + '</div><div class="pin" id="gpin" aria-hidden="true"><b>worth $' + r.worth.toLocaleString("en-US") + '</b></div></div>';
     h += '<button type="button" class="gbtn lock" id="glock">Lock it in</button>';
     h += '<div class="gres" id="gres" aria-live="polite"></div><button type="button" class="gbtn" id="gnext" hidden></button></div></div>';
     card.innerHTML = h;
@@ -758,14 +778,16 @@ function countUp(el, to, ms, delay) {
     range.disabled = true; lockBtn.hidden = true; buzz(12);
     var top = bin.getBoundingClientRect().top;
     if (top < 0 && !reduceMotion) bin.scrollIntoView({ behavior: "smooth", block: "center" });
-    var tags = bin.querySelectorAll(".tag"), sum = bin.querySelector(".total b");
+    var tags = bin.querySelectorAll(".gfig"), sum = bin.querySelector(".total b");
     function finish() {
       var dd = card.querySelector(".dots"); dd.innerHTML = dots(); dd.setAttribute("aria-label", scores.filter(Boolean).length + " of " + rounds.length + " done");
       pin.style.setProperty("--at", Math.min(1, r.worth / r.max)); pin.classList.add("show");
       var gain = r.worth - r.ask, head = t === "g" ? "Nailed it." : t === "y" ? "Close." : "Way off.";
       var off = Math.abs(guess - r.worth);
       var res = document.getElementById("gres"), nx = document.getElementById("gnext");
-      res.innerHTML = '<p><b>' + head + '</b> You said $' + guess + '. It\'s worth $' + r.worth + (off ? ', so you were $' + off + ' ' + (guess > r.worth ? "high" : "low") + '.' : ' exactly.') + ' ' + esc(r.note) + '</p>' +
+      var inside = r.figs.map(function (id) { return FIG[id].name + " $" + FIG[id].price.toLocaleString("en-US") + (FIG[id].used ? " used" : ""); }).join(", ");
+      res.innerHTML = '<p><b>' + head + '</b> You said $' + guess.toLocaleString("en-US") + '. The figures are worth $' + r.worth.toLocaleString("en-US") + (off ? ', so you were $' + off.toLocaleString("en-US") + ' ' + (guess > r.worth ? "high" : "low") + '.' : ' exactly.') + ' ' + esc(r.note) + '</p>' +
+        '<p class="inside">Inside: ' + esc(inside) + '.</p>' +
         '<span class="chip ' + t + '">' + a + '% eye</span><span class="chip t">' + (gain <= 0 ? "pass on this one" : gain / r.ask < .5 ? "+$" + gain + ", thin for the work" : "+$" + gain + " flip") + '</span>';
       nx.textContent = i < rounds.length - 1 ? "Next bin" : "See your score";
       nx.hidden = false;
@@ -790,7 +812,7 @@ function countUp(el, to, ms, delay) {
     var hid = rounds.reduce(function (a, r) { return a + Math.max(0, r.worth - r.ask); }, 0), asked = rounds.reduce(function (a, r) { return a + r.ask; }, 0);
     card.innerHTML = '<div class="gend"><div class="ghead"><span>Your bin eye</span><span class="dots" role="img" aria-label="Final results">' + dots() + '</span></div>' +
       '<p class="big" aria-hidden="true">' + avg + '%</p><h3 tabindex="-1"><span class="sr-only">Your bin eye: ' + avg + '%. </span>' + head + '</h3>' +
-      '<p>These bins were worth $' + rounds.reduce(function (a, r) { return a + r.worth; }, 0) + ' against $' + asked + ' in asking prices.' + (best && avg > best ? ' New best, up from ' + best + '%.' : best ? ' Your best is ' + Math.max(best, avg) + '%.' : '') + ' PriceMyBin is being built to read a bin from one photo, so you won\'t have to eyeball it.</p>' +
+      '<p>The figures in these bins were worth $' + rounds.reduce(function (a, r) { return a + r.worth; }, 0).toLocaleString("en-US") + ' against $' + asked + ' in asking prices.' + (best && avg > best ? ' New best, up from ' + best + '%.' : best ? ' Your best is ' + Math.max(best, avg) + '%.' : '') + ' PriceMyBin is being built to read a bin from one photo, so you won\'t have to eyeball it.</p>' +
       '<div class="row">' + (window.__isJoined && window.__isJoined() ? '' : '<button type="button" class="go" data-g="join">Get early access</button>') + '<button type="button" data-g="share">Challenge a friend</button><button type="button" data-g="again">Play 3 new bins</button></div></div>';
     var hd = card.querySelector("h3"); card.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "start" }); hd.focus({ preventScroll: true });
     if (avg >= 85) brickBurst(card.querySelector(".big"));
