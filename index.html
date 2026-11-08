@@ -22,9 +22,9 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#ffffff">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23ff5b14'/%3E%3Crect x='5' y='13' width='22' height='13' rx='2'/%3E%3Crect x='8' y='8' width='6' height='6' rx='1.5'/%3E%3Crect x='18' y='8' width='6' height='6' rx='1.5'/%3E%3C/svg%3E">
-<link rel="preload" as="image" href="img/bin-sm.webp" media="(max-width:700px)"><link rel="preload" as="image" href="img/bin.webp" media="(min-width:701px)">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Permanent+Marker&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="img/bin-sm.webp" media="(max-width:700px)" fetchpriority="high"><link rel="preload" as="image" href="img/bin.webp" media="(min-width:701px)" fetchpriority="high">
+<link rel="preload" href="fonts/archivo.woff2" as="font" type="font/woff2" crossorigin>
+<style>@font-face{font-family:Archivo;src:url(fonts/archivo.woff2) format("woff2");font-weight:100 900;font-stretch:62% 125%;font-display:swap}@font-face{font-family:"Permanent Marker";src:url(fonts/marker.woff2) format("woff2");font-weight:400;font-display:swap}.nw{white-space:nowrap}</style>
 <script>document.documentElement.className="js"</script>
 <style>
 :root{--paper:#fff;--ink:#000;--tape:#efdcae;--tub:#2f6fd0;--tub-d:#1d4f9e;--tub-l:#4b86e0;--sticker:#ff5b14;--sticker2:#c6f432;--mute:#5a5f66;--line:#e6e6e6;--marker:"Permanent Marker","Comic Sans MS",cursive}
@@ -341,7 +341,7 @@ html,body{overflow-x:clip}
 .followrow .soc a:hover{background:#000;color:#fff}
 .signup .legal{margin:8px 0 0;font-size:12.5px;line-height:1.45;color:var(--mute)}
 .signup .legal a{color:inherit;text-decoration:underline}
-.last .signup .legal{color:#e6ecf8}
+.last .signup .legal{color:#fff}
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"PriceMyBin","url":"https://pricemybin.com/","logo":"https://pricemybin.com/apple-touch-icon.png","email":"hello@pricemybin.com","sameAs":["https://www.tiktok.com/@pricemybin","https://www.instagram.com/pricemybin/","https://www.youtube.com/channel/UCI_UlNWVlPmrmZvnFdnWmtg"]}</script>
 </head>
@@ -365,11 +365,11 @@ html,body{overflow-x:clip}
     <div class="tubwrap">
       <div class="tub" id="tub">
         <div class="photo">
-          <picture><source media="(max-width:700px)" srcset="img/bin-sm.webp"><img src="img/bin.webp" width="1400" height="1050" alt="A big mixed pile of used LEGO bricks" fetchpriority="high"></picture>
+          <picture><source media="(max-width:700px)" srcset="img/bin-sm.webp"><img src="img/bin.webp" width="1300" height="975" alt="A big mixed pile of used LEGO bricks" fetchpriority="high"></picture>
         </div>
         <div class="tape2" aria-hidden="true">LEGO bin <s>$20</s></div>
         <p class="sr-only">Three real figures from old LEGO sets: Villager from Minecraft (2016), worth $545. Bane from Batman (2007), worth $985. Grima from Lord of the Rings (2013), worth $342.</p>
-        <div class="pulled" aria-hidden="true"><figure class="pf" style="--d:0"><span class="stk" data-v="545">$545</span><img src="img/figs/min029.webp" width="180" height="440" alt="LEGO Villager minifigure"></figure><figure class="pf" style="--d:1"><span class="stk" data-v="985">$985</span><img src="img/figs/bat021.webp" width="280" height="440" alt="LEGO Bane minifigure"></figure><figure class="pf" style="--d:2"><span class="stk" data-v="342">$342</span><img src="img/figs/lor072.webp" width="372" height="422" alt="LEGO Grima Wormtongue minifigure"></figure></div>
+        <div class="pulled" aria-hidden="true"><figure class="pf" style="--d:0"><span class="stk" data-v="545">$545</span><img src="img/figs/min029.webp" width="178" height="440" alt="LEGO Villager minifigure"></figure><figure class="pf" style="--d:1"><span class="stk" data-v="985">$985</span><img src="img/figs/bat021.webp" width="280" height="440" alt="LEGO Bane minifigure"></figure><figure class="pf" style="--d:2"><span class="stk" data-v="342">$342</span><img src="img/figs/lor072.webp" width="372" height="422" alt="LEGO Grima Wormtongue minifigure"></figure></div>
         <div class="lip" aria-hidden="true"><span><b>Villager</b>Minecraft, 2016</span><span><b>Bane</b>Batman, 2007</span><span><b>Grima</b>LOTR, 2013</span></div>
       </div>
       <p class="tubcap">Real figures and values (BrickEconomy, Nov 7, 2026). The pile is a stock photo, not the bin these came from.</p>
@@ -377,7 +377,7 @@ html,body{overflow-x:clip}
     <form class="signup" id="join" novalidate>
       <div class="body">
         <label class="q" for="email1">Get the app first. We'll email you once, when it's out.</label>
-        <input id="email1" name="email" type="email" inputmode="email" autocomplete="email" autocapitalize="off" spellcheck="false" placeholder="you@email.com" required aria-describedby="err1">
+        <input id="email1" name="email" type="email" inputmode="email" autocomplete="email" spellcheck="false" placeholder="you@email.com" required aria-describedby="err1">
         <fieldset class="plan">
           <legend>What are you doing with LEGO?</legend>
           <div class="opts">
@@ -389,7 +389,7 @@ html,body{overflow-x:clip}
         <button class="join" type="submit">Join the waitlist</button>
         <p class="err" id="err1" role="alert"></p>
         <p class="note">Free. One email at launch. Waitlist members get free scans.</p>
-        <p class="legal">By joining you confirm you're 13 or older and agree to our <a href="terms/">Terms</a> and <a href="privacy/">Privacy Policy</a>.</p>
+        <p class="legal">By joining you confirm you're 13 or older (16 in the EU/UK) and agree to our <a href="terms/">Terms</a> and <a href="privacy/">Privacy Policy</a>.</p>
       </div>
     </form>
   </div>
@@ -403,41 +403,41 @@ html,body{overflow-x:clip}
     <label class="figsearch"><span class="sr-only">Search figures by name</span><input id="figq" type="search" placeholder="Search a name, like Boba Fett" autocomplete="off" spellcheck="false"></label>
     <div class="chips2" role="group" aria-label="Filter by theme"><button type="button" class="chip2" aria-pressed="true" data-t="all">All</button><button type="button" class="chip2" aria-pressed="false" data-t="Star Wars">Star Wars</button><button type="button" class="chip2" aria-pressed="false" data-t="Batman">Batman</button><button type="button" class="chip2" aria-pressed="false" data-t="Castle">Castle</button><button type="button" class="chip2" aria-pressed="false" data-t="Minecraft">Minecraft</button><button type="button" class="chip2" aria-pressed="false" data-t="Lord of the Rings">Lord of the Rings</button><button type="button" class="chip2" aria-pressed="false" data-t="Ninjago">Ninjago</button><button type="button" class="chip2" aria-pressed="false" data-t="Pirates">Pirates</button><button type="button" class="chip2" aria-pressed="false" data-t="Harry Potter">Harry Potter</button><button type="button" class="chip2" aria-pressed="false" data-t="Minifigures">Minifigures</button></div>
     <ul class="figgrid" id="figgrid">
-<li class="fcard" data-t="Star Wars"><div class="ftray"><img loading="lazy" decoding="async" src="img/figs/sw0107.webp" width="281" height="440" alt="LEGO Boba Fett minifigure"></div><span class="stk">$3,302</span><h3>Boba Fett</h3><p class="ffrom">2003, Cloud City (10123)</p><p class="flook"><b>Look for</b> printed arms and legs, not plain gray</p></li>
-<li class="fcard" data-t="Star Wars"><div class="ftray"><img loading="lazy" decoding="async" src="img/figs/sw0158.webp" width="277" height="440" alt="LEGO chrome gold C‑3PO minifigure"></div><span class="stk">$1,193 <i>used</i></span><h3>Chrome gold C‑3PO</h3><p class="ffrom">random 2007 Star Wars sets</p><p class="flook"><b>Look for</b> mirror-shiny gold, not the normal dull gold</p></li>
+<li class="fcard" data-t="Star Wars"><div class="ftray"><img loading="lazy" decoding="async" src="img/figs/sw0107.webp" width="279" height="440" alt="LEGO Boba Fett minifigure"></div><span class="stk">$3,302</span><h3>Boba Fett</h3><p class="ffrom">2003, Cloud City (10123)</p><p class="flook"><b>Look for</b> printed arms and legs, not plain gray</p></li>
+<li class="fcard" data-t="Star Wars"><div class="ftray"><img loading="lazy" decoding="async" src="img/figs/sw0158.webp" width="276" height="440" alt="LEGO chrome gold C-3PO minifigure"></div><span class="stk">$1,193 <i>used</i></span><h3>Chrome gold <span class="nw">C-3PO</span></h3><p class="ffrom">random 2007 Star Wars sets</p><p class="flook"><b>Look for</b> mirror-shiny gold, not the normal dull gold</p></li>
 <li class="fcard" data-t="Batman"><div class="ftray"><img loading="lazy" decoding="async" src="img/figs/bat021.webp" width="280" height="440" alt="LEGO Bane minifigure"></div><span class="stk">$985</span><h3>Bane</h3><p class="ffrom">2007, The Bat-Tank (7787)</p><p class="flook"><b>Look for</b> black mask with red eyes, bare chest, blue legs</p></li>
-<li class="fcard" data-t="Star Wars"><div class="ftray"><img loading="lazy" decoding="async" src="img/figs/sw0105.webp" width="400" height="434" alt="LEGO Lando Calrissian minifigure"></div><span class="stk">$731</span><h3>Lando Calrissian</h3><p class="ffrom">2003, Cloud City (10123)</p><p class="flook"><b>Look for</b> light blue shirt, yellow cape</p></li>
-<li class="fcard" data-t="Castle"><div class="ftray"><img loading="lazy" decoding="async" src="img/figs/cas203.webp" width="273" height="440" alt="LEGO Green Ninja minifigure"></div><span class="stk">$614</span><h3>Green Ninja</h3><p class="ffrom">2000, Ninja minifig pack (3346)</p><p class="flook"><b>Look for</b> all green, wrap mask, gold scale armor print</p></li>
-<li class="fcard" data-t="Star Wars"><div class="ftray"><img loading="lazy" decoding="async" src="img/figs/sw0103.webp" width="268" height="440" alt="LEGO Luke Skywalker minifigure"></div><span class="stk">$548</span><h3>Luke Skywalker</h3><p class="ffrom">2003, Cloud City (10123)</p><p class="flook"><b>Look for</b> tan shirt with chest pockets, printed tan legs</p></li>
-<li class="fcard" data-t="Minecraft"><div class="ftray"><img loading="lazy" decoding="async" src="img/figs/min029.webp" width="180" height="440" alt="LEGO Villager minifigure"></div><span class="stk">$545</span><h3>Villager</h3><p class="ffrom">2016, The Village (21128)</p><p class="flook"><b>Look for</b> white top with a gray stripe, brown legs</p></li>
+<li class="fcard" data-t="Star Wars"><div class="ftray"><img loading="lazy" decoding="async" src="img/figs/sw0105.webp" width="398" height="431" alt="LEGO Lando Calrissian minifigure"></div><span class="stk">$731</span><h3>Lando Calrissian</h3><p class="ffrom">2003, Cloud City (10123)</p><p class="flook"><b>Look for</b> light blue shirt, yellow cape</p></li>
+<li class="fcard" data-t="Castle"><div class="ftray"><img loading="lazy" decoding="async" src="img/figs/cas203.webp" width="270" height="440" alt="LEGO Green Ninja minifigure"></div><span class="stk">$614</span><h3>Green Ninja</h3><p class="ffrom">2000, Ninja minifig pack (3346)</p><p class="flook"><b>Look for</b> all green, wrap mask, gold scale armor print</p></li>
+<li class="fcard" data-t="Star Wars"><div class="ftray"><img loading="lazy" decoding="async" src="img/figs/sw0103.webp" width="267" height="440" alt="LEGO Luke Skywalker minifigure"></div><span class="stk">$548</span><h3>Luke Skywalker</h3><p class="ffrom">2003, Cloud City (10123)</p><p class="flook"><b>Look for</b> tan shirt with chest pockets, printed tan legs</p></li>
+<li class="fcard" data-t="Minecraft"><div class="ftray"><img loading="lazy" decoding="async" src="img/figs/min029.webp" width="178" height="440" alt="LEGO Villager minifigure"></div><span class="stk">$545</span><h3>Villager</h3><p class="ffrom">2016, The Village (21128)</p><p class="flook"><b>Look for</b> white top with a gray stripe, brown legs</p></li>
 <li class="fcard" data-t="Batman"><div class="ftray"><img loading="lazy" decoding="async" src="img/figs/bat015.webp" width="250" height="440" alt="LEGO Nightwing minifigure"></div><span class="stk">$488</span><h3>Nightwing</h3><p class="ffrom">2006, Arkham Asylum (7785)</p><p class="flook"><b>Look for</b> spiky black hair, blue bird across a black suit</p></li>
-<li class="fcard m12" data-t="Castle"><div class="ftray"><img loading="lazy" decoding="async" src="img/figs/cas167.webp" width="220" height="440" alt="LEGO Armored Knight minifigure"></div><span class="stk">$408</span><h3>Armored Knight</h3><p class="ffrom">1992, Black Knight&#x27;s Castle (6086)</p><p class="flook"><b>Look for</b> gray armor, helmet with a white dragon plume</p></li>
-<li class="fcard m12" data-t="Batman"><div class="ftray"><img loading="lazy" decoding="async" src="img/figs/bat009.webp" width="400" height="416" alt="LEGO Robin minifigure"></div><span class="stk">$384</span><h3>Robin</h3><p class="ffrom">2006, The Batcave (7783)</p><p class="flook"><b>Look for</b> red vest with an R, yellow cape, green legs</p></li>
-<li class="fcard m12" data-t="Star Wars"><div class="ftray"><img loading="lazy" decoding="async" src="img/figs/sw0218.webp" width="374" height="423" alt="LEGO chrome black Darth Vader minifigure"></div><span class="stk">$376 <i>used</i></span><h3>Chrome black Darth Vader</h3><p class="ffrom">random 2009 Star Wars sets</p><p class="flook"><b>Look for</b> mirror-shiny black, not normal matte black</p></li>
+<li class="fcard m12" data-t="Castle"><div class="ftray"><img loading="lazy" decoding="async" src="img/figs/cas167.webp" width="217" height="440" alt="LEGO Armored Knight minifigure"></div><span class="stk">$408</span><h3>Armored Knight</h3><p class="ffrom">1992, Black Knight&#x27;s Castle (6086)</p><p class="flook"><b>Look for</b> gray armor, helmet with a white dragon plume</p></li>
+<li class="fcard m12" data-t="Batman"><div class="ftray"><img loading="lazy" decoding="async" src="img/figs/bat009.webp" width="389" height="412" alt="LEGO Robin minifigure"></div><span class="stk">$384</span><h3>Robin</h3><p class="ffrom">2006, The Batcave (7783)</p><p class="flook"><b>Look for</b> red vest with an R, yellow cape, green legs</p></li>
+<li class="fcard m12" data-t="Star Wars"><div class="ftray"><img loading="lazy" decoding="async" src="img/figs/sw0218.webp" width="371" height="420" alt="LEGO chrome black Darth Vader minifigure"></div><span class="stk">$376 <i>used</i></span><h3>Chrome black Darth Vader</h3><p class="ffrom">random 2009 Star Wars sets</p><p class="flook"><b>Look for</b> mirror-shiny black, not normal matte black</p></li>
 <li class="fcard m12" data-t="Batman"><div class="ftray"><img loading="lazy" decoding="async" src="img/figs/bat016.webp" width="235" height="440" alt="LEGO Scarecrow minifigure"></div><span class="stk">$373</span><h3>Scarecrow</h3><p class="ffrom">2006-07, Arkham Asylum (7785) or Batcopter (7786)</p><p class="flook"><b>Look for</b> glow-in-the-dark face, black hat, brown shirt</p></li>
-<li class="fcard more" data-t="Batman"><div class="ftray"><img loading="lazy" decoding="async" src="img/figs/bat011c01.webp" width="394" height="395" alt="LEGO Mr. Freeze minifigure"></div><span class="stk">$348</span><h3>Mr. Freeze</h3><p class="ffrom">2006, The Batcave (7783)</p><p class="flook"><b>Look for</b> clear dome helmet, blue suit, freeze gun with a hose</p></li>
+<li class="fcard more" data-t="Batman"><div class="ftray"><img loading="lazy" decoding="async" src="img/figs/bat011c01.webp" width="384" height="391" alt="LEGO Mr. Freeze minifigure"></div><span class="stk">$348</span><h3>Mr. Freeze</h3><p class="ffrom">2006, The Batcave (7783)</p><p class="flook"><b>Look for</b> clear dome helmet, blue suit, freeze gun with a hose</p></li>
 <li class="fcard more" data-t="Lord of the Rings"><div class="ftray"><img loading="lazy" decoding="async" src="img/figs/lor072.webp" width="372" height="422" alt="LEGO Grima Wormtongue minifigure"></div><span class="stk">$342</span><h3>Grima Wormtongue</h3><p class="ffrom">2013, Tower of Orthanc (10237)</p><p class="flook"><b>Look for</b> black hair and cape, dark red top with a gold chain</p></li>
-<li class="fcard more" data-t="Castle"><div class="ftray"><img loading="lazy" decoding="async" src="img/figs/cas006.webp" width="251" height="440" alt="LEGO Forestman minifigure"></div><span class="stk">$328</span><h3>Forestman (Castle)</h3><p class="ffrom">1996, Dark Forest Fortress (6079)</p><p class="flook"><b>Look for</b> brown hat with a blue feather, blue arms</p></li>
-<li class="fcard more" data-t="Ninjago"><div class="ftray"><img loading="lazy" decoding="async" src="img/figs/njo252.webp" width="271" height="440" alt="LEGO Nya (Airjitzu) minifigure"></div><span class="stk">$310</span><h3>Nya (Airjitzu)</h3><p class="ffrom">2016, Airjitzu Battle Grounds (70590)</p><p class="flook"><b>Look for</b> dark red mask and suit, blue arms</p></li>
-<li class="fcard more" data-t="Batman"><div class="ftray"><img loading="lazy" decoding="async" src="img/figs/bat026.webp" width="277" height="440" alt="LEGO Harley Quinn minifigure"></div><span class="stk">$296</span><h3>Harley Quinn</h3><p class="ffrom">2008, The Batcycle (7886)</p><p class="flook"><b>Look for</b> red and black jester hat, diamond print on the legs</p></li>
-<li class="fcard more" data-t="Lord of the Rings"><div class="ftray"><img loading="lazy" decoding="async" src="img/figs/lor074.webp" width="275" height="440" alt="LEGO Saruman minifigure"></div><span class="stk">$232</span><h3>Saruman</h3><p class="ffrom">2013, Tower of Orthanc (10237)</p><p class="flook"><b>Look for</b> long white hair and beard, white robe with a printed belt</p></li>
-<li class="fcard more" data-t="Pirates"><div class="ftray"><img loading="lazy" decoding="async" src="img/figs/pi001.webp" width="235" height="440" alt="LEGO Imperial Guard Admiral minifigure"></div><span class="stk">$205</span><h3>Imperial Guard Admiral</h3><p class="ffrom">1995, Imperial Outpost (6263)</p><p class="flook"><b>Look for</b> black hat with white trim, gold shoulders, red coat</p></li>
-<li class="fcard more" data-t="Harry Potter"><div class="ftray"><img loading="lazy" decoding="async" src="img/figs/hp069.webp" width="291" height="440" alt="LEGO Voldemort minifigure"></div><span class="stk">$203</span><h3>Voldemort</h3><p class="ffrom">2005, Graveyard Duel (4766)</p><p class="flook"><b>Look for</b> glow-in-the-dark head, gray fuzzy cape</p></li>
-<li class="fcard more" data-t="Ninjago"><div class="ftray"><img loading="lazy" decoding="async" src="img/figs/njo069.webp" width="259" height="440" alt="LEGO NRG Zane minifigure"></div><span class="stk">$186</span><h3>NRG Zane</h3><p class="ffrom">2012, spinner set (9590)</p><p class="flook"><b>Look for</b> light blue with a white ice print</p></li>
-<li class="fcard more" data-t="Ninjago"><div class="ftray"><img loading="lazy" decoding="async" src="img/figs/njo061.webp" width="265" height="440" alt="LEGO Jay NRG minifigure"></div><span class="stk">$171 <i>used</i></span><h3>Jay NRG</h3><p class="ffrom">2012, spinner set (9570)</p><p class="flook"><b>Look for</b> blue with lightning print all over</p></li>
-<li class="fcard more" data-t="Ninjago"><div class="ftray"><img loading="lazy" decoding="async" src="img/figs/njo014.webp" width="376" height="440" alt="LEGO Samukai minifigure"></div><span class="stk">$171</span><h3>Samukai</h3><p class="ffrom">2011, Garmadon&#x27;s Dark Fortress (2505)</p><p class="flook"><b>Look for</b> 4-armed skeleton, black chest armor</p></li>
-<li class="fcard more" data-t="Lord of the Rings"><div class="ftray"><img loading="lazy" decoding="async" src="img/figs/lor021.webp" width="249" height="440" alt="LEGO King Theoden minifigure"></div><span class="stk">$167</span><h3>King Theoden</h3><p class="ffrom">2012, The Battle of Helm&#x27;s Deep (9474)</p><p class="flook"><b>Look for</b> brown helmet and armor with gold swirls, red arms</p></li>
-<li class="fcard more" data-t="Ninjago"><div class="ftray"><img loading="lazy" decoding="async" src="img/figs/njo016.webp" width="263" height="440" alt="LEGO Jay DX minifigure"></div><span class="stk">$137 <i>used</i></span><h3>Jay DX</h3><p class="ffrom">2011, Lightning Dragon Battle (2521)</p><p class="flook"><b>Look for</b> blue ninja with a gold dragon on the chest</p></li>
-<li class="fcard more" data-t="Minecraft"><div class="ftray"><img loading="lazy" decoding="async" src="img/figs/min044.webp" width="264" height="440" alt="LEGO Steve in armor minifigure"></div><span class="stk">$123</span><h3>Steve in armor</h3><p class="ffrom">2017, The Jungle Temple (21132)</p><p class="flook"><b>Look for</b> orange-brown helmet and armor, blue arms</p></li>
-<li class="fcard more" data-t="Pirates"><div class="ftray"><img loading="lazy" decoding="async" src="img/figs/pi012.webp" width="247" height="440" alt="LEGO Tattoo McGoo minifigure"></div><span class="stk">$122</span><h3>Tattoo McGoo</h3><p class="ffrom">1996, Red Beard Runner (6289)</p><p class="flook"><b>Look for</b> black bandana, dark red vest with an anchor</p></li>
+<li class="fcard more" data-t="Castle"><div class="ftray"><img loading="lazy" decoding="async" src="img/figs/cas006.webp" width="253" height="440" alt="LEGO Forestman minifigure"></div><span class="stk">$328</span><h3>Forestman (Castle)</h3><p class="ffrom">1996, Dark Forest Fortress (6079)</p><p class="flook"><b>Look for</b> brown hat with a blue feather, blue arms</p></li>
+<li class="fcard more" data-t="Ninjago"><div class="ftray"><img loading="lazy" decoding="async" src="img/figs/njo252.webp" width="270" height="440" alt="LEGO Nya (Airjitzu) minifigure"></div><span class="stk">$310</span><h3>Nya (Airjitzu)</h3><p class="ffrom">2016, Airjitzu Battle Grounds (70590)</p><p class="flook"><b>Look for</b> dark red mask and suit, blue arms</p></li>
+<li class="fcard more" data-t="Batman"><div class="ftray"><img loading="lazy" decoding="async" src="img/figs/bat026.webp" width="274" height="440" alt="LEGO Harley Quinn minifigure"></div><span class="stk">$296</span><h3>Harley Quinn</h3><p class="ffrom">2008, The Batcycle (7886)</p><p class="flook"><b>Look for</b> red and black jester hat, diamond print on the legs</p></li>
+<li class="fcard more" data-t="Lord of the Rings"><div class="ftray"><img loading="lazy" decoding="async" src="img/figs/lor074.webp" width="274" height="440" alt="LEGO Saruman minifigure"></div><span class="stk">$232</span><h3>Saruman</h3><p class="ffrom">2013, Tower of Orthanc (10237)</p><p class="flook"><b>Look for</b> long white hair and beard, white robe with a printed belt</p></li>
+<li class="fcard more" data-t="Pirates"><div class="ftray"><img loading="lazy" decoding="async" src="img/figs/pi001.webp" width="234" height="440" alt="LEGO Imperial Guard Admiral minifigure"></div><span class="stk">$205</span><h3>Imperial Guard Admiral</h3><p class="ffrom">1995, Imperial Outpost (6263)</p><p class="flook"><b>Look for</b> black hat with white trim, gold shoulders, red coat</p></li>
+<li class="fcard more" data-t="Harry Potter"><div class="ftray"><img loading="lazy" decoding="async" src="img/figs/hp069.webp" width="289" height="440" alt="LEGO Voldemort minifigure"></div><span class="stk">$203</span><h3>Voldemort</h3><p class="ffrom">2005, Graveyard Duel (4766)</p><p class="flook"><b>Look for</b> glow-in-the-dark head, gray fuzzy cape</p></li>
+<li class="fcard more" data-t="Ninjago"><div class="ftray"><img loading="lazy" decoding="async" src="img/figs/njo069.webp" width="262" height="440" alt="LEGO NRG Zane minifigure"></div><span class="stk">$186</span><h3>NRG Zane</h3><p class="ffrom">2012, spinner set (9590)</p><p class="flook"><b>Look for</b> light blue with a white ice print</p></li>
+<li class="fcard more" data-t="Ninjago"><div class="ftray"><img loading="lazy" decoding="async" src="img/figs/njo061.webp" width="264" height="440" alt="LEGO Jay NRG minifigure"></div><span class="stk">$171 <i>used</i></span><h3>Jay NRG</h3><p class="ffrom">2012, spinner set (9570)</p><p class="flook"><b>Look for</b> blue with lightning print all over</p></li>
+<li class="fcard more" data-t="Ninjago"><div class="ftray"><img loading="lazy" decoding="async" src="img/figs/njo014.webp" width="374" height="412" alt="LEGO Samukai minifigure"></div><span class="stk">$171</span><h3>Samukai</h3><p class="ffrom">2011, Garmadon&#x27;s Dark Fortress (2505)</p><p class="flook"><b>Look for</b> 4-armed skeleton, black chest armor</p></li>
+<li class="fcard more" data-t="Lord of the Rings"><div class="ftray"><img loading="lazy" decoding="async" src="img/figs/lor021.webp" width="242" height="440" alt="LEGO King Theoden minifigure"></div><span class="stk">$167</span><h3>King Theoden</h3><p class="ffrom">2012, The Battle of Helm&#x27;s Deep (9474)</p><p class="flook"><b>Look for</b> brown helmet and armor with gold swirls, red arms</p></li>
+<li class="fcard more" data-t="Ninjago"><div class="ftray"><img loading="lazy" decoding="async" src="img/figs/njo016.webp" width="264" height="440" alt="LEGO Jay DX minifigure"></div><span class="stk">$137 <i>used</i></span><h3>Jay DX</h3><p class="ffrom">2011, Lightning Dragon Battle (2521)</p><p class="flook"><b>Look for</b> blue ninja with a gold dragon on the chest</p></li>
+<li class="fcard more" data-t="Minecraft"><div class="ftray"><img loading="lazy" decoding="async" src="img/figs/min044.webp" width="259" height="440" alt="LEGO Steve in armor minifigure"></div><span class="stk">$123</span><h3>Steve in armor</h3><p class="ffrom">2017, The Jungle Temple (21132)</p><p class="flook"><b>Look for</b> orange-brown helmet and armor, blue arms</p></li>
+<li class="fcard more" data-t="Pirates"><div class="ftray"><img loading="lazy" decoding="async" src="img/figs/pi012.webp" width="245" height="440" alt="LEGO Tattoo McGoo minifigure"></div><span class="stk">$122</span><h3>Tattoo McGoo</h3><p class="ffrom">1996, Red Beard Runner (6289)</p><p class="flook"><b>Look for</b> black bandana, dark red vest with an anchor</p></li>
 <li class="fcard more" data-t="Harry Potter"><div class="ftray"><img loading="lazy" decoding="async" src="img/figs/hp073.webp" width="319" height="440" alt="LEGO Death Eater minifigure"></div><span class="stk">$114</span><h3>Death Eater</h3><p class="ffrom">2005, Graveyard Duel (4766)</p><p class="flook"><b>Look for</b> black skull mask, blond hair, gray cape</p></li>
-<li class="fcard more" data-t="Pirates"><div class="ftray"><img loading="lazy" decoding="async" src="img/figs/pi016.webp" width="247" height="440" alt="LEGO Armada Captain minifigure"></div><span class="stk">$114</span><h3>Armada Captain</h3><p class="ffrom">1996, Armada Flagship (6280)</p><p class="flook"><b>Look for</b> black helmet with a white plume, silver armor</p></li>
-<li class="fcard more" data-t="Ninjago"><div class="ftray"><img loading="lazy" decoding="async" src="img/figs/njo154.webp" width="270" height="440" alt="LEGO Lloyd Possessed minifigure"></div><span class="stk">$109 <i>used</i></span><h3>Lloyd Possessed</h3><p class="ffrom">2015, City of Stiix (70732)</p><p class="flook"><b>Look for</b> black hood and shoulder armor over dark green</p></li>
+<li class="fcard more" data-t="Pirates"><div class="ftray"><img loading="lazy" decoding="async" src="img/figs/pi016.webp" width="240" height="440" alt="LEGO Armada Captain minifigure"></div><span class="stk">$114</span><h3>Armada Captain</h3><p class="ffrom">1996, Armada Flagship (6280)</p><p class="flook"><b>Look for</b> black helmet with a white plume, silver armor</p></li>
+<li class="fcard more" data-t="Ninjago"><div class="ftray"><img loading="lazy" decoding="async" src="img/figs/njo154.webp" width="269" height="440" alt="LEGO Lloyd Possessed minifigure"></div><span class="stk">$109 <i>used</i></span><h3>Lloyd Possessed</h3><p class="ffrom">2015, City of Stiix (70732)</p><p class="flook"><b>Look for</b> black hood and shoulder armor over dark green</p></li>
 <li class="fcard more" data-t="Harry Potter"><div class="ftray"><img loading="lazy" decoding="async" src="img/figs/hp049.webp" width="275" height="440" alt="LEGO Professor Trelawney minifigure"></div><span class="stk">$104</span><h3>Professor Trelawney</h3><p class="ffrom">2004, Hogwarts Castle (4757)</p><p class="flook"><b>Look for</b> pink hat, round glasses, blue robe</p></li>
-<li class="fcard more" data-t="Minecraft"><div class="ftray"><img loading="lazy" decoding="async" src="img/figs/min046.webp" width="145" height="440" alt="LEGO Witch minifigure"></div><span class="stk">$75</span><h3>Witch</h3><p class="ffrom">2017, The Witch Hut (21133)</p><p class="flook"><b>Look for</b> black pointed hat with a green gem, purple robe</p></li>
+<li class="fcard more" data-t="Minecraft"><div class="ftray"><img loading="lazy" decoding="async" src="img/figs/min046.webp" width="144" height="440" alt="LEGO Witch minifigure"></div><span class="stk">$75</span><h3>Witch</h3><p class="ffrom">2017, The Witch Hut (21133)</p><p class="flook"><b>Look for</b> black pointed hat with a green gem, purple robe</p></li>
 <li class="fcard more" data-t="Minifigures"><div class="ftray"><img loading="lazy" decoding="async" src="img/figs/col014.webp" width="252" height="440" alt="LEGO Forestman minifigure"></div><span class="stk">$39</span><h3>Forestman (Series 1)</h3><p class="ffrom">2010, Minifigures Series 1 (8683), sold for $1.99</p><p class="flook"><b>Look for</b> green hat with a red feather and a quiver</p></li>
-<li class="fcard more" data-t="Minifigures"><div class="ftray"><img loading="lazy" decoding="async" src="img/figs/col005.webp" width="265" height="440" alt="LEGO Zombie minifigure"></div><span class="stk">$32</span><h3>Zombie</h3><p class="ffrom">2010, Minifigures Series 1 (8683), sold for $1.99</p><p class="flook"><b>Look for</b> gray face, red eyes, torn suit and brown tie</p></li>
-<li class="fcard more" data-t="Minifigures"><div class="ftray"><img loading="lazy" decoding="async" src="img/figs/col004.webp" width="249" height="440" alt="LEGO Circus Clown minifigure"></div><span class="stk">$30</span><h3>Circus Clown</h3><p class="ffrom">2010, Minifigures Series 1 (8683), sold for $1.99</p><p class="flook"><b>Look for</b> red afro, lime shirt, one red and one blue leg</p></li>
+<li class="fcard more" data-t="Minifigures"><div class="ftray"><img loading="lazy" decoding="async" src="img/figs/col005.webp" width="264" height="440" alt="LEGO Zombie minifigure"></div><span class="stk">$32</span><h3>Zombie</h3><p class="ffrom">2010, Minifigures Series 1 (8683), sold for $1.99</p><p class="flook"><b>Look for</b> gray face, red eyes, torn suit and brown tie</p></li>
+<li class="fcard more" data-t="Minifigures"><div class="ftray"><img loading="lazy" decoding="async" src="img/figs/col004.webp" width="247" height="440" alt="LEGO Circus Clown minifigure"></div><span class="stk">$30</span><h3>Circus Clown</h3><p class="ffrom">2010, Minifigures Series 1 (8683), sold for $1.99</p><p class="flook"><b>Look for</b> red afro, lime shirt, one red and one blue leg</p></li>
     </ul>
     <p class="nofig" id="nofig" hidden>No figure by that name in our videos yet. The app will price any figure.</p>
     <button type="button" class="gbtn showall" id="showall">Show all 35 figures</button>
@@ -553,10 +553,10 @@ html,body{overflow-x:clip}
     <form class="signup" id="join2" novalidate>
       <div class="body">
         <label class="q" for="email2">Your email</label>
-        <input id="email2" name="email" type="email" inputmode="email" autocomplete="email" autocapitalize="off" spellcheck="false" placeholder="you@email.com" required aria-describedby="err2">
+        <input id="email2" name="email" type="email" inputmode="email" autocomplete="email" spellcheck="false" placeholder="you@email.com" required aria-describedby="err2">
         <button class="join" type="submit">Join the waitlist</button>
         <p class="err" id="err2" role="alert"></p>
-        <p class="legal">By joining you confirm you're 13 or older and agree to our <a href="terms/">Terms</a> and <a href="privacy/">Privacy Policy</a>.</p>
+        <p class="legal">By joining you confirm you're 13 or older (16 in the EU/UK) and agree to our <a href="terms/">Terms</a> and <a href="privacy/">Privacy Policy</a>.</p>
       </div>
     </form>
   </div>
@@ -773,8 +773,8 @@ function countUp(el, to, ms, delay) {
     card.querySelectorAll("[data-g]").forEach(function (b) {
       b.addEventListener("click", function () {
         var g = b.getAttribute("data-g");
-        if (g === "again") { newGame(); render(); card.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "start" }); return; }
-        if (g === "join") { var f = document.getElementById("join"), a1 = document.getElementById("a1"); if (a1 && !document.querySelector("input[name=goal]:checked")) a1.checked = true; f.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "center" }); var inp = f.querySelector("input[type=email]"); if (inp) setTimeout(function () { inp.focus({ preventScroll: true }); }, reduceMotion ? 0 : 450); return; }
+        if (g === "again") { newGame(); render(); card.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "start" }); var gr = document.getElementById("gr"); if (gr) gr.focus({ preventScroll: true }); return; }
+        if (g === "join") { var f = document.getElementById("join"); f.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "center" }); var inp = f.querySelector("input[type=email]"); if (inp) setTimeout(function () { inp.focus({ preventScroll: true }); }, reduceMotion ? 0 : 450); return; }
         if (g === "share") {
           var url = location.origin + location.pathname + "?src=game#game", txt = "My LEGO bin eye: " + avg + "% " + grid() + "\nCan you price a bin better?";
           if (navigator.share) navigator.share({ title: "Would you flip it?", text: txt, url: url }).catch(function () {});
@@ -825,16 +825,21 @@ function countUp(el, to, ms, delay) {
   var io = new IntersectionObserver(function (es) { es.forEach(function (e) { seen.set(e.target, e.isIntersecting); }); update(); });
   forms.forEach(function (f) { io.observe(f); });
   new IntersectionObserver(function (e) { pastHero = !e[0].isIntersecting && e[0].boundingClientRect.top < 0; update(); }).observe(document.querySelector(".hero2 h1"));
-  bar.addEventListener("click", function (e) { e.preventDefault(); var f = document.getElementById("join"); f.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "center" }); var i = f.querySelector("input[type=email]"); if (i) setTimeout(function () { i.focus({ preventScroll: true }); }, reduceMotion ? 0 : 450); });
+  bar.addEventListener("click", function (e) { e.preventDefault(); var j2 = document.getElementById("join2"), f = (j2 && window.scrollY + innerHeight > j2.getBoundingClientRect().top + window.scrollY - innerHeight * .5) ? j2 : document.getElementById("join"); f.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "center" }); var i = f.querySelector("input[type=email]"); if (i) setTimeout(function () { i.focus({ preventScroll: true }); }, reduceMotion ? 0 : 450); });
   window.__markJoined = function () { joined = true; update(); };
 })();
 
 /* ---- waitlist ---- */
 (function () {
   var qs = new URLSearchParams(location.search), source = qs.get("src") || qs.get("utm_source") || "";
-  if (!source) { try { source = document.referrer ? new URL(document.referrer).hostname : "direct"; } catch (e) { source = "direct"; } }
-  source = source.slice(0, 40);
+  if (!source) { try { var rh = document.referrer ? new URL(document.referrer).hostname : ""; if (rh && rh !== location.hostname && !/(^|\.)pricemybin\.com$/.test(rh)) source = rh; } catch (e) {} }
+  try { var kept = sessionStorage.getItem("pmb_src"); if (kept && (!source || !qs.get("src"))) source = kept; else if (source) sessionStorage.setItem("pmb_src", source); } catch (e) {}
+  source = (source || "direct").slice(0, 40);
   function okEmail(e) { return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(e); }
+  var TYPO = { "gmail.con": "gmail.com", "gmail.co": "gmail.com", "gmial.com": "gmail.com", "gmai.com": "gmail.com", "gamil.com": "gmail.com", "gnail.com": "gmail.com", "gmail.cm": "gmail.com", "gmaill.com": "gmail.com",
+    "yahoo.con": "yahoo.com", "yaho.com": "yahoo.com", "yahooo.com": "yahoo.com", "hotmail.con": "hotmail.com", "hotmial.com": "hotmail.com", "hotmal.com": "hotmail.com",
+    "outlook.con": "outlook.com", "outlok.com": "outlook.com", "icloud.con": "icloud.com", "iclould.com": "icloud.com", "icoud.com": "icloud.com", "aol.con": "aol.com" };
+  function typo(e) { var d = e.split("@")[1]; return d && TYPO[d] ? e.split("@")[0] + "@" + TYPO[d] : ""; }
   var shareUrl = location.origin + location.pathname + "?src=share", busy = false;
   function thanks() {
     return '<div class="thanks" aria-live="polite"><h2 tabindex="-1">You\'re on the waitlist.</h2>' +
@@ -842,8 +847,24 @@ function countUp(el, to, ms, delay) {
       '<div class="row"><button type="button" data-act="copy">Copy link</button>' +
       (navigator.share ? '<button type="button" data-act="share">Share</button>' : '') + '</div></div>';
   }
+  var already = false; try { already = localStorage.getItem("bw_joined") === "1"; } catch (e) {}
+  if (already) {
+    document.querySelectorAll("form.signup .body").forEach(function (b) {
+      var orig = b.innerHTML; b.setAttribute("data-orig", "1");
+      var w = document.createElement("div"); w.innerHTML = thanks().replace("</div></div>", '<button type="button" data-act="another">Use a different email</button></div></div>');
+      b.innerHTML = w.firstChild.outerHTML; b.__orig = orig;
+    });
+    if (window.__markJoined) window.__markJoined();
+    var tl = document.querySelector(".toplink"); if (tl) { tl.textContent = "See the figures"; tl.setAttribute("href", "#figures"); }
+  }
+  document.addEventListener("click", function (e) {
+    var t = e.target; if (!t.getAttribute || t.getAttribute("data-act") !== "another") return;
+    try { localStorage.removeItem("bw_joined"); } catch (x) {}
+    location.reload();
+  });
   document.querySelectorAll("form.signup").forEach(function (form) {
     var input = form.querySelector("input[type=email]");
+    if (!input) return;
     input.addEventListener("input", function () { input.removeAttribute("aria-invalid"); form.querySelector(".err").textContent = ""; });
     form.addEventListener("submit", function (ev) {
       ev.preventDefault();
@@ -851,6 +872,8 @@ function countUp(el, to, ms, delay) {
       var err = form.querySelector(".err"), btn = form.querySelector("button.join");
       var email = input.value.trim().toLowerCase(), goalEl = document.querySelector("input[name=goal]:checked"), goal = goalEl ? goalEl.value : "";
       if (!okEmail(email)) { err.textContent = "That email doesn't look right. Check it and try again."; input.setAttribute("aria-invalid", "true"); input.focus(); return; }
+      var fixd = typo(email);
+      if (fixd && form.getAttribute("data-typo") !== email) { form.setAttribute("data-typo", fixd); input.value = fixd; err.textContent = "Did you mean " + fixd + "? We fixed it. Tap Join again to confirm."; input.focus(); return; }
       busy = true; err.textContent = ""; btn.disabled = true; btn.textContent = "Joining...";
       var done = function () {
         window.lastSignup = { email: email, goal: goal, source: source };

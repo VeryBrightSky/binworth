@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /tt/
+Disallow: /ig/
+Disallow: /yt/
+
+Sitemap: https://pricemybin.com/sitemap.xml
