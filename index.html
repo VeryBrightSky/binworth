@@ -26,6 +26,7 @@
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23ff5b14'/%3E%3Crect x='5' y='13' width='22' height='13' rx='2'/%3E%3Crect x='8' y='8' width='6' height='6' rx='1.5'/%3E%3Crect x='18' y='8' width='6' height='6' rx='1.5'/%3E%3C/svg%3E">
 <link rel="preload" as="image" href="img/bin-sm.webp" media="(max-width:700px)" fetchpriority="high"><link rel="preload" as="image" href="img/bin.webp" media="(min-width:701px)" fetchpriority="high">
 <link rel="preload" href="fonts/archivo.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/marker.woff2" as="font" type="font/woff2" crossorigin>
 <style>@font-face{font-family:Archivo;src:url(fonts/archivo.woff2) format("woff2");font-weight:400 900;font-stretch:100% 125%;font-display:swap}@font-face{font-family:"Permanent Marker";src:url(fonts/marker.woff2) format("woff2");font-weight:400;font-display:swap}.nw{white-space:nowrap}
 @media (max-width:899px){.hero2 h1{font-size:clamp(32px,9.2vw,46px);line-height:.98}.lede{font-size:17px;line-height:1.45}}
 .fromvid{margin:0;font-weight:600;font-size:15px;white-space:nowrap;justify-self:start}
@@ -52,7 +53,6 @@ body{margin:0;background:var(--paper);color:var(--ink);font:400 17px/1.55 Archiv
 a:focus-visible,button:focus-visible{outline:3px solid var(--tub);outline-offset:3px;border-radius:4px}
 
 /* hero */
-.hero{display:grid;gap:20px;padding:12px 0 44px}
 h1{margin:0;font-weight:850;font-stretch:120%;font-size:clamp(38px,10.6vw,80px);line-height:.94;letter-spacing:-.028em}
 .lede{margin:0;max-width:36ch;font-size:19px}
 
@@ -109,7 +109,7 @@ h1{margin:0;font-weight:850;font-stretch:120%;font-size:clamp(38px,10.6vw,80px);
 
 /* game */
 .game h2.sec{max-width:none}
-.gcard{border:2px solid var(--ink);border-radius:18px;box-shadow:6px 6px 0 var(--ink);padding:18px 18px 20px;background:#fff;max-width:1000px;scroll-margin-top:12px}
+.gcard{border:2px solid var(--ink);border-radius:18px;box-shadow:6px 6px 0 var(--ink);padding:18px 18px 20px;background:#fff;scroll-margin-top:12px}
 .ghead{display:flex;justify-content:space-between;align-items:center;font-weight:700;font-size:14px;margin-bottom:14px}
 .dots{display:flex;gap:6px}
 .dots i{width:12px;height:12px;border-radius:50%;border:2px solid var(--ink);background:#fff}
@@ -123,7 +123,7 @@ h1{margin:0;font-weight:850;font-stretch:120%;font-size:clamp(38px,10.6vw,80px);
 .gq{font-weight:800;font-stretch:110%;font-size:21px;line-height:1.15;margin:4px 0 6px}
 .gval{display:block;font-family:var(--marker);font-size:58px;line-height:1;margin:4px 0 10px;font-variant-numeric:tabular-nums;transition:transform .12s}
 .gval.bump{transform:scale(1.06) rotate(-2deg)}
-.meter{position:relative;padding:4px 0 26px}
+.meter{position:relative;padding:34px 0 30px}
 .meter input{-webkit-appearance:none;appearance:none;width:100%;height:46px;background:transparent;margin:0;cursor:grab;position:relative;z-index:2;touch-action:pan-y}
 .meter input:active{cursor:grabbing}
 .meter input:focus{outline:none}
@@ -134,12 +134,13 @@ h1{margin:0;font-weight:850;font-stretch:120%;font-size:clamp(38px,10.6vw,80px);
 .meter input:focus-visible::-webkit-slider-thumb{outline:3px solid var(--tub);outline-offset:3px}
 .meter input:focus-visible::-moz-range-thumb{outline:3px solid var(--tub);outline-offset:3px}
 .meter input[disabled]{cursor:default}
-.ticks{position:absolute;left:19px;right:19px;top:40px;height:28px;font-size:12px;color:var(--mute);font-variant-numeric:tabular-nums}
+.ticks{position:absolute;left:19px;right:19px;top:84px;height:28px;font-size:12px;color:var(--mute);font-variant-numeric:tabular-nums}
 .ticks span{position:absolute;transform:translateX(-50%);white-space:nowrap}
 .ticks span:before{content:"";position:absolute;left:50%;top:-8px;width:2px;height:6px;background:#bdbdbd}
-.pin{position:absolute;top:-2px;left:calc(19px + (100% - 38px) * var(--at,0));transform:translateX(-50%);z-index:3;pointer-events:none;opacity:0;transition:left .9s cubic-bezier(.2,.8,.2,1),opacity .2s}
+.pin{position:absolute;top:0;left:calc(19px + (100% - 38px) * var(--at,0));transform:translateX(-50%);z-index:3;pointer-events:none;opacity:0;transition:left .9s cubic-bezier(.2,.8,.2,1),opacity .2s}
 .pin.show{opacity:1}
-.pin b{display:block;font-family:var(--marker);font-weight:400;font-size:15px;background:var(--ink);color:#fff;padding:3px 9px 2px;border-radius:7px;white-space:nowrap}
+.pin b{display:block;position:relative;font-family:var(--marker);font-weight:400;font-size:15px;background:var(--ink);color:#fff;padding:3px 9px 2px;border-radius:7px;white-space:nowrap}
+.pin b:after{content:"";position:absolute;left:50%;bottom:-6px;margin-left:-6px;border:6px solid transparent;border-bottom:0;border-top-color:var(--ink)}
 .pin:after{content:"";display:block;width:3px;height:30px;background:var(--ink);margin:0 auto}
 .gres{margin:4px 0 0;font-size:17px}
 .gres:empty{display:none}
@@ -192,12 +193,13 @@ html:has(.jd[open]){overflow:hidden}
 .jds{margin:0 0 14px;color:var(--mute);font-size:16px;line-height:1.4}
 .jx{position:absolute;top:10px;right:10px;width:44px;height:44px;display:grid;place-items:center;border:0;border-radius:10px;background:transparent;color:#000;cursor:pointer}
 .jx svg{width:22px;height:22px}
-.jx:hover{background:#f0f0f0}
+@media (hover:hover){.jx:hover{background:#f0f0f0}}
 .jd .thanks h2{margin-right:44px}
 .sent{font-size:16px;overflow-wrap:anywhere}
 .linkish{font:inherit;font-weight:600!important;border:0!important;background:none!important;padding:4px 0!important;text-decoration:underline;color:inherit!important;cursor:pointer}
 .goalq{border:2px solid #000;border-radius:12px;padding:12px 14px 14px;margin:0 0 16px;background:var(--sticker2)}
 .goalq p{margin:0 0 10px;font-weight:700}
+.goalq p:last-child{margin:0}
 .goalq .row{margin-bottom:0}
 .goalq .row button{padding:10px 14px}
 .last .goalq{color:#000}
@@ -262,18 +264,15 @@ footer p{margin:0 0 6px;max-width:72ch}
 @media (orientation:landscape) and (max-height:500px){.sticky{left:auto;right:16px;width:300px;padding-top:9px!important;padding-bottom:9px!important;font-size:16px!important}}
 @media (prefers-reduced-motion:reduce){.sticky{transition:none}}
 
-@media (hover:hover){.path:hover{transform:translate(-2px,-2px);box-shadow:8px 8px 0 var(--ink)}}
+@media (hover:hover){.path:hover{box-shadow:8px 8px 0 var(--ink)}}
 @media (min-width:900px){
-  .hero{grid-template-columns:1fr 1fr;column-gap:60px;row-gap:22px;padding:30px 0 70px;align-items:start}
-  .hero>h1,.hero>.lede,.hero>.signup{grid-column:1}
-  .hero>.demo-wrap{grid-column:2;grid-row:1/span 3;align-self:center}
   .two{display:grid;grid-template-columns:.9fr 1.1fr;gap:60px;align-items:start}
   .paths{grid-template-columns:1fr 1fr}
   .facts{grid-template-columns:1fr 1fr 1fr}
   .gplay{display:grid;grid-template-columns:1.1fr .9fr;gap:36px;align-items:center}
   .gcard{padding:26px 28px 28px}
-  .sticky{display:none}
 }
+@media (min-width:900px) and (min-height:600px){.sticky{display:none}}
 @media (max-width:360px){.tape p{font-size:8cqw}.opts label{padding:9px 12px;font-size:14px}}
 
 /* ===== v2: real pile, real figures ===== */
@@ -335,7 +334,7 @@ footer p{margin:0 0 6px;max-width:72ch}
 /* real photos in sections */
 .wideph{display:block;width:100%;height:auto;aspect-ratio:3/2;object-fit:cover;border:2px solid #000;border-radius:18px;box-shadow:6px 6px 0 #000;margin:4px 0 26px}
 .whygrid{display:grid;gap:8px}
-@media (min-width:900px){.whygrid{grid-template-columns:1fr 1fr;gap:44px;align-items:center}.whygrid .wideph{margin:0}.whygrid .facts{grid-template-columns:1fr;gap:18px}.paths ~ .x{}.wideph{max-height:380px}}
+@media (min-width:900px){.whygrid{grid-template-columns:1fr 1fr;gap:44px;align-items:center}.whygrid .wideph{margin:0}.whygrid .facts{grid-template-columns:1fr;gap:18px}.wideph{max-height:380px}}
 
 /* fixes, round 2 */
 html,body{overflow-x:clip}
@@ -348,9 +347,6 @@ html,body{overflow-x:clip}
 .figsearch input{width:100%;max-width:420px;font:500 17px/1.2 Archivo,sans-serif;padding:13px 16px;border:2px solid #000;border-radius:12px;background:#fff;color:#000}
 .figsearch input:focus{outline:3px solid var(--tub);outline-offset:2px}
 .nofig{margin:14px 0 0;font-weight:600}
-.socials{display:flex;gap:10px;flex-wrap:wrap;margin:6px 0 14px}
-.socials a{font-weight:700;font-size:15px;color:#000;text-decoration:none;border:2px solid #000;border-radius:999px;padding:8px 14px;background:#fff}
-.socials a:hover{background:var(--sticker2)}
 
 /* footer + socials */
 .foot2{background:#000;color:#fff;margin-top:0;padding:46px 0 30px;font-size:15px}
@@ -362,17 +358,17 @@ html,body{overflow-x:clip}
 .soc{display:flex;flex-wrap:wrap;gap:10px}
 .soc a{display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-weight:700;font-size:15px;padding:10px 15px 10px 12px;border-radius:999px;border:2px solid currentColor;line-height:1}
 .soc svg{width:20px;height:20px;flex:none}
-.foot2 .soc a:hover{background:#fff;color:#000}
-.foot2 .soc path[d^="M10"]{fill:#000}.foot2 .soc a:hover path[d^="M10"]{fill:#fff}
+@media (hover:hover){.foot2 .soc a:hover{background:#fff;color:#000}}
+.foot2 .soc path[d^="M10"]{fill:#000}@media (hover:hover){.foot2 .soc a:hover path[d^="M10"]{fill:#fff}}
 .flinks{display:grid;gap:10px}
-.flinks a{text-decoration:none;font-weight:600;display:inline-block;padding:8px 0}.flinks{gap:2px!important}.flinks a:hover{text-decoration:underline;text-decoration-color:var(--sticker)}
+.flinks a{text-decoration:none;font-weight:600;display:inline-block;padding:8px 0}.flinks{gap:2px!important}
 .ffine{border-top:1px solid #2c2f33;margin-top:34px;padding-top:18px;color:#9ea3aa;font-size:13px;line-height:1.5}
 .ffine p{margin:0 0 8px;max-width:90ch}
 @media (max-width:899px){.foot2{padding-bottom:calc(96px + env(safe-area-inset-bottom))}}
 .followrow{display:flex;flex-wrap:wrap;align-items:center;gap:12px 18px;margin:26px 0 6px;padding:16px 18px;border:2px solid #000;border-radius:16px;background:var(--sticker2)}
 .followrow span{font-weight:600}
 .followrow .soc a{color:#000;background:#fff;border-color:#000}
-.followrow .soc a:hover{background:#000;color:#fff}
+@media (hover:hover){.followrow .soc a:hover{background:#000;color:#fff}}
 .signup .legal{margin:8px 0 0;font-size:12.5px;line-height:2;color:var(--mute)}
 .signup .legal a{color:inherit;text-decoration:underline}
 .last .signup .legal{color:#fff}
@@ -383,9 +379,10 @@ html,body{overflow-x:clip}
 .toplink::after{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;background:var(--sticker);border-radius:2px;transform-origin:left;transition:height .22s var(--ease),left .22s var(--ease),right .22s var(--ease)}
 .brand svg{transition:transform .35s var(--spring)}
 /* bricks you can press: lift on hover, push in on press */
-button.join,.gbtn.lock,.gend .row button.go,.jd .thanks .jdone{position:relative;overflow:hidden;transition:transform .18s var(--spring),box-shadow .18s var(--ease),background-color .2s}
-.sticky{overflow:hidden;transition:transform .3s var(--spring),box-shadow .18s var(--ease)}
-button.join::after,.gbtn.lock::after,.gend .row button.go::after,.sticky::after{content:"";position:absolute;top:0;bottom:0;left:-60%;width:40%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.55),transparent);transform:skewX(-18deg);pointer-events:none;opacity:0}
+button.join,.gbtn.lock,.gend .row button.go,.jd .thanks .jdone{position:relative;transition:transform .18s var(--spring),box-shadow .18s var(--ease),background-position 0s}
+.sticky{transition:transform .3s var(--spring),box-shadow .18s var(--ease),background-position 0s}
+button.join,.gbtn.lock,.gend .row button.go,.sticky{background-image:linear-gradient(105deg,transparent 40%,rgba(255,255,255,.5) 50%,transparent 60%);background-size:250% 100%;background-position:130% 0;background-repeat:no-repeat}
+button.join::before,.gbtn.lock::before,.gend .row button.go::before,.jd .thanks .jdone::before,.sticky::before{content:"";position:absolute;left:0;right:0;bottom:-7px;height:7px}
 button.join:active,.gbtn.lock:active,.gend .row button.go:active,.jd .thanks .jdone:active,.sticky:active{transform:translateY(3px)!important;box-shadow:0 0 0 var(--ink)!important;transition-duration:.06s}
 .gbtn,.gend .row button,.thanks button,.chip2,.soc a,.goalq .row button,.jx{transition:transform .18s var(--spring),box-shadow .18s var(--ease),background-color .18s,color .18s,border-color .18s}
 .gbtn:active,.gend .row button:active,.thanks button:active,.chip2:active,.soc a:active,.goalq .row button:active{transform:scale(.95)}
@@ -407,21 +404,20 @@ button.join:active,.gbtn.lock:active,.gend .row button.go:active,.jd .thanks .jd
 main p a,.faq p a,.legal a,.fromvid a,.sent .linkish{text-decoration-thickness:1.5px;text-underline-offset:3px;transition:text-decoration-thickness .15s,text-underline-offset .15s,color .15s}
 .flinks a{position:relative;align-self:flex-start;width:fit-content}
 .flinks a::after{content:"";position:absolute;left:0;bottom:4px;height:2px;width:100%;background:var(--sticker);transform:scaleX(0);transform-origin:left;transition:transform .25s var(--ease)}
-.flinks a:hover{text-decoration:none!important}
 .soc a svg{transition:transform .3s var(--spring)}
 /* goal chips after joining */
-.goalq .row button:hover{background:#000;color:#fff}
+@media (hover:hover){.goalq .row button:hover{background:#000;color:#fff}}
 @media (hover:hover){
   .toplink:hover::after{height:5px;left:-4px;right:-4px}
   .brand:hover svg{transform:translateY(-3px) rotate(-6deg)}
   button.join:hover,.gbtn.lock:hover,.gend .row button.go:hover,.sticky:hover{transform:translateY(-3px);box-shadow:0 6px 0 var(--ink)}
   .jd .thanks .jdone:hover{transform:translateY(-3px);box-shadow:0 6px 0 var(--ink)}
-  button.join:hover::after,.gbtn.lock:hover::after,.gend .row button.go:hover::after,.sticky:hover::after{opacity:1;animation:shine .7s var(--ease)}
-  .gbtn:not(.lock):hover{transform:translateY(-2px);box-shadow:0 4px 0 var(--sticker)}
-  .gend .row button:not(.go):hover,.thanks button:not(.jdone):hover{transform:translateY(-2px);box-shadow:0 4px 0 var(--ink)}
-  .chip2:hover{background:var(--sticker2);transform:translateY(-2px)}
+  button.join:hover,.gbtn.lock:hover,.gend .row button.go:hover,.sticky:hover{background-position:-30% 0;transition:transform .18s var(--spring),box-shadow .18s var(--ease),background-position .7s var(--ease)}
+  .gbtn:not(.lock):hover{box-shadow:0 4px 0 var(--sticker)}
+  .gend .row button:not(.go):hover,.thanks button:not(.jdone):hover{box-shadow:0 4px 0 var(--ink);background:var(--sticker2)}
+  .chip2:hover{background:var(--sticker2)}
   .chip2[aria-pressed=true]:hover{background:#000}
-  .fcard:hover{transform:translate(-3px,-5px);box-shadow:8px 10px 0 #000}
+  .fcard:hover{box-shadow:8px 8px 0 #000}
   .fcard:hover .ftray img{transform:translateY(-6px) scale(1.05) rotate(-2deg)}
   .fcard:hover .stk{transform:rotate(-6deg) scale(1.08)}
   .faq summary:hover{color:var(--tub)}
@@ -429,12 +425,10 @@ main p a,.faq p a,.legal a,.fromvid a,.sent .linkish{text-decoration-thickness:1
   .faq details[open] summary:hover:after{transform:rotate(45deg) scale(1.25)}
   main p a:hover,.faq p a:hover,.legal a:hover,.fromvid a:hover,.sent .linkish:hover{text-decoration-thickness:3px;text-underline-offset:4px;text-decoration-color:var(--sticker)}
   .flinks a:hover::after{transform:scaleX(1)}
-  .soc a:hover{transform:translateY(-2px)}
   .soc a:hover svg{transform:rotate(-10deg) scale(1.15)}
   .jx:hover{transform:rotate(90deg)}
   input[type=email]:hover{border-color:var(--tub)}
 }
-@keyframes shine{from{left:-60%}to{left:130%}}
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{transition-duration:.01ms!important;animation-duration:.01ms!important;animation-iteration-count:1!important}
   .fcard:hover,.fcard:hover .ftray img,.fcard:hover .stk,.chip2:hover,.soc a:hover,button.join:hover,.sticky:hover{transform:none}
@@ -627,7 +621,7 @@ main p a,.faq p a,.legal a,.fromvid a,.sent .linkish{text-decoration-thickness:1
       <details><summary>When does it come out?</summary><p>We're building it now. Waitlist members get it first, plus free scans at launch.</p></details>
       <details><summary>Which figures should I look for?</summary><p>Start with the <a href="#figures">figures from our videos</a>. Older Star Wars, Batman, Ninjago and Minecraft figures are worth checking first. Each one has a "look for" line so you can tell it apart from the common versions.</p></details>
       <details><summary>Where do the prices come from?</summary><p>The figure values on this page come from BrickEconomy and from Brickset used averages based on BrickLink sales, checked Nov 7, 2026. The app will price bins from recent sold prices for used LEGO, not store prices and not guesses.</p></details>
-      <details><summary>iPhone or Android?</summary><p>iPhone first, Android right after. Join and we'll tell you when yours is ready.</p></details>
+      <details><summary>iPhone or Android?</summary><p>We're starting with iPhone, with Android planned next. Join and we'll tell you when yours is ready.</p></details>
       <details><summary>What do you do with my email?</summary><p>We use it to tell you when the app launches, and that's it. We never sell it. You can ask us to delete it anytime at hello@pricemybin.com. Details are in our <a href="privacy/">Privacy Policy</a>.</p></details>
       <details><summary>Do you buy LEGO?</summary><p>No. PriceMyBin will tell you what a bin is worth so you can buy or sell it at the right price, wherever you want.</p></details>
     </div>
@@ -928,12 +922,12 @@ function countUp(el, to, ms, delay) {
   var bar = document.getElementById("sticky"), forms = [document.getElementById("join"), document.getElementById("join2"), document.getElementById("gcard")];
   if (!("IntersectionObserver" in window)) return;
   var seen = new Map(), joined = false, pastHero = false;
-  function update() { var anyForm = false; seen.forEach(function (v) { if (v) anyForm = true; }); var on = !anyForm && !joined; if (on && !bar.__said) { bar.__said = true; bar.classList.add("hello"); bar.addEventListener("animationend", function () { bar.classList.remove("hello"); }, { once: true }); } bar.classList.toggle("show", on); bar.setAttribute("aria-hidden", on ? "false" : "true"); bar.tabIndex = on ? 0 : -1; }
+  function update() { var anyForm = false; seen.forEach(function (v) { if (v) anyForm = true; }); var on = !anyForm && !joined && bar.getClientRects().length > 0 && getComputedStyle(bar).display !== "none"; if (on && !bar.__said) { bar.__said = true; bar.classList.add("hello"); bar.addEventListener("animationend", function () { bar.classList.remove("hello"); }, { once: true }); } bar.classList.toggle("show", on); bar.setAttribute("aria-hidden", on ? "false" : "true"); bar.tabIndex = on ? 0 : -1; }
   var io = new IntersectionObserver(function (es) { es.forEach(function (e) { seen.set(e.target, e.isIntersecting); }); update(); });
   forms.forEach(function (f) { io.observe(f); });
   new IntersectionObserver(function (e) { pastHero = !e[0].isIntersecting && e[0].boundingClientRect.top < 0; update(); }).observe(document.querySelector(".hero2 h1"));
   var tl = document.querySelector(".toplink");
-  if (tl) tl.addEventListener("click", function (e) { if (tl.getAttribute("href") !== "#join") return; e.preventDefault(); if (window.__openJoin && window.__openJoin()) return; var f = document.getElementById("join"); f.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "center" }); var i = f.querySelector("input[type=email]"); if (i) setTimeout(function () { i.focus({ preventScroll: true }); }, reduceMotion ? 0 : 450); });
+  if (tl) tl.addEventListener("click", function (e) { if (tl.getAttribute("href") !== "#join") return; e.preventDefault(); var i1 = document.getElementById("email1"); if (i1) { var rr = i1.getBoundingClientRect(); if (rr.top >= 0 && rr.bottom <= innerHeight) { i1.focus(); return; } } if (window.__openJoin && window.__openJoin()) return; var f = document.getElementById("join"); f.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "center" }); var i = f.querySelector("input[type=email]"); if (i) setTimeout(function () { i.focus({ preventScroll: true }); }, reduceMotion ? 0 : 450); });
   bar.addEventListener("click", function (e) { e.preventDefault(); if (window.__openJoin && window.__openJoin()) return; var j2 = document.getElementById("join2"), f = (j2 && window.scrollY + innerHeight > j2.getBoundingClientRect().top + window.scrollY - innerHeight * .5) ? j2 : document.getElementById("join"); f.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "center" }); var i = f.querySelector("input[type=email]"); if (i) setTimeout(function () { i.focus({ preventScroll: true }); }, reduceMotion ? 0 : 450); });
   window.__markJoined = function (v) { joined = v !== false; update(); };
 })();
@@ -943,7 +937,7 @@ function flash(btn, msg) { var o = btn.getAttribute("data-label") || btn.textCon
 function showUrl(btn, url) {
   var box = btn.parentNode.querySelector(".copybox");
   if (!box) { box = document.createElement("input"); box.className = "copybox"; box.readOnly = true; box.setAttribute("aria-label", "Link to copy"); btn.parentNode.appendChild(box); }
-  box.value = url; box.focus(); box.select(); flash(btn, "Press and hold to copy");
+  box.value = url; box.focus(); box.select(); flash(btn, matchMedia("(pointer:coarse)").matches ? "Press and hold to copy" : "Select and copy");
 }
 
 /* ---- join dialog: opens in the same tap, so phones raise the keyboard right away ---- */
@@ -1127,6 +1121,7 @@ function showUrl(btn, url) {
   function count(el, delay) {
     var v = +el.getAttribute("data-v"), t0 = null;
     if (rm) return;
+    el.style.minWidth = el.getBoundingClientRect().width + "px"; el.style.textAlign = "center";
     el.textContent = "$0";
     setTimeout(function () {
       (function step(t) { if (!t0) t0 = t; var p = Math.min(1, (t - t0) / 700), e = 1 - Math.pow(1 - p, 3);
@@ -1171,8 +1166,12 @@ function showUrl(btn, url) {
   });
   more.addEventListener("click", function () {
     var firstHidden = cards.filter(function (c) { return c.hidden || getComputedStyle(c).display === "none"; })[0];
+    var root = document.documentElement, y = window.scrollY, prevA = root.style.overflowAnchor;
+    root.style.overflowAnchor = "none";
     open = true; grid.classList.add("open"); apply();
     if (firstHidden) { firstHidden.setAttribute("tabindex", "-1"); firstHidden.focus({ preventScroll: true }); }
+    window.scrollTo(0, y);
+    requestAnimationFrame(function () { window.scrollTo(0, y); root.style.overflowAnchor = prevA; });
   });
   apply();
 })();
