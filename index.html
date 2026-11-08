@@ -317,7 +317,33 @@ html,body{overflow-x:clip}
 .socials{display:flex;gap:10px;flex-wrap:wrap;margin:6px 0 14px}
 .socials a{font-weight:700;font-size:15px;color:#000;text-decoration:none;border:2px solid #000;border-radius:999px;padding:8px 14px;background:#fff}
 .socials a:hover{background:var(--sticker2)}
+
+/* footer + socials */
+.foot2{background:#000;color:#fff;margin-top:0;padding:46px 0 30px;font-size:15px}
+.foot2 a{color:#fff}
+.fgrid{display:grid;gap:30px}
+@media (min-width:860px){.fgrid{grid-template-columns:1.1fr 1.2fr 1fr;gap:40px;align-items:start}}
+.fbrand .brand{color:#fff}.fbrand p{margin:10px 0 0;color:#c9ccd1;max-width:30ch}
+.fh{margin:0 0 12px;font-weight:600}.fh b{color:var(--sticker2)}
+.soc{display:flex;flex-wrap:wrap;gap:10px}
+.soc a{display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-weight:700;font-size:15px;padding:10px 15px 10px 12px;border-radius:999px;border:2px solid currentColor;line-height:1}
+.soc svg{width:20px;height:20px;flex:none}
+.foot2 .soc a:hover{background:#fff;color:#000}
+.foot2 .soc path[d^="M10"]{fill:#000}.foot2 .soc a:hover path[d^="M10"]{fill:#fff}
+.flinks{display:grid;gap:10px}
+.flinks a{text-decoration:none;font-weight:600}.flinks a:hover{text-decoration:underline;text-decoration-color:var(--sticker)}
+.ffine{border-top:1px solid #2c2f33;margin-top:34px;padding-top:18px;color:#9ea3aa;font-size:13px;line-height:1.5}
+.ffine p{margin:0 0 8px;max-width:90ch}
+@media (max-width:899px){.foot2{padding-bottom:calc(96px + env(safe-area-inset-bottom))}}
+.followrow{display:flex;flex-wrap:wrap;align-items:center;gap:12px 18px;margin:26px 0 6px;padding:16px 18px;border:2px solid #000;border-radius:16px;background:var(--sticker2)}
+.followrow span{font-weight:600}
+.followrow .soc a{color:#000;background:#fff;border-color:#000}
+.followrow .soc a:hover{background:#000;color:#fff}
+.signup .legal{margin:8px 0 0;font-size:12.5px;line-height:1.45;color:var(--mute)}
+.signup .legal a{color:inherit;text-decoration:underline}
+.last .signup .legal{color:#e6ecf8}
 </style>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"PriceMyBin","url":"https://pricemybin.com/","logo":"https://pricemybin.com/apple-touch-icon.png","email":"hello@pricemybin.com","sameAs":["https://www.tiktok.com/@pricemybin","https://www.instagram.com/pricemybin/","https://www.youtube.com/channel/UCI_UlNWVlPmrmZvnFdnWmtg"]}</script>
 </head>
 <body>
 <a class="skip" href="#join">Skip to the waitlist</a>
@@ -363,6 +389,7 @@ html,body{overflow-x:clip}
         <button class="join" type="submit">Join the waitlist</button>
         <p class="err" id="err1" role="alert"></p>
         <p class="note">Free. One email at launch. Waitlist members get free scans.</p>
+        <p class="legal">By joining you confirm you're 13 or older and agree to our <a href="terms/">Terms</a> and <a href="privacy/">Privacy Policy</a>.</p>
       </div>
     </form>
   </div>
@@ -372,7 +399,7 @@ html,body{overflow-x:clip}
 <section class="pull" id="figures" aria-labelledby="h-pull">
   <div class="page">
     <h2 class="sec" id="h-pull">Pull these before you sell a bin</h2>
-    <p class="sub">Every figure from our <a href="https://www.tiktok.com/@pricemybin" rel="noopener">videos</a>, with what it sells for now. Check yours against the photo and the "look for" line.</p>
+    <p class="sub">Every figure from our videos, with what it sells for now. Check yours against the photo and the "look for" line.</p>
     <label class="figsearch"><span class="sr-only">Search figures by name</span><input id="figq" type="search" placeholder="Search a name, like Boba Fett" autocomplete="off" spellcheck="false"></label>
     <div class="chips2" role="group" aria-label="Filter by theme"><button type="button" class="chip2" aria-pressed="true" data-t="all">All</button><button type="button" class="chip2" aria-pressed="false" data-t="Star Wars">Star Wars</button><button type="button" class="chip2" aria-pressed="false" data-t="Batman">Batman</button><button type="button" class="chip2" aria-pressed="false" data-t="Castle">Castle</button><button type="button" class="chip2" aria-pressed="false" data-t="Minecraft">Minecraft</button><button type="button" class="chip2" aria-pressed="false" data-t="Lord of the Rings">Lord of the Rings</button><button type="button" class="chip2" aria-pressed="false" data-t="Ninjago">Ninjago</button><button type="button" class="chip2" aria-pressed="false" data-t="Pirates">Pirates</button><button type="button" class="chip2" aria-pressed="false" data-t="Harry Potter">Harry Potter</button><button type="button" class="chip2" aria-pressed="false" data-t="Minifigures">Minifigures</button></div>
     <ul class="figgrid" id="figgrid">
@@ -414,6 +441,7 @@ html,body{overflow-x:clip}
     </ul>
     <p class="nofig" id="nofig" hidden>No figure by that name in our videos yet. The app will price any figure.</p>
     <button type="button" class="gbtn showall" id="showall">Show all 35 figures</button>
+    <div class="followrow"><span>New finds every day at <b>@pricemybin</b></span><div class="soc"><a href="https://www.tiktok.com/@pricemybin" rel="noopener" target="_blank" aria-label="PriceMyBin on TikTok (opens in a new tab)"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M16.6 3c.3 2.2 1.6 3.6 3.9 3.8v2.6c-1.4.1-2.6-.3-3.9-1.1v5.6c0 3.6-2.6 5.9-5.8 5.9-3.4 0-5.8-2.7-5.5-6 .3-3 2.8-5.2 6.1-4.9v2.7c-1.6-.3-3.2.6-3.4 2.2-.2 1.6 1 3 2.7 3 1.6 0 2.8-1.1 2.8-3.1V3h3z"/></svg><span>TikTok</span></a><a href="https://www.instagram.com/pricemybin/" rel="noopener" target="_blank" aria-label="PriceMyBin on Instagram (opens in a new tab)"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.4" cy="6.6" r="1.3" fill="currentColor"/></svg><span>Instagram</span></a><a href="https://www.youtube.com/channel/UCI_UlNWVlPmrmZvnFdnWmtg" rel="noopener" target="_blank" aria-label="PriceMyBin on YouTube (opens in a new tab)"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="4" fill="currentColor"/><path d="M10 9v6l5.2-3z" fill="#fff"/></svg><span>YouTube</span></a></div></div>
     <p class="gfine">Values: BrickEconomy, checked Nov 7, 2026. Prices marked "used" are Brickset used averages (BrickLink sales). Prices change. Figure photos: BrickEconomy.</p>
   </div>
 </section>
@@ -510,6 +538,7 @@ html,body{overflow-x:clip}
       <details><summary>Which figures should I look for?</summary><p>Start with the <a href="#figures">figures from our videos</a>. Older Star Wars, Batman, Ninjago and Minecraft figures are worth checking first. Each one has a "look for" line so you can tell it apart from the common versions.</p></details>
       <details><summary>Where do the prices come from?</summary><p>Recent sold prices for used LEGO, not store prices and not guesses.</p></details>
       <details><summary>iPhone or Android?</summary><p>iPhone first, Android right after. Join and we'll tell you when yours is ready.</p></details>
+      <details><summary>What do you do with my email?</summary><p>We use it to tell you when the app launches, and that's it. We never sell it. You can ask us to delete it anytime at hello@pricemybin.com. Details are in our <a href="privacy/">Privacy Policy</a>.</p></details>
       <details><summary>Do you buy LEGO?</summary><p>No. PriceMyBin tells you what a bin is worth so you can buy or sell it at the right price, wherever you want.</p></details>
     </div>
   </div>
@@ -527,18 +556,35 @@ html,body{overflow-x:clip}
         <input id="email2" name="email" type="email" inputmode="email" autocomplete="email" autocapitalize="off" spellcheck="false" placeholder="you@email.com" required aria-describedby="err2">
         <button class="join" type="submit">Join the waitlist</button>
         <p class="err" id="err2" role="alert"></p>
+        <p class="legal">By joining you confirm you're 13 or older and agree to our <a href="terms/">Terms</a> and <a href="privacy/">Privacy Policy</a>.</p>
       </div>
     </form>
   </div>
 </section>
 
-<footer>
+<footer class="foot2">
   <div class="page">
-    <p><b>New finds every day on @pricemybin</b></p>
-    <div class="socials"><a href="https://www.tiktok.com/@pricemybin" rel="noopener">TikTok</a><a href="https://www.instagram.com/pricemybin/" rel="noopener">Instagram</a><a href="https://www.youtube.com/channel/UCI_UlNWVlPmrmZvnFdnWmtg" rel="noopener">YouTube</a></div>
-    <p>LEGO® is a trademark of the LEGO Group, which does not sponsor, authorize, or endorse PriceMyBin.</p>
-    <p>We use your email only to tell you when PriceMyBin launches. The $287 bin and the practice bins are examples. Figure values: BrickEconomy and Brickset, checked Nov 7, 2026.</p>
-    <p>Photos: Rick Mason, Vlad Hilitanu and Denny Muller on Unsplash. Figure images: BrickEconomy.</p>
+    <div class="fgrid">
+      <div class="fbrand">
+        <a class="brand" href="./" aria-label="PriceMyBin home"><svg viewBox="0 0 26 20" aria-hidden="true"><rect x="1" y="6" width="24" height="13" rx="2" fill="#2f6fd0"/><rect x="5" y="2" width="5" height="5" rx="1.2" fill="#2f6fd0"/><rect x="16" y="2" width="5" height="5" rx="1.2" fill="#2f6fd0"/></svg>PriceMyBin</a>
+        <p>Know what a LEGO bin is worth before you buy it or sell it.</p>
+      </div>
+      <div class="ffollow">
+        <p class="fh">New finds every day at <b>@pricemybin</b></p>
+        <div class="soc"><a href="https://www.tiktok.com/@pricemybin" rel="noopener" target="_blank" aria-label="PriceMyBin on TikTok (opens in a new tab)"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M16.6 3c.3 2.2 1.6 3.6 3.9 3.8v2.6c-1.4.1-2.6-.3-3.9-1.1v5.6c0 3.6-2.6 5.9-5.8 5.9-3.4 0-5.8-2.7-5.5-6 .3-3 2.8-5.2 6.1-4.9v2.7c-1.6-.3-3.2.6-3.4 2.2-.2 1.6 1 3 2.7 3 1.6 0 2.8-1.1 2.8-3.1V3h3z"/></svg><span>TikTok</span></a><a href="https://www.instagram.com/pricemybin/" rel="noopener" target="_blank" aria-label="PriceMyBin on Instagram (opens in a new tab)"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.4" cy="6.6" r="1.3" fill="currentColor"/></svg><span>Instagram</span></a><a href="https://www.youtube.com/channel/UCI_UlNWVlPmrmZvnFdnWmtg" rel="noopener" target="_blank" aria-label="PriceMyBin on YouTube (opens in a new tab)"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="4" fill="currentColor"/><path d="M10 9v6l5.2-3z" fill="#fff"/></svg><span>YouTube</span></a></div>
+      </div>
+      <nav class="flinks" aria-label="Site">
+        <a href="privacy/">Privacy Policy</a>
+        <a href="privacy/#california">Your California Privacy Rights</a>
+        <a href="terms/">Terms of Use</a>
+        <a href="mailto:hello@pricemybin.com">hello@pricemybin.com</a>
+      </nav>
+    </div>
+    <div class="ffine">
+      <p>LEGO® is a trademark of the LEGO Group, which does not sponsor, authorize, or endorse PriceMyBin.</p>
+      <p>Figure values from BrickEconomy and Brickset (BrickLink sales), checked Nov 7, 2026. Prices change. The $287 bin and the practice bins are examples. Figure images: BrickEconomy. Photos: Rick Mason, Vlad Hilitanu and Denny Muller on Unsplash.</p>
+      <p>© 2026 PriceMyBin</p>
+    </div>
   </div>
 </footer>
 
