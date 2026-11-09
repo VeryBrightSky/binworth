@@ -86,9 +86,9 @@ h1{margin:0;font-weight:850;font-stretch:120%;font-size:clamp(38px,10.6vw,80px);
 .tag i{white-space:normal;line-height:1.1}
 .tag i{font:700 12px/1 Archivo,sans-serif;font-size:max(12px,2.4cqw);font-style:normal;display:block;margin-bottom:.5cqw}
 .tag.on{opacity:1;transform:translate3d(-50%,-50%,58px) rotate(var(--r,0deg)) scale(1);transition:transform .3s cubic-bezier(.2,1.5,.4,1),opacity .1s}
-.total{right:4%;top:5%;width:27%;aspect-ratio:1;border-radius:50%;background:var(--sticker);display:grid;place-items:center;align-content:center;
+.total{right:6%;top:5%;width:27%;aspect-ratio:1;border-radius:50%;background:var(--sticker);display:grid;place-items:center;align-content:center;
   transform:translateZ(120px) rotate(-14deg) scale(1.5);opacity:0;box-shadow:inset 0 0 0 .7cqw rgba(255,255,255,.25),0 1.2cqw 0 rgba(0,0,0,.3)}
-.total small{font:700 11px/1 Archivo,sans-serif;font-size:max(11px,2.6cqw);margin-bottom:.8cqw}
+.total small{font:700 12px/1 Archivo,sans-serif;font-size:max(12px,2.6cqw);margin-bottom:.8cqw}
 .total b{font-family:var(--marker);font-weight:400;font-size:20px;font-size:9cqw;line-height:.9}
 .bin.done .total{opacity:1;transform:translateZ(72px) rotate(8deg) scale(1);transition:transform .34s cubic-bezier(.2,1.4,.4,1) .45s,opacity .1s .45s}
 
@@ -302,7 +302,7 @@ footer p{margin:0 0 6px;max-width:72ch}
 .hero2{display:grid;gap:18px;padding:10px 0 40px}
 .hero2 .copy{display:grid;gap:14px}
 .lede-l{display:block}
-@media (max-width:899px){.hero2 .lede-l{display:block;font-size:17px;margin-top:10px}.hero2{gap:14px}.hero2 .tubwrap{order:2;margin-top:4px}.hero2 form{order:3}.hero2 .fromvid{order:4}.hero2 .tubwrap{display:contents}.hero2 .tub{order:2;margin-top:20px}.hero2 .tubcap{order:5;margin-top:-6px}.hero2 .tub .photo{aspect-ratio:16/10}.hero2 .tub{--lip:50px}.hero2 .pulled{height:80%}.hero2 .tape2{left:auto!important;right:8px;top:-22px!important;transform:rotate(3deg);font-size:clamp(15px,4.2vw,21px)!important;padding:7px 11px 6px!important}}
+@media (max-width:899px){.hero2 .copy{display:contents}.hero2 h1{order:0}.hero2 .lede-l{order:1;display:block;font-size:17px;margin-top:-4px}.hero2 .social{order:6;margin-top:4px}.hero2{gap:14px}.hero2 .tubwrap{order:2;margin-top:4px}.hero2 form{order:3}.hero2 .fromvid{order:4}.hero2 .tubwrap{display:contents}.hero2 .tub{order:2;margin-top:20px}.hero2 .tubcap{order:5;margin-top:-6px}.hero2 .tub .photo{aspect-ratio:16/9}.hero2 .tub{--lip:50px}.hero2 .pulled{height:80%}.hero2 .tape2{left:auto!important;right:8px;top:-22px!important;transform:rotate(3deg);font-size:clamp(15px,4.2vw,21px)!important;padding:7px 11px 6px!important}}
 @media (min-width:900px){.lede-l{display:block}}
 @media (min-width:900px){.hero2{grid-template-columns:1fr 1.08fr;column-gap:52px;row-gap:22px;padding:26px 0 70px;align-items:start}.hero2 .copy{grid-column:1;padding-top:18px}.hero2 h1{font-size:clamp(42px,3.8vw,56px);line-height:1.04;max-width:12ch}.hero2 .fromvid{grid-column:1;margin-top:-8px}.midjoin{max-width:none;display:grid;grid-template-columns:1fr minmax(320px,440px);column-gap:32px;align-items:start}.midjoin .body{display:contents}.midjoin .q{grid-column:1;grid-row:1 / span 3;align-self:center;font-size:26px;margin:0}.midjoin input,.midjoin button.join,.midjoin .err,.midjoin .legal{grid-column:2}.hero2 .tubwrap{align-self:center}.hero2 .tubwrap{grid-column:2;grid-row:1 / span 2}.hero2 form{grid-column:1}}
 .tubwrap{margin:8px -6px 0}
@@ -604,7 +604,7 @@ ol.how li>div{overflow-wrap:break-word}
     </div>
     <form class="signup" id="join" novalidate>
       <div class="body">
-        <label class="q" for="email1">The app is still being built. Join the waitlist to try it first.</label>
+        <label class="q" for="email1">Join the free waitlist to try the app first.</label>
         <input id="email1" name="email" type="email" inputmode="email" autocomplete="email" spellcheck="false" autocorrect="off" enterkeyhint="go" placeholder="you@email.com" required aria-describedby="err1">
         <button class="join" type="submit">Join the waitlist</button>
         <p class="err" id="err1" role="alert"></p>
