@@ -1305,7 +1305,7 @@ window.addEventListener("load", function () { setTimeout(function () {
     document.querySelectorAll(".thanks .spot").forEach(function (b) {
       if (!b.hidden) return;
       b.querySelector(".spotnum").textContent = "#...";
-      b.querySelector(".spotsub").textContent = "Your number shows up here within about 15 minutes. Share your link now so your friends count toward it.";
+      b.querySelector(".spotsub").textContent = "Your number shows up here in a minute or two. Share your link now so your friends count toward it.";
       b.hidden = false;
     });
   }
@@ -1316,7 +1316,7 @@ window.addEventListener("load", function () { setTimeout(function () {
       getSpot(code, fresh || tries > 0).then(function (d) {
         if (d) { showSpot(d); return; }
         if (fresh && tries === 0) pendingSpot();
-        if (fresh && ++tries <= 12) setTimeout(go, 120000);
+        if (fresh && ++tries <= 10) setTimeout(go, [8000, 20000, 45000][tries - 1] || 120000);
       });
     })();
   }
@@ -1374,7 +1374,7 @@ window.addEventListener("load", function () { setTimeout(function () {
         try { localStorage.setItem("bw_joined", "1"); localStorage.setItem("pmb_code", myCode(email)); } catch (e) {}
         shareUrl = linkFor(myCode(email));
         showThanks(email, fixedFrom, false);
-        var mcode = myCode(email); setTimeout(function () { loadSpot(mcode, true); }, 2500);
+        var mcode = myCode(email); setTimeout(function () { loadSpot(mcode, true); }, 4000);
         var h = form.querySelector(".thanks h2"); if (h) h.focus({ preventScroll: true });
       };
       if (!CONFIG.FORM_ACTION) { done(); return; }
