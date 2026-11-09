@@ -9,7 +9,7 @@
 <meta name="description" content="What is a bin of LEGO worth? PriceMyBin spots the valuable minifigures in one photo and prices the whole bin from real sold prices. Free early access.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="That $20 LEGO® bin might be hiding a $985 figure">
-<meta property="og:description" content="Snap a bin before you buy it or sell it. Join the PriceMyBin waitlist.">
+<meta property="og:description" content="One photo tells you what a LEGO bin is worth and which figures to pull. Free early access, 10 free bin scans.">
 <meta property="og:url" content="https://pricemybin.com/">
 <meta property="og:site_name" content="PriceMyBin">
 <meta property="og:image" content="https://pricemybin.com/og.png">
@@ -18,7 +18,7 @@
 <meta property="og:image:alt" content="Three real LEGO minifigures rising out of a bin of loose bricks, with price stickers: $545, $985 and $342">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="That $20 LEGO® bin might be hiding a $985 figure">
-<meta name="twitter:description" content="Snap a bin before you buy it or sell it. Join the PriceMyBin waitlist.">
+<meta name="twitter:description" content="One photo tells you what a LEGO bin is worth and which figures to pull. Free early access, 10 free bin scans.">
 <meta name="twitter:image" content="https://pricemybin.com/og.png">
 <meta name="twitter:image:alt" content="Three LEGO minifigures with price stickers: $545, $985 and $342">
 <link rel="canonical" href="https://pricemybin.com/">
@@ -262,6 +262,8 @@ html:has(.jd[open]){overflow:hidden}
 
 /* sections */
 section{padding:52px 0;border-top:1px solid var(--line)}
+section.game,section.two,section.last,.fcard.more{content-visibility:auto;contain-intrinsic-size:auto 900px}
+.fcard.more{contain-intrinsic-size:auto 420px}
 h2.sec{font-weight:800;font-stretch:115%;font-size:clamp(28px,6vw,40px);line-height:1.02;letter-spacing:-.02em;margin:0 0 8px;max-width:18ch}
 .sub{margin:0 0 26px;color:var(--mute);max-width:46ch}
 
@@ -1634,6 +1636,7 @@ window.addEventListener("load", function () { setTimeout(function () {
 /* First-party analytics: no cookies, no IDs stored on the device. Events go to our own Worker; visitors are a daily-rotating hash there. */
 (function () {
   var EP = "https://pricemybin-admin.cleanfeed.workers.dev/api/t"; if (!EP || EP.indexOf("http") !== 0 || !window.fetch) return;
+  try { var nt = new URLSearchParams(location.search).get("notrack"); if (nt === "1") localStorage.setItem("pmb_notrack", "1"); else if (nt === "0") localStorage.removeItem("pmb_notrack"); if (localStorage.getItem("pmb_notrack")) return; } catch (e) {}
   var qs = new URLSearchParams(location.search), src = qs.get("src") || qs.get("utm_source") || "";
   try { if (!src) src = sessionStorage.getItem("pmb_src") || ""; } catch (e) {}
   var refh = ""; try { refh = document.referrer ? new URL(document.referrer).hostname.replace(/^www\./, "") : ""; } catch (e) {}
