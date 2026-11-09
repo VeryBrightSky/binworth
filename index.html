@@ -306,7 +306,11 @@ footer p{margin:0 0 6px;max-width:72ch}
 .thanks .fj{font-size:14px;font-weight:700;margin:0 0 10px}
 .thanks .shares{display:grid;grid-template-columns:repeat(auto-fill,minmax(96px,1fr));gap:8px}
 .thanks .shares a,.thanks .shares button{display:flex;align-items:center;justify-content:center;font:inherit;font-size:15px;font-weight:700;padding:11px 10px;border-radius:10px;border:2px solid #000;background:#fff;color:#000;text-decoration:none;cursor:pointer;min-height:44px}
+.thanks .shares a[hidden]{display:none}
 .thanks .shares a:focus-visible,.thanks .shares button:focus-visible{outline:3px solid var(--tub);outline-offset:2px}
+.fromfriend{margin:0 0 10px;padding:9px 12px;border:2px solid #000;border-radius:12px;background:var(--sticker2);font-size:15px;font-weight:700;line-height:1.3;box-shadow:3px 3px 0 #000}
+.fromfriend[hidden]{display:none}
+.fromfriend a{color:#000}
 .inline-total{display:block;font-size:14px;font-weight:700;margin:-4px 0 8px}
 .inline-total[hidden]{display:none}
 /* sticky join bar (phones) */
@@ -634,6 +638,7 @@ ol.how li>div{overflow-wrap:break-word}
     </div>
     <form class="signup" id="join" novalidate>
       <div class="body">
+        <p class="fromfriend" id="fromfriend" hidden></p>
         <label class="q" for="email1">Free to join. Invites go out in signup order.</label>
         <span class="inline-total" id="intotal" hidden></span>
         <input id="email1" name="email" type="email" inputmode="email" autocomplete="email" spellcheck="false" autocorrect="off" enterkeyhint="go" placeholder="you@email.com" required aria-describedby="err1">
@@ -1052,7 +1057,7 @@ function countUp(el, to, ms, delay) {
     card.innerHTML = '<div class="gend"><div class="ghead"><span>Your score</span><span class="dots" role="img" aria-label="Final results">' + dots() + '</span></div>' +
       '<p class="big" aria-hidden="true">' + avg + '%</p><h3 tabindex="-1"><span class="sr-only">Your score: ' + avg + '%. </span>' + head + '</h3>' +
       '<p>The figures in these bins were worth $' + rounds.reduce(function (a, r) { return a + r.worth; }, 0).toLocaleString("en-US") + ' against $' + asked + ' in asking prices.' + (best && avg > best ? ' New best, up from ' + best + '%.' : best ? ' Your best is ' + Math.max(best, avg) + '%.' : '') + ' PriceMyBin is being built to read a bin from one photo, so you won\'t have to eyeball it.</p>' +
-      (hid > 0 ? '<p><b>A seller who skipped the scan would have left $' + hid.toLocaleString("en-US") + ' on the table.</b></p>' : '') +
+      (hid > 0 ? '<p><b>A seller who skipped the scan would have given away $' + hid.toLocaleString("en-US") + ' in figures.</b></p>' : '') +
       '<div class="row">' + (window.__isJoined && window.__isJoined() ? '' : '<button type="button" class="go" data-g="join">Save my spot</button>') + '<button type="button" data-g="share">Challenge a friend</button><button type="button" data-g="again">Play 3 new bins</button></div></div>';
     var hd = card.querySelector("h3"); card.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "start" }); hd.focus({ preventScroll: true });
     if (avg >= 85) brickBurst(card.querySelector(".big"));
@@ -1205,6 +1210,13 @@ window.addEventListener("load", function () { setTimeout(function () {
   function linkFor(code) { return location.origin + "/?src=share" + (code ? "&r=" + code : ""); }
   var savedCode = ""; try { savedCode = localStorage.getItem("pmb_code") || ""; } catch (e) {}
   var NAMES = { tt: "TikTok", ig: "Instagram", yt: "YouTube" };
+  (function () {
+    var ff = document.getElementById("fromfriend"); if (!ff) return;
+    var joinedAlready = false; try { joinedAlready = localStorage.getItem("bw_joined") === "1"; } catch (e) {}
+    if (joinedAlready) return;
+    if (qs.get("src") === "game") { ff.innerHTML = 'A friend challenged you to <a href="#game">price 3 LEGO bins</a>. Think you can beat their score?'; ff.hidden = false; }
+    else if (ref) { ff.textContent = "A friend sent you this. When you join, they move up 10 spots in line."; ff.hidden = false; }
+  })();
   if (NAMES[source]) { var fv = document.getElementById("fromvid"); if (fv) { document.getElementById("fromname").textContent = NAMES[source]; fv.hidden = false; } }
   function okEmail(e) { return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(e); }
   var TYPO = { "gmail.con": "gmail.com", "gmail.co": "gmail.com", "gmial.com": "gmail.com", "gmai.com": "gmail.com", "gamil.com": "gmail.com", "gnail.com": "gmail.com", "gmail.cm": "gmail.com", "gmaill.com": "gmail.com",
@@ -1257,6 +1269,7 @@ window.addEventListener("load", function () { setTimeout(function () {
     var u = encodeURIComponent(shareUrl), t = encodeURIComponent(SHARE_TXT + shareUrl);
     document.querySelectorAll(".thanks [data-sh]").forEach(function (a) {
       var k = a.getAttribute("data-sh");
+      if (k === "sms" && window.matchMedia && matchMedia("(hover:hover) and (pointer:fine)").matches) { a.hidden = true; return; }
       a.href = k === "sms" ? "sms:?&body=" + t : k === "wa" ? "https://wa.me/?text=" + t : k === "mail" ? "mailto:?subject=" + encodeURIComponent("This might be in your LEGO bin") + "&body=" + t : "https://www.facebook.com/sharer/sharer.php?u=" + u;
     });
     document.querySelectorAll(".thanks .reflink").forEach(function (i) { i.value = shareUrl; });
@@ -1265,7 +1278,7 @@ window.addEventListener("load", function () { setTimeout(function () {
     if (!d || !d.pos) return;
     document.querySelectorAll(".thanks .spot").forEach(function (b) {
       b.querySelector(".spotnum").textContent = "#" + d.pos.toLocaleString("en-US");
-      b.querySelector(".spotsub").textContent = d.behind > 0 ? d.behind.toLocaleString("en-US") + (d.behind === 1 ? " person" : " people") + " behind you" : "You're at the back. Share your link to move up.";
+      b.querySelector(".spotsub").textContent = d.behind > 0 ? d.behind.toLocaleString("en-US") + (d.behind === 1 ? " person" : " people") + " behind you" : "Newest in line. Each friend who joins moves you up 10 spots.";
       b.hidden = false;
     });
     document.querySelectorAll(".thanks .fj").forEach(function (p) { p.querySelector(".fjn").textContent = d.refs || 0; p.hidden = false; });
@@ -1292,7 +1305,7 @@ window.addEventListener("load", function () { setTimeout(function () {
     document.querySelectorAll(".thanks .spot").forEach(function (b) {
       if (!b.hidden) return;
       b.querySelector(".spotnum").textContent = "#...";
-      b.querySelector(".spotsub").textContent = "Your number shows here within a few minutes.";
+      b.querySelector(".spotsub").textContent = "Your number shows up here within about 15 minutes. Share your link now so your friends count toward it.";
       b.hidden = false;
     });
   }
@@ -1303,7 +1316,7 @@ window.addEventListener("load", function () { setTimeout(function () {
       getSpot(code, fresh || tries > 0).then(function (d) {
         if (d) { showSpot(d); return; }
         if (fresh && tries === 0) pendingSpot();
-        if (fresh && ++tries <= 6) setTimeout(go, 60000);
+        if (fresh && ++tries <= 12) setTimeout(go, 120000);
       });
     })();
   }
