@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://docs.google.com https://*.googleusercontent.com https://cloudflareinsights.com https://static.cloudflareinsights.com; form-action 'self' https://docs.google.com; base-uri 'self'; object-src 'none'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://pricemybin-admin.cleanfeed.workers.dev https://docs.google.com https://*.googleusercontent.com https://cloudflareinsights.com https://static.cloudflareinsights.com; form-action 'self' https://docs.google.com; base-uri 'self'; object-src 'none'; upgrade-insecure-requests">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <title>PriceMyBin | What is a bin of LEGO worth? Snap a photo and find out</title>
 <meta name="description" content="Find out what a bin of LEGO is worth before you buy or sell it. PriceMyBin spots the valuable minifigures in one photo and prices the whole bin from real sold prices. Free early access.">
@@ -1088,6 +1088,7 @@ function countUp(el, to, ms, delay) {
     if (top < 0) bin.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "center" });
     var tags = bin.querySelectorAll(".gfig"), sum = bin.querySelector(".total b");
     function finish() {
+      try { document.dispatchEvent(new CustomEvent("pmb:game", { detail: "done" })); } catch (e) {}
       var dd = card.querySelector(".dots"); dd.innerHTML = dots(); dd.setAttribute("aria-label", scores.filter(Boolean).length + " of " + rounds.length + " done");
       pin.style.setProperty("--at", Math.min(1, r.worth / r.max)); pin.classList.add("show");
       var bestK = 0; r.figs.forEach(function (id, k) { if (FIG[id].price > FIG[r.figs[bestK]].price) bestK = k; });
@@ -1256,7 +1257,7 @@ document.addEventListener("click", function (e) {
     if (window.__isJoined && window.__isJoined()) return;
     var d = document.getElementById("jd"); if (!d || d.open || document.querySelector("dialog[open]")) return;
     var h = document.getElementById("jd-h"); if (h) h.textContent = "Before you go: save your spot";
-    if (window.__openJoin && window.__openJoin()) { shown = true; try { sessionStorage.setItem("pmb_exit", "1"); } catch (e2) {} }
+    if (window.__openJoin && window.__openJoin()) { shown = true; try { sessionStorage.setItem("pmb_exit", "1"); document.dispatchEvent(new CustomEvent("pmb:exit")); } catch (e2) {} }
   });
 })();
 /* real line size from the signup sheet, shown only once it's big enough to mean something */
@@ -1437,6 +1438,7 @@ window.addEventListener("load", function () { setTimeout(function () {
       busy = true; window.__joinBusy = true; err.textContent = ""; btn.disabled = true; btn.textContent = "Saving...";
       var done = function () {
         if (window.__brickBurst) window.__brickBurst(btn);
+        try { document.dispatchEvent(new CustomEvent("pmb:signup")); } catch (e) {}
         busy = false; window.__joinBusy = false;
         window.lastSignup = { email: email, source: source };
         replacing = "";
@@ -1619,6 +1621,50 @@ window.addEventListener("load", function () { setTimeout(function () {
     requestAnimationFrame(function () { window.scrollTo(0, y); root.style.overflowAnchor = prevA; });
   });
   apply();
+})();
+</script>
+<script>
+/* First-party analytics: no cookies, no IDs stored on the device. Events go to our own Worker; visitors are a daily-rotating hash there. */
+(function () {
+  var EP = "https://pricemybin-admin.cleanfeed.workers.dev/api/t"; if (!EP || EP.indexOf("http") !== 0 || !window.fetch) return;
+  var qs = new URLSearchParams(location.search), src = qs.get("src") || qs.get("utm_source") || "";
+  try { if (!src) src = sessionStorage.getItem("pmb_src") || ""; } catch (e) {}
+  var refh = ""; try { refh = document.referrer ? new URL(document.referrer).hostname.replace(/^www\./, "") : ""; } catch (e) {}
+  if (!src && refh && refh !== location.hostname) src = refh;
+  var sess = ""; try { sess = sessionStorage.getItem("pmb_sess"); if (!sess) { sess = Math.random().toString(36).slice(2, 10); sessionStorage.setItem("pmb_sess", sess); } } catch (e) { sess = Math.random().toString(36).slice(2, 10); }
+  var q = [], timer = 0, t0 = Date.now(), left = false, seen = {};
+  function flush() { timer = 0; if (!q.length) return; var body = JSON.stringify(q.splice(0, 20)); try { if (navigator.sendBeacon && navigator.sendBeacon(EP, new Blob([body], { type: "text/plain" }))) return; } catch (e) {} fetch(EP, { method: "POST", body: body, keepalive: true }).catch(function () {}); }
+  function track(t, n, v) { q.push({ t: t, n: n == null ? undefined : String(n).slice(0, 60), v: v, s: sess, p: location.pathname, src: src, r: refh }); if (q.length >= 10) flush(); else if (!timer) timer = setTimeout(flush, 1500); }
+  window.__pmbTrack = track;
+  track("view");
+  function once(k, fn) { if (!seen[k]) { seen[k] = 1; fn(); } }
+  if ("IntersectionObserver" in window) {
+    var map = [["#h-pull", "figures"], ["#h-game", "game"], ["#h-how", "how"], ["#h-faq", "faq"], ["#h-last", "last"]];
+    var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { var n = e.target.getAttribute("data-pmb"); once("s:" + n, function () { track("sect", n); }); io.unobserve(e.target); } }); }, { threshold: .5 });
+    map.forEach(function (m) { var el = document.querySelector(m[0]); if (el) { el.setAttribute("data-pmb", m[1]); io.observe(el); } });
+  }
+  document.addEventListener("click", function (ev) {
+    var el = ev.target.closest ? ev.target.closest("a,button,summary") : null; if (!el) return;
+    if (el.matches("button.join")) { var f = el.closest("form"); track("cta", f ? f.id : "join"); }
+    else if (el.matches(".toplink")) track("cta", "top");
+    else if (el.matches("#sticky")) track("cta", "sticky");
+    else if (el.matches("#tjoin")) track("cta", "tally");
+    else if (el.matches('.gend [data-g="join"]')) track("cta", "game-end");
+    else if (el.matches("[data-sh]")) track("share", el.getAttribute("data-sh"));
+    else if (el.matches('[data-act="copy"]')) track("share", "copy");
+    else if (el.matches('[data-act="share"]')) track("share", "more");
+    else if (el.matches(".chip2")) track("filter", el.getAttribute("data-t"));
+    else if (el.matches(".fcard .stk")) { var h = el.closest(".fcard"); track("price", h && h.querySelector("h3") ? h.querySelector("h3").textContent : "?"); }
+    else if (el.matches(".faq summary")) { var d = el.parentNode; if (!d.open) track("faq", el.textContent.trim()); }
+    else if (el.matches("#glock")) once("g:start", function () { track("game", "start"); });
+    else if (el.matches(".social a, .foot2 .soc a")) track("cta", "social-" + (el.textContent.trim().toLowerCase()));
+  }, true);
+  document.addEventListener("pmb:signup", function () { track("signup"); });
+  document.addEventListener("pmb:game", function (e) { track("game", e.detail || "done"); });
+  document.addEventListener("pmb:exit", function () { track("exit", "shown"); });
+  function leave() { if (left) return; left = true; track("leave", null, Math.min(1800, Math.round((Date.now() - t0) / 1000))); flush(); }
+  document.addEventListener("visibilitychange", function () { if (document.visibilityState === "hidden") leave(); });
+  addEventListener("pagehide", leave);
 })();
 </script>
 <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "149a513b14b045a6b8f13508a1270ee3"}'></script><!-- End Cloudflare Web Analytics -->

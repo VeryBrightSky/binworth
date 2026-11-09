@@ -5,6 +5,7 @@ Disallow: /ig/
 Disallow: /yt/
 Disallow: /og-card.html
 Disallow: /icon-card.html
+Disallow: /admin/
 
 # AI search and answer engines are welcome
 User-agent: GPTBot
