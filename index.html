@@ -827,8 +827,8 @@ var CONFIG = {
   ENTRY_EMAIL: "entry.429176729",
   ENTRY_GOAL: "entry.359816875",
   ENTRY_SOURCE: "entry.1098425840",
-  /* Apps Script web app that reads the signup sheet: real spot in line + friends joined */
-  SPOT_API: ""
+  /* published CSV of the sheet's "Public line" tab (invite code, spot, friends joined, total; no emails) */
+  SPOT_CSV: "https://docs.google.com/spreadsheets/d/e/2PACX-1vQdKdVk-OqaKzcp0-6oLQT-bHesVpG05VmTChCo7TNsDN4JIYAJjjJtaiJy3fff70JZUgIZmSPHMglj/pub?gid=1161522364&single=true&output=csv"
 };
 
 var reduceMotion = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -1271,17 +1271,43 @@ window.addEventListener("load", function () { setTimeout(function () {
     document.querySelectorAll(".thanks .fj").forEach(function (p) { p.querySelector(".fjn").textContent = d.refs || 0; p.hidden = false; });
     document.querySelectorAll(".thanks .ladder li").forEach(function (li) { li.classList.toggle("done", (d.refs || 0) >= +li.getAttribute("data-n")); });
   }
-  function getSpot(code, fresh) {
-    if (!CONFIG.SPOT_API || !code || !window.fetch) return Promise.resolve(null);
-    return fetch(CONFIG.SPOT_API + "?c=" + encodeURIComponent(code) + (fresh ? "&fresh=1&t=" + Date.now() : "")).then(function (r) { return r.json(); }).catch(function () { return null; });
+  var lineCache = null;
+  function getLine(fresh) {
+    if (!CONFIG.SPOT_CSV || !window.fetch) return Promise.resolve(null);
+    if (lineCache && !fresh) return lineCache;
+    lineCache = fetch(CONFIG.SPOT_CSV + (CONFIG.SPOT_CSV.indexOf("?") < 0 ? "?" : "&") + "t=" + (fresh ? Date.now() : Math.floor(Date.now() / 60000)), { cache: "no-store" })
+      .then(function (r) { return r.ok ? r.text() : ""; })
+      .then(function (t) {
+        var rows = t.trim().split(/\r?\n/).slice(1).map(function (l) { return l.split(","); }), map = {}, total = 0;
+        rows.forEach(function (c) { var n = +c[3]; if (n) total = n; if (c[0]) map[c[0].trim()] = { pos: +c[1], refs: +c[2] || 0 }; });
+        return { total: total, map: map };
+      }).catch(function () { lineCache = null; return null; });
+    return lineCache;
   }
-  function loadSpot(code, fresh) {
-    getSpot(code, fresh).then(function (d) {
-      if (d && d.pos) { showSpot(d); return; }
-      if (fresh) setTimeout(function () { getSpot(code, true).then(showSpot); }, 4000);
+  function getSpot(code, fresh) {
+    if (!code) return Promise.resolve(null);
+    return getLine(fresh).then(function (L) { if (!L || !L.map[code]) return null; var m = L.map[code]; return { pos: m.pos, refs: m.refs, total: L.total, behind: Math.max(0, L.total - m.pos) }; });
+  }
+  function pendingSpot() {
+    document.querySelectorAll(".thanks .spot").forEach(function (b) {
+      if (!b.hidden) return;
+      b.querySelector(".spotnum").textContent = "#...";
+      b.querySelector(".spotsub").textContent = "Your number shows here within a few minutes.";
+      b.hidden = false;
     });
   }
-  window.__spotTotal = function (cb) { if (!CONFIG.SPOT_API || !window.fetch) return; fetch(CONFIG.SPOT_API).then(function (r) { return r.json(); }).then(function (d) { if (d && d.total) cb(d.total); }).catch(function () {}); };
+  function loadSpot(code, fresh) {
+    if (!CONFIG.SPOT_CSV || !code) return;
+    var tries = 0;
+    (function go() {
+      getSpot(code, fresh || tries > 0).then(function (d) {
+        if (d) { showSpot(d); return; }
+        if (fresh && tries === 0) pendingSpot();
+        if (fresh && ++tries <= 6) setTimeout(go, 60000);
+      });
+    })();
+  }
+  window.__spotTotal = function (cb) { getLine(false).then(function (L) { if (L && L.total) cb(L.total); }); };
   function showThanks(email, fixedFrom, again) {
     swap(function (f, b) { b.innerHTML = thanks(email, fixedFrom, again); });
     if (dlg) { dlg.removeAttribute("aria-labelledby"); dlg.setAttribute("aria-label", "Your spot is saved"); }
