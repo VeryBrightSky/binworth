@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://cloudflareinsights.com https://static.cloudflareinsights.com; form-action 'self'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://pricemybin-admin.cleanfeed.workers.dev https://cloudflareinsights.com https://static.cloudflareinsights.com; form-action 'self'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <title>Privacy Policy | PriceMyBin</title>
 <meta name="description" content="How PriceMyBin handles your email and data. Plain language: we keep your email to tell you when the app launches, and we never sell it.">
@@ -77,7 +77,7 @@ footer nav{display:flex;gap:4px 18px;flex-wrap:wrap;margin-bottom:8px}footer nav
   <li><b>GitHub Pages</b> (GitHub, Inc.) hosts this website. GitHub logs visitors' IP addresses to keep the service secure. See the <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement" rel="noopener">GitHub Privacy Statement</a>.</li>
   <li><b>Google Forms</b> (Google LLC) receives and stores waitlist sign-ups for us, along with standard technical details of the request. See the <a href="https://policies.google.com/privacy" rel="noopener">Google Privacy Policy</a>.</li>
 </ul>
-<p>We use <b>Cloudflare Web Analytics</b> (Cloudflare, Inc.) to count page views and see which pages people read. It doesn't use cookies, doesn't fingerprint your device, and doesn't follow you to other sites. It receives standard technical details such as your IP address, browser and the page you viewed. See the <a href="https://www.cloudflare.com/privacypolicy/" rel="noopener">Cloudflare Privacy Policy</a>. We don't use advertising pixels or social media trackers. Pages on TikTok, Instagram and YouTube that we link to are covered by those companies' own privacy policies.</p>
+<p>We count visits two ways, both without cookies. Our own first-party counter notes which parts of the page you reach and which buttons you tap, and sends that to a server we run on Cloudflare; it never stores your IP address, and the visitor ID it uses is a hash of your IP and browser that changes every day, so you can't be followed across days or sites. We also use <b>Cloudflare Web Analytics</b> (Cloudflare, Inc.) to count page views. It doesn't use cookies, doesn't fingerprint your device, and doesn't follow you to other sites. It receives standard technical details such as your IP address, browser and the page you viewed. See the <a href="https://www.cloudflare.com/privacypolicy/" rel="noopener">Cloudflare Privacy Policy</a>. We don't use advertising pixels or social media trackers. Pages on TikTok, Instagram and YouTube that we link to are covered by those companies' own privacy policies.</p>
 
 <h2>3. How we use your information</h2>
 <ul>
@@ -132,6 +132,7 @@ footer nav{display:flex;gap:4px 18px;flex-wrap:wrap;margin-bottom:8px}footer nav
   <p>LEGO® is a trademark of the LEGO Group, which does not sponsor, authorize, or endorse PriceMyBin.</p>
 </footer>
 </div>
+<script>(function(){var EP="https://pricemybin-admin.cleanfeed.workers.dev/api/t";if(EP.indexOf("http")!==0||!navigator.sendBeacon)return;var r="";try{r=document.referrer?new URL(document.referrer).hostname.replace(/^www\./,""):""}catch(e){}var s="";try{s=sessionStorage.getItem("pmb_sess")||Math.random().toString(36).slice(2,10);sessionStorage.setItem("pmb_sess",s)}catch(e){s="x"}navigator.sendBeacon(EP,new Blob([JSON.stringify([{t:"view",s:s,p:location.pathname,r:r}])],{type:"text/plain"}))})();</script>
 <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "149a513b14b045a6b8f13508a1270ee3"}'></script><!-- End Cloudflare Web Analytics -->
 </body>
 </html>
