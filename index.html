@@ -292,6 +292,23 @@ footer p{margin:0 0 6px;max-width:72ch}
 .thanks .moveup h3{font-size:19px;font-weight:850;line-height:1.15;margin:0 0 6px}
 .thanks .moveup p{margin:0 0 10px;font-size:15px;line-height:1.35;color:#111}
 .thanks .reflink{display:block;width:100%;font:600 14px/1.2 Archivo,sans-serif;padding:10px 12px;border:2px solid #000;border-radius:10px;background:#fff;color:#000;margin-bottom:10px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.thanks .spot{display:flex;align-items:baseline;flex-wrap:wrap;gap:4px 12px;margin:0 0 12px;padding:12px 14px;border:2px solid #000;border-radius:14px;background:#fff;box-shadow:4px 4px 0 #000}
+.thanks .spot[hidden]{display:none}
+.thanks .spot .lbl{font-size:14px;font-weight:700;width:100%;color:#333}
+.thanks .spot b{font-family:var(--marker);font-weight:400;font-size:44px;line-height:1;color:var(--tub)}
+.thanks .spot span.sub{font-size:15px;font-weight:600}
+.thanks .ladder{list-style:none;padding:0;margin:4px 0 12px;display:grid;gap:6px}
+.thanks .ladder li{display:flex;align-items:center;gap:10px;font-size:15px;line-height:1.25;background:rgba(255,255,255,.7);border:1.5px solid #000;border-radius:10px;padding:8px 10px}
+.thanks .ladder li i{flex:0 0 22px;height:22px;border-radius:6px;border:2px solid #000;background:#fff;position:relative}
+.thanks .ladder li.done i{background:var(--cta)}
+.thanks .ladder li.done i::after{content:"";position:absolute;left:5px;top:1px;width:6px;height:11px;border:solid #000;border-width:0 2.5px 2.5px 0;transform:rotate(45deg)}
+.thanks .ladder li b{white-space:nowrap}
+.thanks .fj{font-size:14px;font-weight:700;margin:0 0 10px}
+.thanks .shares{display:grid;grid-template-columns:repeat(auto-fill,minmax(96px,1fr));gap:8px}
+.thanks .shares a,.thanks .shares button{display:flex;align-items:center;justify-content:center;font:inherit;font-size:15px;font-weight:700;padding:11px 10px;border-radius:10px;border:2px solid #000;background:#fff;color:#000;text-decoration:none;cursor:pointer;min-height:44px}
+.thanks .shares a:focus-visible,.thanks .shares button:focus-visible{outline:3px solid var(--tub);outline-offset:2px}
+.inline-total{display:block;font-size:14px;font-weight:700;margin:-4px 0 8px}
+.inline-total[hidden]{display:none}
 /* sticky join bar (phones) */
 .sticky{position:fixed;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom));z-index:40;display:flex;align-items:center;justify-content:center;gap:10px;
   font-weight:800;font-stretch:110%;font-size:18px;color:#000;text-decoration:none;background:var(--sticker);padding:15px;border-radius:12px;box-shadow:0 3px 0 #000,0 10px 30px rgba(0,0,0,.25);
@@ -618,6 +635,7 @@ ol.how li>div{overflow-wrap:break-word}
     <form class="signup" id="join" novalidate>
       <div class="body">
         <label class="q" for="email1">Free to join. Invites go out in signup order.</label>
+        <span class="inline-total" id="intotal" hidden></span>
         <input id="email1" name="email" type="email" inputmode="email" autocomplete="email" spellcheck="false" autocorrect="off" enterkeyhint="go" placeholder="you@email.com" required aria-describedby="err1">
         <button class="join" type="submit">Save my spot</button>
         <p class="err" id="err1" role="alert"></p>
@@ -730,7 +748,7 @@ ol.how li>div{overflow-wrap:break-word}
     <h2 class="sec" id="h-faq">Questions</h2>
     <div class="faq">
       <details><summary>Is this real?</summary><p>The app isn't out yet. The figure prices are real, sourced and dated, and you can tap any price in the gallery to check it.</p></details>
-      <details><summary>When does it come out?</summary><p>No date yet. Invites go out in signup order, so people who join first get in first. You'll get one email when your invite is ready.</p></details><details><summary>What do waitlist members get?</summary><p>An invite in signup order, and 10 free bin scans when the app launches. It's free to join.</p></details><details><summary>How do I move up the list?</summary><p>After you join, you get your own link. Each friend who joins from it moves you up. We check for fake or duplicate signups.</p></details>
+      <details><summary>When does it come out?</summary><p>No date yet. Invites go out in signup order, so people who join first get in first. You'll get one email when your invite is ready.</p></details><details><summary>What do waitlist members get?</summary><p>An invite in signup order, and 10 free bin scans when the app launches. It's free to join.</p></details><details><summary>How do I move up the list?</summary><p>After you join, you get your own link and your spot in line. Each friend who joins from your link moves you up 10 spots. At 1 friend you get 5 extra free scans, at 3 you get the first wave of invites, and at 5 you get 50 free scans. Fake or duplicate signups don't count.</p></details>
       <details><summary>Which figures should I look for?</summary><p>Start with the <a href="#figures">figures from our videos</a>. Older Star Wars, Batman, Ninjago and Minecraft figures are worth checking first. Each one has a "look for" line so you can tell it apart from the common versions.</p></details>
       <details><summary>Where do the prices come from?</summary><p>The figure values on this page come from BrickEconomy and from Brickset used averages based on BrickLink sales, checked Nov 7 and 8, 2026. The app will price bins from recent sold prices for used LEGO, not store prices and not guesses.</p></details>
       <details><summary>iPhone or Android?</summary><p>We're starting with iPhone, with Android planned next. Join and we'll tell you when yours is ready.</p></details>
@@ -808,7 +826,9 @@ var CONFIG = {
   FORM_ACTION: "https://docs.google.com/forms/d/e/1FAIpQLScF8Hql-wqV0jcMKZin0p7Yrp5MRcbYI4p3ahMipBuqRPz3KA/formResponse",
   ENTRY_EMAIL: "entry.429176729",
   ENTRY_GOAL: "entry.359816875",
-  ENTRY_SOURCE: "entry.1098425840"
+  ENTRY_SOURCE: "entry.1098425840",
+  /* Apps Script web app that reads the signup sheet: real spot in line + friends joined */
+  SPOT_API: ""
 };
 
 var reduceMotion = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -1168,6 +1188,11 @@ document.addEventListener("click", function (e) {
     if (window.__openJoin && window.__openJoin()) { shown = true; try { sessionStorage.setItem("pmb_exit", "1"); } catch (e2) {} }
   });
 })();
+/* real line size from the signup sheet, shown only once it's big enough to mean something */
+window.addEventListener("load", function () { setTimeout(function () {
+  if (!window.__spotTotal || (window.__isJoined && window.__isJoined())) return;
+  window.__spotTotal(function (n) { if (n < 50) return; var el = document.getElementById("intotal"); if (el) { el.textContent = n.toLocaleString("en-US") + " people are already in line."; el.hidden = false; } });
+}, 600); });
 /* ---- waitlist ---- */
 (function () {
   var qs = new URLSearchParams(location.search), source = qs.get("src") || qs.get("utm_source") || "";
@@ -1196,11 +1221,16 @@ document.addEventListener("click", function (e) {
     return '<div class="thanks" aria-live="polite"><h2 tabindex="-1">Your spot is saved.</h2>' +
       (email ? '<p class="sent">We\'ll email <b>' + escH(email) + '</b> when your invite is ready. Invites go out in signup order, and you get 10 free scans at launch. No other emails until then.' + (fixedFrom ? ' (We fixed a typo in ' + escH(fixedFrom.split("@")[1]) + '.)' : '') + ' <button type="button" class="linkish" data-act="another">Wrong email?</button></p>' : '') +
       (again ? '<p class="again"><button type="button" class="linkish" data-act="another">Use a different email</button></p>' : '') +
-      '<div class="moveup"><h3>Move up the list</h3><p>Each friend who joins from your link moves you up. Send it to anyone with LEGO in the basement or a flipping habit.</p>' +
+      '<div class="spot" hidden><span class="lbl">Your spot in line</span><b class="spotnum">#</b><span class="sub spotsub"></span></div>' +
+      '<div class="moveup"><h3>Move up the list</h3><p>Each friend who joins from your link moves you up 10 spots, and unlocks rewards at launch:</p>' +
+      '<ol class="ladder"><li data-n="1"><i></i><span><b>1 friend:</b> +5 free scans (15 total)</span></li><li data-n="3"><i></i><span><b>3 friends:</b> you get the first wave of invites</span></li><li data-n="5"><i></i><span><b>5 friends:</b> 50 free scans</span></li></ol>' +
+      '<p class="fj" hidden>Friends joined: <span class="fjn">0</span></p>' +
       '<input class="reflink" type="text" readonly aria-label="Your link" value="' + escH(shareUrl) + '">' +
-      '<div class="row"><button type="button" data-act="copy">Copy my link</button>' +
-      (navigator.share ? '<button type="button" data-act="share">Share</button>' : '') + '</div></div>' +
-      (email ? '<div class="goalq"><p>Optional, one tap: what are you doing with LEGO?</p><div class="row">' + GOALS.map(function (g) { return '<button type="button" data-goal="' + g + '">' + g + '</button>'; }).join("") + '</div></div>' : '') +
+      '<div class="shares">' +
+        '<a data-sh="sms" href="#">Text it</a><a data-sh="wa" href="#" target="_blank" rel="noopener">WhatsApp</a><a data-sh="mail" href="#">Email</a><a data-sh="fb" href="#" target="_blank" rel="noopener">Facebook</a>' +
+        '<button type="button" data-act="copy">Copy link</button>' + (navigator.share ? '<button type="button" data-act="share">More</button>' : '') +
+      '</div></div>' +
+(email ? '<div class="goalq"><p>Optional, one tap: what are you doing with LEGO?</p><div class="row">' + GOALS.map(function (g) { return '<button type="button" data-goal="' + g + '">' + g + '</button>'; }).join("") + '</div></div>' : '') +
       '<div class="spread"><p>Follow for new finds every day:</p><div class="soc">' + (document.querySelector(".foot2 .soc") ? document.querySelector(".foot2 .soc").innerHTML : '') + '</div></div>' +
 '<button type="button" class="join jdone" data-act="done">Done</button></div>';
   }
@@ -1222,12 +1252,43 @@ document.addEventListener("click", function (e) {
     var tl = document.querySelector(".toplink"); if (!tl) return;
     tl.textContent = joined ? "See the figures" : "Save my spot"; tl.setAttribute("href", joined ? "#figures" : "#join");
   }
+  var SHARE_TXT = "Old LEGO figures can be worth hundreds. PriceMyBin will price a whole bin from one photo. Join the waitlist with my link: ";
+  function fillShares() {
+    var u = encodeURIComponent(shareUrl), t = encodeURIComponent(SHARE_TXT + shareUrl);
+    document.querySelectorAll(".thanks [data-sh]").forEach(function (a) {
+      var k = a.getAttribute("data-sh");
+      a.href = k === "sms" ? "sms:?&body=" + t : k === "wa" ? "https://wa.me/?text=" + t : k === "mail" ? "mailto:?subject=" + encodeURIComponent("This might be in your LEGO bin") + "&body=" + t : "https://www.facebook.com/sharer/sharer.php?u=" + u;
+    });
+    document.querySelectorAll(".thanks .reflink").forEach(function (i) { i.value = shareUrl; });
+  }
+  function showSpot(d) {
+    if (!d || !d.pos) return;
+    document.querySelectorAll(".thanks .spot").forEach(function (b) {
+      b.querySelector(".spotnum").textContent = "#" + d.pos.toLocaleString("en-US");
+      b.querySelector(".spotsub").textContent = d.behind > 0 ? d.behind.toLocaleString("en-US") + (d.behind === 1 ? " person" : " people") + " behind you" : "You're at the back. Share your link to move up.";
+      b.hidden = false;
+    });
+    document.querySelectorAll(".thanks .fj").forEach(function (p) { p.querySelector(".fjn").textContent = d.refs || 0; p.hidden = false; });
+    document.querySelectorAll(".thanks .ladder li").forEach(function (li) { li.classList.toggle("done", (d.refs || 0) >= +li.getAttribute("data-n")); });
+  }
+  function getSpot(code, fresh) {
+    if (!CONFIG.SPOT_API || !code || !window.fetch) return Promise.resolve(null);
+    return fetch(CONFIG.SPOT_API + "?c=" + encodeURIComponent(code) + (fresh ? "&fresh=1&t=" + Date.now() : "")).then(function (r) { return r.json(); }).catch(function () { return null; });
+  }
+  function loadSpot(code, fresh) {
+    getSpot(code, fresh).then(function (d) {
+      if (d && d.pos) { showSpot(d); return; }
+      if (fresh) setTimeout(function () { getSpot(code, true).then(showSpot); }, 4000);
+    });
+  }
+  window.__spotTotal = function (cb) { if (!CONFIG.SPOT_API || !window.fetch) return; fetch(CONFIG.SPOT_API).then(function (r) { return r.json(); }).then(function (d) { if (d && d.total) cb(d.total); }).catch(function () {}); };
   function showThanks(email, fixedFrom, again) {
     swap(function (f, b) { b.innerHTML = thanks(email, fixedFrom, again); });
     if (dlg) { dlg.removeAttribute("aria-labelledby"); dlg.setAttribute("aria-label", "Your spot is saved"); }
     if (window.__markJoined) window.__markJoined(true);
     setToplink(true);
     document.querySelectorAll('.gend [data-g="join"]').forEach(function (b) { b.remove(); });
+    fillShares();
   }
   function showForms(prefill, focusIn) {
     swap(function (f, b) { b.innerHTML = ORIG[f.id]; var i = b.querySelector("input[type=email]"); if (i && prefill) i.value = prefill; });
@@ -1239,7 +1300,7 @@ document.addEventListener("click", function (e) {
     if (inp) { inp.focus(); try { inp.select(); } catch (e) {} }
   }
   var already = false; try { already = localStorage.getItem("bw_joined") === "1"; } catch (e) {}
-  if (already) showThanks("", "", true);
+  if (already) { showThanks("", "", true); loadSpot(savedCode, false); }
   window.__isJoined = function () { try { return localStorage.getItem("bw_joined") === "1"; } catch (e) { return false; } };
   document.addEventListener("input", function (e) {
     var f = e.target.closest && e.target.closest("form.signup"); if (!f) return;
@@ -1274,6 +1335,7 @@ document.addEventListener("click", function (e) {
         try { localStorage.setItem("bw_joined", "1"); localStorage.setItem("pmb_code", myCode(email)); } catch (e) {}
         shareUrl = linkFor(myCode(email));
         showThanks(email, fixedFrom, false);
+        var mcode = myCode(email); setTimeout(function () { loadSpot(mcode, true); }, 2500);
         var h = form.querySelector(".thanks h2"); if (h) h.focus({ preventScroll: true });
       };
       if (!CONFIG.FORM_ACTION) { done(); return; }
