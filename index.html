@@ -37,14 +37,14 @@
 .thanks .soc{margin-top:12px}.thanks .soc a{color:#000;background:#fff;border-color:#000}
 @media (max-width:899px){.sticky{padding-top:12px!important;padding-bottom:12px!important;font-size:17px!important}}
 </style>
-<script>document.documentElement.className="js"</script>
+<script>document.documentElement.className="js";window.jumpTo=function(y){var r=document.documentElement,p=r.style.scrollBehavior;r.style.scrollBehavior="auto";window.scrollTo(0,y);r.style.scrollBehavior=p};window.jumpBy=function(d){window.jumpTo(window.scrollY+d)}</script>
 <style>
 :root{--paper:#fff;--ink:#000;--tape:#efdcae;--tub:#2f6fd0;--tub-d:#1d4f9e;--tub-l:#4b86e0;--sticker:#ff5b14;--sticker2:#c6f432;--mute:#5a5f66;--line:#e6e6e6;--marker:"Permanent Marker","Comic Sans MS",cursive}
 *{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}a,button,summary,label{-webkit-tap-highlight-color:transparent}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 body{margin:0;background:var(--paper);color:var(--ink);font:400 17px/1.55 Archivo,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;overflow-x:hidden}
-.page{max-width:1120px;margin:0 auto;padding:0 max(22px,env(safe-area-inset-left)) 0 max(22px,env(safe-area-inset-right))}
+.page{max-width:1120px;margin:0 auto;padding:0 max(22px,env(safe-area-inset-right)) 0 max(22px,env(safe-area-inset-left))}
 .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .skip{position:absolute;left:-999px;top:8px;background:#000;color:#fff;padding:8px 12px;border-radius:8px;z-index:50}
 .skip:focus{left:8px}
@@ -295,7 +295,7 @@ footer p{margin:0 0 6px;max-width:72ch}
 .thanks .moveup{margin-top:14px;border:2px solid #000;border-radius:14px;padding:14px;background:var(--sticker2);box-shadow:4px 4px 0 #000}
 .thanks .moveup h3{font-size:19px;font-weight:850;line-height:1.15;margin:0 0 6px}
 .thanks .moveup p{margin:0 0 10px;font-size:15px;line-height:1.35;color:#111}
-.thanks .reflink{display:block;width:100%;font:600 14px/1.2 Archivo,sans-serif;padding:10px 12px;border:2px solid #000;border-radius:10px;background:#fff;color:#000;margin-bottom:10px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.thanks .reflink{display:block;width:100%;font:600 16px/1.2 Archivo,sans-serif;padding:10px 12px;border:2px solid #000;border-radius:10px;background:#fff;color:#000;margin-bottom:10px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .thanks .spot{display:flex;align-items:baseline;flex-wrap:wrap;gap:4px 12px;margin:0 0 12px;padding:12px 14px;border:2px solid #000;border-radius:14px;background:#fff;box-shadow:4px 4px 0 #000}
 .thanks .spot[hidden]{display:none}
 .thanks .spot .lbl{font-size:14px;font-weight:700;width:100%;color:#333}
@@ -323,7 +323,7 @@ footer p{margin:0 0 6px;max-width:72ch}
   transform:translateY(160%);transition:transform .3s cubic-bezier(.2,.8,.2,1)}
 .sticky.show{transform:none}
 @media (max-width:340px){.brand{font-size:16px;gap:6px}.brand svg{width:22px;height:17px}.toplink{font-size:13.5px;white-space:nowrap}}
-@media (orientation:landscape) and (max-height:500px){.sticky{left:auto;right:16px;width:300px;padding-top:9px!important;padding-bottom:9px!important;font-size:16px!important}}
+@media (orientation:landscape) and (max-height:500px){.sticky{left:auto;right:max(16px,env(safe-area-inset-right));width:300px;padding-top:9px!important;padding-bottom:9px!important;font-size:16px!important}}
 @media (prefers-reduced-motion:reduce){.sticky{transition:none}}
 
 @media (min-width:900px){
@@ -407,7 +407,7 @@ html,body{overflow-x:clip}
 .ftray img{height:var(--fh,94%);max-height:none;width:auto;max-width:100%;object-fit:contain}
 
 .figsearch{display:block;margin:4px 0 12px}
-.figsearch input{width:100%;max-width:420px;font:500 17px/1.2 Archivo,sans-serif;padding:13px 16px;border:2px solid #000;border-radius:12px;background:#fff;color:#000}
+.figsearch input{-webkit-appearance:none;appearance:none;width:100%;max-width:420px;font:500 17px/1.2 Archivo,sans-serif;padding:13px 16px;border:2px solid #000;border-radius:12px;background:#fff;color:#000}
 .figsearch input:focus{outline:3px solid var(--tub);outline-offset:2px}
 .nofig{margin:14px 0 0;font-weight:600}
 
@@ -648,7 +648,7 @@ ol.how li,ol.how li>div{min-width:0}ol.how li>div{overflow-wrap:anywhere}
 .flook{font-size:15px}.flook b{font-size:13px}
 @media (max-width:380px){.flook{font-size:14px}}
 .listing{flex-wrap:wrap}
-.fcard h3{overflow-wrap:anywhere;hyphens:auto}
+.fcard h3{overflow-wrap:anywhere;-webkit-hyphens:auto;hyphens:auto}
 ol.how li>div{overflow-wrap:break-word}
 @media (max-width:240px){.figgrid{grid-template-columns:1fr}}
 .social .and{white-space:nowrap}
@@ -662,7 +662,7 @@ ol.how li>div{overflow-wrap:break-word}
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"PriceMyBin","url":"https://pricemybin.com/","description":"Find out what a bin of LEGO is worth from one photo. PriceMyBin spots the valuable minifigures and prices the whole bin from real market values.","publisher":{"@type":"Organization","name":"PriceMyBin","url":"https://pricemybin.com/"}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"PriceMyBin","applicationCategory":"UtilitiesApplication","operatingSystem":"iOS","description":"Snap one photo of a LEGO bin. PriceMyBin spots the minifigures and set pieces worth pulling and prices the whole bin from recent sold prices of used LEGO. Not released yet; join the free waitlist for early access and 10 free bin scans.","url":"https://pricemybin.com/","offers":{"@type":"Offer","price":"0","priceCurrency":"USD","availability":"https://schema.org/PreOrder"},"publisher":{"@type":"Organization","name":"PriceMyBin"}}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How much is a bin of LEGO worth?","acceptedAnswer":{"@type":"Answer","text":"Loose mixed LEGO usually sells for about $5 to $12 a pound on eBay (2026 sold listings), so a 20 lb bin is roughly $100 to $240 as bricks. The money is in the minifigures: they sell one by one, and a single rare figure like the 2007 Bane ($985 value) or chrome gold C-3PO ($1,193 used) can be worth more than the whole bin of bricks. PriceMyBin will find those figures from one photo. Until it launches, check the 48 figures above against your bin."}},{"@type":"Question","name":"Is this real?","acceptedAnswer":{"@type":"Answer","text":"The app isn't out yet. The figure prices are real, sourced and dated, and you can tap any price in the gallery to check it."}},{"@type":"Question","name":"When does it come out?","acceptedAnswer":{"@type":"Answer","text":"No date yet. We'll let people into the app a few at a time, starting with whoever joined first. You'll get one email when it's your turn."}},{"@type":"Question","name":"What do I get for joining?","acceptedAnswer":{"@type":"Answer","text":"Early access to the app (the earlier you join, the sooner you get it) and 10 free bin scans. Joining is free."}},{"@type":"Question","name":"What's a bin scan?","acceptedAnswer":{"@type":"Answer","text":"You take one photo of a pile of LEGO. The app finds the minifigures and valuable pieces and tells you what the whole bin is worth. One photo is one scan."}},{"@type":"Question","name":"How do I get the app sooner?","acceptedAnswer":{"@type":"Answer","text":"After you join, you get your own link. Every friend who joins with it moves you up 10 spots. Bonuses: 1 friend gets you 5 more free scans, 3 friends puts you in the very first group to get the app, and 5 friends gets you 50 free scans. Fake or duplicate signups don't count."}},{"@type":"Question","name":"Which figures should I look for?","acceptedAnswer":{"@type":"Answer","text":"Start with the figures from our videos. Older Star Wars, Batman, Ninjago and Minecraft figures are worth checking first. Each one has a \"look for\" line so you can tell it apart from the common versions."}},{"@type":"Question","name":"Where do the prices come from?","acceptedAnswer":{"@type":"Answer","text":"The figure values on this page come from BrickEconomy and from Brickset used averages based on BrickLink sales, checked Nov 7 and 8, 2026. The app will price bins from recent sold prices for used LEGO, not store prices and not guesses."}},{"@type":"Question","name":"iPhone or Android?","acceptedAnswer":{"@type":"Answer","text":"We're starting with iPhone, with Android planned next. Join and we'll tell you when yours is ready."}},{"@type":"Question","name":"What do you do with my email?","acceptedAnswer":{"@type":"Answer","text":"We use it to tell you when the app launches, and that's it. We never sell it. You can ask us to delete it anytime at hello@pricemybin.com. Details are in our Privacy Policy."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How much is a bin of LEGO worth?","acceptedAnswer":{"@type":"Answer","text":"Loose mixed LEGO usually sells for about $5 to $12 a pound on eBay (2026 sold listings), so a 20 lb bin is roughly $100 to $240 as bricks. The money is in the minifigures: they sell one by one, and a single rare figure like the 2007 Bane ($985 value) or chrome gold C-3PO ($1,193 used) can be worth more than the whole bin of bricks. PriceMyBin will find those figures from one photo. Until it launches, check the 48 figures above against your bin."}},{"@type":"Question","name":"Is this real?","acceptedAnswer":{"@type":"Answer","text":"The app isn't out yet. The figure prices are real, sourced and dated, and you can tap any price in the gallery to check it."}},{"@type":"Question","name":"When does it come out?","acceptedAnswer":{"@type":"Answer","text":"No date yet. We'll let people into the app a few at a time, starting with whoever joined first. You'll get one email when it's your turn."}},{"@type":"Question","name":"What do I get for joining?","acceptedAnswer":{"@type":"Answer","text":"Early access to the app (the earlier you join, the sooner you get it) and 10 free bin scans. Joining is free."}},{"@type":"Question","name":"What's a bin scan?","acceptedAnswer":{"@type":"Answer","text":"You take one photo of a pile of LEGO. The app finds the minifigures and valuable pieces and tells you what the whole bin is worth. One photo is one scan."}},{"@type":"Question","name":"How do I get the app sooner?","acceptedAnswer":{"@type":"Answer","text":"After you join, you get your own link. Every friend who joins with it moves you up 10 spots. Bonuses: 1 friend gets you 5 more free scans, 3 friends puts you in the very first group to get the app, and 5 friends gets you 50 free scans. Fake or duplicate signups don't count."}},{"@type":"Question","name":"Which figures should I look for?","acceptedAnswer":{"@type":"Answer","text":"Start with the figures from our videos. Older Star Wars, Batman, Ninjago and Minecraft figures are worth checking first. Each one has a \"look for\" line so you can tell it apart from the common versions."}},{"@type":"Question","name":"Where do the prices come from?","acceptedAnswer":{"@type":"Answer","text":"The figure values on this page come from BrickEconomy and from Brickset used averages based on BrickLink sales, checked Nov 7 and 8, 2026. The app will price bins from recent sold prices for used LEGO, not store prices and not guesses."}},{"@type":"Question","name":"iPhone or Android?","acceptedAnswer":{"@type":"Answer","text":"We're starting with iPhone, with Android planned next. Join and we'll tell you when yours is ready."}},{"@type":"Question","name":"What do you do with my email?","acceptedAnswer":{"@type":"Answer","text":"We use it to tell you when the app launches and for any required notice about our terms, and that's it. We never sell it. You can ask us to delete it anytime at hello@pricemybin.com. Details are in our Privacy Policy."}}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"PriceMyBin","url":"https://pricemybin.com/","logo":"https://pricemybin.com/apple-touch-icon.png","email":"hello@pricemybin.com","sameAs":["https://www.tiktok.com/@pricemybin","https://www.instagram.com/pricemybin/","https://www.youtube.com/@pricemybin"]}</script>
 </head>
 <body>
@@ -831,7 +831,7 @@ ol.how li>div{overflow-wrap:break-word}
       <details><summary>Which figures should I look for?</summary><p>Start with the <a href="#figures">figures from our videos</a>. Older Star Wars, Batman, Ninjago and Minecraft figures are worth checking first. Each one has a "look for" line so you can tell it apart from the common versions.</p></details>
       <details><summary>Where do the prices come from?</summary><p>The figure values on this page come from BrickEconomy and from Brickset used averages based on BrickLink sales, checked Nov 7 and 8, 2026. The app will price bins from recent sold prices for used LEGO, not store prices and not guesses.</p></details>
       <details><summary>iPhone or Android?</summary><p>We're starting with iPhone, with Android planned next. Join and we'll tell you when yours is ready.</p></details>
-      <details><summary>What do you do with my email?</summary><p>We use it to tell you when the app launches, and that's it. We never sell it. You can ask us to delete it anytime at hello@pricemybin.com. Details are in our <a href="privacy/">Privacy Policy</a>.</p></details>
+      <details><summary>What do you do with my email?</summary><p>We use it to tell you when the app launches and for any required notice about our terms, and that's it. We never sell it. You can ask us to delete it anytime at hello@pricemybin.com. Details are in our <a href="privacy/">Privacy Policy</a>.</p></details>
     </div>
   </div>
 </section>
@@ -1208,7 +1208,7 @@ function flash(btn, msg) { var o = btn.getAttribute("data-label") || btn.textCon
 function showUrl(btn, url) {
   var box = btn.parentNode.querySelector(".copybox");
   if (!box) { box = document.createElement("input"); box.className = "copybox"; box.readOnly = true; box.setAttribute("aria-label", "Link to copy"); btn.parentNode.appendChild(box); }
-  box.value = url; box.focus(); box.select(); flash(btn, matchMedia("(pointer:coarse)").matches ? "Press and hold to copy" : "Select and copy");
+  box.value = url; box.focus(); box.select(); try { box.setSelectionRange(0, box.value.length); } catch (e) {} flash(btn, matchMedia("(pointer:coarse)").matches ? "Press and hold to copy" : "Select and copy");
 }
 
 /* ---- join dialog: opens in the same tap, so phones raise the keyboard right away ---- */
@@ -1234,7 +1234,7 @@ function showUrl(btn, url) {
   d.addEventListener("click", function (e) { if (e.target === d) { var r = d.getBoundingClientRect(); if (e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom) close(); } });
   d.addEventListener("close", function () {
     var hh = d.querySelector(".jdh"); if (hh && !d.querySelector(".thanks") && hh.textContent !== "Fix your email") hh.textContent = "Save your spot in line";
-    if (anchor && document.contains(anchor)) { var dy = anchor.getBoundingClientRect().top - anchorTop; if (Math.abs(dy) > 1) window.scrollBy(0, dy); }
+    if (anchor && document.contains(anchor)) { var dy = anchor.getBoundingClientRect().top - anchorTop; if (Math.abs(dy) > 1) jumpBy(dy); }
     anchor = null;
     var ok = opener && opener.focus && opener !== document.body && document.contains(opener) && opener.getAttribute("aria-hidden") !== "true" && opener.getClientRects().length && getComputedStyle(opener).visibility !== "hidden";
     if (ok && opener.id === "sticky" && !opener.classList.contains("show")) ok = false;
@@ -1334,7 +1334,7 @@ window.addEventListener("load", function () { setTimeout(function () {
       fill(el);
       if (above) shift += el.offsetHeight - h0;
     });
-    if (shift) { var ov = root.style.overflow; root.style.overflow = "auto"; window.scrollTo(0, window.scrollY + shift); root.style.overflow = ov; }
+    if (shift) { var ov = root.style.overflow; root.style.overflow = "auto"; jumpBy(shift); root.style.overflow = ov; }
     requestAnimationFrame(function () { root.style.overflowAnchor = prev; });
   }
   function swap(fill) { keepScroll(forms.map(function (f) { return f.querySelector(".body"); }), function (b) { fill(b.closest("form"), b); }); }
@@ -1631,8 +1631,8 @@ window.addEventListener("load", function () { setTimeout(function () {
     root.style.overflowAnchor = "none";
     open = true; grid.classList.add("open"); apply();
     if (firstHidden) { firstHidden.setAttribute("tabindex", "-1"); firstHidden.focus({ preventScroll: true }); }
-    window.scrollTo(0, y);
-    requestAnimationFrame(function () { window.scrollTo(0, y); root.style.overflowAnchor = prevA; });
+    jumpTo(y);
+    requestAnimationFrame(function () { jumpTo(y); root.style.overflowAnchor = prevA; });
   });
   apply();
 })();
