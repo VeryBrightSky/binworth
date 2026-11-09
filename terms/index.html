@@ -119,7 +119,7 @@ footer nav{display:flex;gap:4px 18px;flex-wrap:wrap;margin-bottom:8px}footer nav
   <p>LEGO® is a trademark of the LEGO Group, which does not sponsor, authorize, or endorse PriceMyBin.</p>
 </footer>
 </div>
-<script>(function(){var EP="https://pricemybin-admin.cleanfeed.workers.dev/api/t";if(EP.indexOf("http")!==0||!navigator.sendBeacon)return;var r="";try{r=document.referrer?new URL(document.referrer).hostname.replace(/^www\./,""):""}catch(e){}var s="";try{s=sessionStorage.getItem("pmb_sess")||Math.random().toString(36).slice(2,10);sessionStorage.setItem("pmb_sess",s)}catch(e){s="x"}navigator.sendBeacon(EP,new Blob([JSON.stringify([{t:"view",s:s,p:location.pathname,r:r}])],{type:"text/plain"}))})();</script>
+<script>(function(){var EP="https://pricemybin-admin.cleanfeed.workers.dev/api/t";if(EP.indexOf("http")!==0||!navigator.sendBeacon)return;if(location.hostname!=="pricemybin.com")return;try{if(localStorage.getItem("pmb_notrack"))return}catch(e){}var r="";try{r=document.referrer?new URL(document.referrer).hostname.replace(/^www\./,""):""}catch(e){}var s="";try{s=sessionStorage.getItem("pmb_sess")||Math.random().toString(36).slice(2,10);sessionStorage.setItem("pmb_sess",s)}catch(e){s="x"}navigator.sendBeacon(EP,new Blob([JSON.stringify([{t:"view",s:s,p:location.pathname,r:r}])],{type:"text/plain"}))})();</script>
 <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "149a513b14b045a6b8f13508a1270ee3"}'></script><!-- End Cloudflare Web Analytics -->
 </body>
 </html>
