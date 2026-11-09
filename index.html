@@ -418,7 +418,7 @@ html,body{overflow-x:clip}
 .soc a{display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-weight:700;font-size:15px;padding:10px 15px 10px 12px;border-radius:999px;border:2px solid currentColor;line-height:1}
 .soc svg{width:20px;height:20px;flex:none}
 @media (hover:hover){.foot2 .soc a:hover{background:#fff;color:#000}}
-.foot2 .soc path[d^="M10"]{fill:#000}@media (hover:hover){.foot2 .soc a:hover path[d^="M10"]{fill:#fff}}
+.foot2 .soc .ytp{fill:#000}@media (hover:hover){.foot2 .soc a:hover .ytp{fill:#fff}}
 .flinks{display:grid;gap:10px}
 .flinks a{text-decoration:none;font-weight:600;display:inline-block;padding:8px 0}.flinks{gap:2px!important}
 .ffine{border-top:1px solid #2c2f33;margin-top:34px;padding-top:18px;color:#9ea3aa;font-size:13px;line-height:1.5}
@@ -555,7 +555,7 @@ form.ok button.join::after{animation:studclick .28s var(--spring)}
 .social a{display:inline-block;padding:8px 4px;margin:-8px 0;border-radius:8px;color:#000;font-weight:800;white-space:nowrap;text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:4px}
 .social a svg{width:19px;height:19px;vertical-align:-4px;margin-right:5px}
 .social .tt svg{color:#000}
-.social .yt svg{color:#e00}
+.social .yt svg{color:#f00}
 .social a:active{background:var(--sticker2)}
 @media (hover:hover){.social a:hover{background:var(--sticker2)}}
 .social a:focus-visible{outline:3px solid var(--tub);outline-offset:2px}
@@ -575,6 +575,29 @@ header.top{flex-wrap:wrap;gap:8px 16px}
 @media (max-width:360px){.toplink{display:none}}
 @media (max-width:340px){.ticks span:nth-child(even){display:none}}
 @media (max-width:300px){.ticks span:not(:first-child):not(:last-child){display:none}.lip span{font-size:0}.lip b{font-size:11px}}
+/* "How it will work": example result card, drawn like a phone */
+.demo{margin:28px 0 0;max-width:340px}
+.phone{background:#fff;border:3px solid #000;border-radius:26px;box-shadow:8px 8px 0 #000;padding:14px;display:grid;gap:12px}
+.ptop{display:flex;align-items:center;justify-content:space-between;font-size:15px}
+.ptop b{font-weight:800}
+.ptop span{font-size:12px;font-weight:700;background:var(--sticker2);border:2px solid #000;border-radius:999px;padding:2px 9px}
+.pimg{position:relative;border-radius:14px;overflow:hidden;aspect-ratio:16/9;background:#2f6fd0}
+.pimg img{width:100%;height:100%;object-fit:cover;display:block}
+.pimg i{position:absolute;left:var(--x);top:var(--y);transform:translate(-50%,-50%) rotate(var(--r));font:400 15px/1 var(--marker);font-style:normal;background:var(--sticker2);border:2px solid #000;border-radius:6px;padding:4px 7px;box-shadow:2px 2px 0 #000;white-space:nowrap}
+.ptotal{display:grid;grid-template-columns:1fr auto;align-items:end;gap:0 10px;padding:2px 2px 0}
+.ptotal small{grid-column:1/-1;font-size:13px;color:var(--mute);font-weight:600}
+.ptotal b{font-family:var(--marker);font-weight:400;font-size:38px;line-height:1;letter-spacing:-.01em}
+.ptotal em{font-style:normal;font-size:13px;font-weight:700;color:var(--mute);text-decoration:line-through;text-decoration-color:var(--sticker);text-decoration-thickness:2px;padding-bottom:4px}
+.plist{list-style:none;margin:0;padding:0;border-top:2px solid #000}
+.plist li{display:grid;grid-template-columns:34px 1fr auto;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--line);font-size:15px}
+.plist img{width:34px;height:40px;object-fit:contain;display:block}
+.plist span{font-weight:700;line-height:1.15;min-width:0}
+.plist small{display:block;font-weight:500;font-size:12px;color:var(--mute);margin-top:2px}
+.plist b{font-family:var(--marker);font-weight:400;font-size:19px}
+.pbtn{background:#000;color:#fff;font-weight:800;font-size:15px;text-align:center;padding:12px;border-radius:12px}
+.demo figcaption{font-size:14px;color:var(--mute);margin-top:12px;max-width:40ch;line-height:1.45}
+@media (min-width:900px){.two:has(.demo) h2.sec{grid-column:1;grid-row:1}.two:has(.demo) ol.how{grid-column:2;grid-row:1/span 2}.demo{grid-column:1;grid-row:2;margin-top:22px}}
+@media (max-width:899px){.demo{margin:30px auto 0;max-width:360px}}
 ol.how li,ol.how li>div{min-width:0}ol.how li>div{overflow-wrap:anywhere}
 @media (max-width:300px){ol.how li{grid-template-columns:40px 1fr;gap:10px}ol.how li:before{width:40px;height:34px;font-size:18px;padding-top:6px}}
 .sticky{white-space:nowrap;text-align:center}
@@ -622,7 +645,7 @@ ol.how li>div{overflow-wrap:break-word}
       <h1>That $20 <span class="h1x">LEGO® </span>bin might be hiding a $985 figure.</h1>
 
       <p class="lede lede-l">Snap one photo of a bin. PriceMyBin will tell you what it's worth and which figures to pull.</p>
-      <p class="social">See new finds daily on <a class="tt" href="https://www.tiktok.com/@pricemybin" rel="noopener" target="_blank" aria-label="PriceMyBin on TikTok (opens in a new tab)"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M16.6 3c.3 2.2 1.6 3.6 3.9 3.8v2.6c-1.4.1-2.6-.3-3.9-1.1v5.6c0 3.6-2.6 5.9-5.8 5.9-3.4 0-5.8-2.7-5.5-6 .3-3 2.8-5.2 6.1-4.9v2.7c-1.6-.3-3.2.6-3.4 2.2-.2 1.6 1 3 2.7 3 1.6 0 2.8-1.1 2.8-3.1V3h3z"/></svg>TikTok</a> <span class="and">and <a class="yt" href="https://www.youtube.com/@pricemybin" rel="noopener" target="_blank" aria-label="PriceMyBin on YouTube (opens in a new tab)"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="4" fill="currentColor"/><path d="M10 9v6l5.2-3z" fill="#e00"/></svg>YouTube</a></span></p>
+      <p class="social">See new finds daily on <a class="tt" href="https://www.tiktok.com/@pricemybin" rel="noopener" target="_blank" aria-label="PriceMyBin on TikTok (opens in a new tab)"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M16.6 3c.3 2.2 1.6 3.6 3.9 3.8v2.6c-1.4.1-2.6-.3-3.9-1.1v5.6c0 3.6-2.6 5.9-5.8 5.9-3.4 0-5.8-2.7-5.5-6 .3-3 2.8-5.2 6.1-4.9v2.7c-1.6-.3-3.2.6-3.4 2.2-.2 1.6 1 3 2.7 3 1.6 0 2.8-1.1 2.8-3.1V3h3z"/></svg>TikTok</a> <span class="and">and <a class="yt" href="https://www.youtube.com/@pricemybin" rel="noopener" target="_blank" aria-label="PriceMyBin on YouTube (opens in a new tab)"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M23.5 6.6a3 3 0 0 0-2.1-2.1C19.5 4 12 4 12 4s-7.5 0-9.4.5A3 3 0 0 0 .5 6.6C0 8.5 0 12 0 12s0 3.5.5 5.4a3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1c.5-1.9.5-5.4.5-5.4s0-3.5-.5-5.4z"/><path class="ytp" fill="#fff" d="M9.6 15.5V8.5l6.2 3.5z"/></svg>YouTube</a></span></p>
     </div>
     <div class="tubwrap">
       <div class="tub" id="tub">
@@ -639,7 +662,7 @@ ol.how li>div{overflow-wrap:break-word}
     <form class="signup" id="join" novalidate>
       <div class="body">
         <p class="fromfriend" id="fromfriend" hidden></p>
-        <label class="q" for="email1">Join free. Join early, get the app early.</label>
+        <label class="q" for="email1">Join free. Early joiners get the app first.</label>
         <span class="inline-total" id="intotal" hidden></span>
         <input id="email1" name="email" type="email" inputmode="email" autocomplete="email" spellcheck="false" autocorrect="off" enterkeyhint="go" placeholder="you@email.com" required aria-describedby="err1">
         <button class="join" type="submit">Save my spot</button>
@@ -745,6 +768,20 @@ ol.how li>div{overflow-wrap:break-word}
       <li><div><b>PriceMyBin will spot the money</b>It will pick out minifigures and set pieces and price them from recent sales of used LEGO.</div></li>
       <li><div><b>Buy, flip, or sell</b>See what to pay, which figures to pull, and get a listing ready for Marketplace or eBay.</div></li>
     </ol>
+    <figure class="demo" aria-label="Example of a scan result">
+      <div class="phone">
+        <div class="ptop"><b>Scan result</b><span>Example</span></div>
+        <div class="pimg"><img src="img/bin-sm.webp" width="720" height="450" alt="" loading="lazy" decoding="async"><i style="--x:28%;--y:38%;--r:-6deg">$545</i><i style="--x:58%;--y:30%;--r:4deg">$985</i><i style="--x:80%;--y:52%;--r:-3deg">$342</i></div>
+        <div class="ptotal"><small>Figures in this bin</small><b>$1,872</b><em>Asking price $40</em></div>
+        <ul class="plist">
+          <li><img src="img/figs/bat021.webp" width="280" height="440" alt="" loading="lazy" decoding="async"><span>Bane<small>The Bat-Tank, 2007</small></span><b>$985</b></li>
+          <li><img src="img/figs/min029.webp" width="178" height="440" alt="" loading="lazy" decoding="async"><span>Villager<small>The Village, 2016</small></span><b>$545</b></li>
+          <li><img src="img/figs/lor072.webp" width="372" height="422" alt="" loading="lazy" decoding="async"><span>Grima Wormtongue<small>Tower of Orthanc, 2013</small></span><b>$342</b></li>
+        </ul>
+        <div class="pbtn">Pull these 3, then list the rest</div>
+      </div>
+      <figcaption>What a scan will show you. The three figures and their values are real (BrickEconomy, Nov 7, 2026); the bin and asking price are an example.</figcaption>
+    </figure>
   </div>
 </section>
 
@@ -789,7 +826,7 @@ ol.how li>div{overflow-wrap:break-word}
       </div>
       <div class="ffollow">
         <p class="fh">New finds every day at <b>@pricemybin</b></p>
-        <div class="soc"><a href="https://www.tiktok.com/@pricemybin" rel="noopener" target="_blank" aria-label="PriceMyBin on TikTok (opens in a new tab)"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M16.6 3c.3 2.2 1.6 3.6 3.9 3.8v2.6c-1.4.1-2.6-.3-3.9-1.1v5.6c0 3.6-2.6 5.9-5.8 5.9-3.4 0-5.8-2.7-5.5-6 .3-3 2.8-5.2 6.1-4.9v2.7c-1.6-.3-3.2.6-3.4 2.2-.2 1.6 1 3 2.7 3 1.6 0 2.8-1.1 2.8-3.1V3h3z"/></svg><span>TikTok</span></a><a href="https://www.youtube.com/@pricemybin" rel="noopener" target="_blank" aria-label="PriceMyBin on YouTube (opens in a new tab)"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="4" fill="currentColor"/><path d="M10 9v6l5.2-3z" fill="#fff"/></svg><span>YouTube</span></a></div>
+        <div class="soc"><a href="https://www.tiktok.com/@pricemybin" rel="noopener" target="_blank" aria-label="PriceMyBin on TikTok (opens in a new tab)"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M16.6 3c.3 2.2 1.6 3.6 3.9 3.8v2.6c-1.4.1-2.6-.3-3.9-1.1v5.6c0 3.6-2.6 5.9-5.8 5.9-3.4 0-5.8-2.7-5.5-6 .3-3 2.8-5.2 6.1-4.9v2.7c-1.6-.3-3.2.6-3.4 2.2-.2 1.6 1 3 2.7 3 1.6 0 2.8-1.1 2.8-3.1V3h3z"/></svg><span>TikTok</span></a><a href="https://www.youtube.com/@pricemybin" rel="noopener" target="_blank" aria-label="PriceMyBin on YouTube (opens in a new tab)"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M23.5 6.6a3 3 0 0 0-2.1-2.1C19.5 4 12 4 12 4s-7.5 0-9.4.5A3 3 0 0 0 .5 6.6C0 8.5 0 12 0 12s0 3.5.5 5.4a3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1c.5-1.9.5-5.4.5-5.4s0-3.5-.5-5.4z"/><path class="ytp" fill="#fff" d="M9.6 15.5V8.5l6.2 3.5z"/></svg><span>YouTube</span></a></div>
       </div>
       <nav class="flinks" aria-label="Site">
         <a href="privacy/">Privacy Policy</a>
