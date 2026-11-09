@@ -7,11 +7,11 @@
 - Contact: hello@pricemybin.com
 - Status: pre-launch waitlist (November 2026). Invites go out in signup order, a few at a time.
 - What a "bin scan" is: one photo of a pile of LEGO; the app finds the minifigures and valuable pieces and reports what the bin is worth.
-- Prices: figure values on the site come from BrickEconomy and Brickset used averages based on BrickLink sales, checked November 7 and 8, 2026. The app will price bins from recent sold prices for used LEGO, not store prices.
+- Prices: every figure price on the site is a Brickset used average based on real BrickLink sales, checked November 9, 2026. The app will price bins from recent sold prices for used LEGO, not store prices.
 - Typical bulk LEGO value: loose mixed LEGO sells for about $5 to $12 a pound on eBay (2026); single rare minifigures can be worth hundreds or more than $1,000.
 
 ## Pages
-- [Home](https://pricemybin.com/): hero, a gallery of 48 valuable LEGO minifigures with real values and "look for" tips, a practice game pricing three bins, how the app will work, FAQ, waitlist signup.
+- [Home](https://pricemybin.com/): hero, a gallery of 63 valuable LEGO minifigures with real used prices and "look for" tips, a practice game pricing LEGO bins, how the app will work, FAQ, waitlist signup.
 - [Privacy Policy](https://pricemybin.com/privacy/)
 - [Terms of Use](https://pricemybin.com/terms/)
 
