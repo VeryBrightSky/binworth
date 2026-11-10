@@ -511,20 +511,11 @@ form.ok button.join::after{animation:studclick .28s var(--spring)}
 @keyframes studclick{0%{transform:none}35%{transform:translateY(2px) scaleY(.6)}100%{transform:none}}
 @keyframes brickdrop{0%{opacity:0;transform:translateY(-70px)}55%{opacity:1;transform:translateY(0) scale(1.08,.86)}75%{transform:translateY(-5px) scale(.97,1.03)}100%{opacity:1;transform:none}}
 @media (hover:hover){ol.how li:before{transition:transform .25s var(--spring)}ol.how li:hover:before{transform:translateY(-4px) rotate(-4deg)}}
-/* the last section sits on a blue baseplate that drifts as you scroll */
+/* the last section sits on a blue baseplate */
 .last{position:relative;isolation:isolate;overflow:hidden}
-.last::before{content:"";position:absolute;left:0;right:0;top:-80px;bottom:0;z-index:-1;pointer-events:none;background-image:radial-gradient(circle at 50% 46%,rgba(255,255,255,.05) 5.5px,#0000 6px),radial-gradient(circle at 50% 54%,rgba(0,0,0,.11) 6.5px,#0000 7px);background-size:26px 26px}
+.last::before{content:"";position:absolute;left:0;right:0;top:0;bottom:0;z-index:-1;pointer-events:none;background-image:radial-gradient(circle at 50% 46%,rgba(255,255,255,.05) 5.5px,#0000 6px),radial-gradient(circle at 50% 54%,rgba(0,0,0,.11) 6.5px,#0000 7px);background-size:26px 26px}
 .last .signup .body{background:var(--tub);box-shadow:0 0 0 18px var(--tub),0 0 0 20px rgba(0,0,0,.16);border-radius:8px}
 @media (max-width:699px){.last .signup .body{box-shadow:none;border-radius:0;margin-inline:-22px;padding-inline:22px;border-block:2px solid rgba(0,0,0,.16);padding-block:16px}}
-@supports (animation-timeline:view()){
-  .last::before{animation:plate linear both;animation-timeline:view();animation-range:entry 0% exit 100%}
-  @keyframes plate{from{transform:translateY(0)}to{transform:translateY(78px)}}
-  /* hero: the pulled figures keep rising out of the bin as you scroll past */
-  .pulled .pf{animation:rise linear both;animation-timeline:scroll(root);animation-range:0 420px}
-  .pulled .pf:nth-child(2){animation-name:rise2}
-  @keyframes rise{to{transform:translateY(-7%)}}
-  @keyframes rise2{to{transform:translateY(-12%)}}
-}
 /* gallery: price stickers get stamped on as each card scrolls in */
 .js .fcard:not(.seen) .stk{opacity:0}
 .fcard.seen .stk{animation:stamp .42s var(--ease) both;animation-delay:var(--sd,0s)}
@@ -661,7 +652,7 @@ ol.how li>div{overflow-wrap:break-word}
 .social .and{white-space:nowrap}
 .social a svg{margin-right:4px}
 @media (orientation:landscape) and (max-height:500px){.figgrid{padding-bottom:70px}.sticky{width:240px!important}}
-@media (prefers-reduced-motion:reduce){.pulled .pf,.last::before,.fcard.seen .stk{animation:none!important}.js .fcard:not(.seen) .stk{opacity:1}.js ol.how:not(.in) li:before,.js ol.how:not(.in) li>div{opacity:1;transform:none}ol.how.in li:before{animation:none}}
+@media (prefers-reduced-motion:reduce){.fcard.seen .stk{animation:none!important}.js .fcard:not(.seen) .stk{opacity:1}.js ol.how:not(.in) li:before,.js ol.how:not(.in) li>div{opacity:1;transform:none}ol.how.in li:before{animation:none}}
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{transition-duration:.01ms!important;animation-duration:.01ms!important;animation-iteration-count:1!important}
   .fcard:hover,.fcard:hover .ftray img,.fcard:hover .stk,.chip2:hover,.soc a:hover,button.join:hover,.sticky:hover{transform:none}
@@ -1664,7 +1655,7 @@ window.addEventListener("load", function () { setTimeout(function () {
     grid.classList.toggle("open", open || !!filtering);
     var left = cards.length - limit;
     more.hidden = !!filtering || (open && left <= 0);
-    more.textContent = open ? "Show " + Math.min(STEP, left) + " more (" + left + " left)" : "Show more figures (" + cards.length + " priced)";
+    more.textContent = open ? (left - STEP <= 8 ? "Show the last " + left : "Show " + STEP + " more (" + left + " left)") : "Show more figures (" + cards.length + " priced)";
     none.hidden = shown > 0;
   }
   q.addEventListener("input", function () {
@@ -1685,7 +1676,7 @@ window.addEventListener("load", function () { setTimeout(function () {
     var firstHidden = cards.filter(function (c) { return c.hidden; })[0] || cards.filter(function (c) { return getComputedStyle(c).display === "none"; })[0];
     var root = document.documentElement, y = window.scrollY, prevA = root.style.overflowAnchor;
     root.style.overflowAnchor = "none";
-    limit = open ? limit + STEP : 12 + STEP; open = true; grid.classList.add("open"); apply();
+    limit = open ? limit + STEP : 12 + STEP; if (cards.length - limit <= 8) limit = cards.length; open = true; grid.classList.add("open"); apply();
     if (firstHidden) { firstHidden.setAttribute("tabindex", "-1"); firstHidden.focus({ preventScroll: true }); }
     jumpTo(y);
     requestAnimationFrame(function () { jumpTo(y); root.style.overflowAnchor = prevA; });
