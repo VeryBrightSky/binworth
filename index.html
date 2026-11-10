@@ -37,7 +37,7 @@
 .thanks .soc{margin-top:12px}.thanks .soc a{color:#000;background:#fff;border-color:#000}
 @media (max-width:899px){.sticky{padding-top:12px!important;padding-bottom:12px!important;font-size:17px!important}}
 </style>
-<script>var OFFERS_ON=false;document.documentElement.className="js"+((OFFERS_ON||/[?&]offers=1/.test(location.search))?" offers":"");window.jumpTo=function(y){var r=document.documentElement,p=r.style.scrollBehavior;r.style.scrollBehavior="auto";window.scrollTo(0,y);r.style.scrollBehavior=p};window.jumpBy=function(d){window.jumpTo(window.scrollY+d)}</script>
+<script>var OFFERS_ON=false;document.documentElement.className="js"+((OFFERS_ON||/[?&]offers=1/.test(location.search))?" offers":"");window.jumpTo=function(y){var r=document.documentElement,p=r.style.scrollBehavior;r.style.scrollBehavior="auto";try{window.scrollTo({top:y,left:0,behavior:"instant"})}catch(e){window.scrollTo(0,y)}r.style.scrollBehavior=p};window.jumpBy=function(d){window.jumpTo(window.scrollY+d)}</script>
 <style>
 :root{--paper:#fff;--ink:#000;--tape:#efdcae;--tub:#2f6fd0;--tub-d:#1d4f9e;--tub-l:#4b86e0;--sticker:#ff5b14;--sticker2:#c6f432;--mute:#5a5f66;--line:#e6e6e6;--marker:"Permanent Marker","Comic Sans MS",cursive}
 *{box-sizing:border-box}
@@ -262,7 +262,7 @@ html:has(.jd[open]){overflow:hidden}
 
 /* sections */
 section{padding:52px 0;border-top:1px solid var(--line)}
-section.game,section.two,section.last{content-visibility:auto;contain-intrinsic-size:auto 900px}
+
 h2.sec{font-weight:800;font-stretch:115%;font-size:clamp(28px,6vw,40px);line-height:1.02;letter-spacing:-.02em;margin:0 0 8px;max-width:18ch}
 .sub{margin:0 0 26px;color:var(--mute);max-width:46ch}
 
