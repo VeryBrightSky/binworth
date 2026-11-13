@@ -151,6 +151,17 @@ html{scroll-padding-top:90px}
 @media (max-width:420px){.tally{gap:8px;padding-left:12px}.tally .tjoin,.tally .tclear{font-size:14px;padding:8px 10px}}
 .tally .tclear{font:inherit;font-size:15px;font-weight:700;background:#fff;color:#000;border:0;border-radius:10px;padding:10px 14px;cursor:pointer;min-height:44px}
 .tally.pop{animation:tallypop .35s var(--spring)}
+.binest{border:2px solid #000;border-radius:14px;padding:12px 14px;margin:0 0 14px;background:#fff;display:grid;gap:8px}
+.binest label{display:flex;align-items:center;justify-content:space-between;gap:12px;font-weight:700;font-size:16px}
+.binest .lbw{display:inline-flex;align-items:center;gap:6px;font-weight:400}
+.binest input{font:inherit;font-size:16px;width:5.2em;min-height:44px;padding:6px 10px;border:2px solid #000;border-radius:10px;text-align:right;background:#fff;color:#000}
+.binest input:focus-visible{outline:3px solid var(--sticker2);outline-offset:2px}
+.binest p{margin:0;font-size:15px;line-height:1.4}
+.binest p b{font-weight:800}
+.binest .src{display:block;font-size:13px;opacity:.75;margin-top:2px}
+.binways{display:none}
+.offers .binways:not([hidden]){display:grid;gap:6px;font-size:14px;line-height:1.4;border-top:2px dashed #000;padding-top:8px}
+.binways i{font-style:normal;font-weight:800}
 @keyframes tallypop{0%{transform:scale(1)}40%{transform:scale(1.04)}100%{transform:scale(1)}}
 .have{display:flex;align-items:center;justify-content:center;gap:6px;width:calc(100% - 24px);margin:12px 12px 0;min-height:44px;font:inherit;font-size:15px;font-weight:800;background:#fff;color:#000;border:2px solid #000;border-radius:12px;cursor:pointer;box-shadow:0 3px 0 #000;transition:transform .15s var(--spring),box-shadow .15s,background-color .15s}
 .have svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;display:none}
@@ -679,7 +690,7 @@ ol.how li>div{overflow-wrap:break-word}
     <div class="copy">
       <h1>That $20 <span class="h1x">LEGO® </span>bin might be hiding a $1,684 figure.</h1>
 
-      <p class="lede lede-l">Snap one photo of a bin. PriceMyBin will tell you what it's worth and which figures to pull.</p>
+      <p class="lede lede-l">Snap one photo of a bin. PriceMyBin will price the whole thing, bricks and figures, and show you which figures to pull.</p>
       <p class="social">See new finds on <a class="tt" href="https://www.tiktok.com/@pricemybin" rel="noopener" target="_blank" aria-label="PriceMyBin on TikTok (opens in a new tab)"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>TikTok</a><span class="comma">,</span> <a class="ig" href="https://www.instagram.com/pricemybin/" rel="noopener" target="_blank" aria-label="PriceMyBin on Instagram (opens in a new tab)"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="2.5" width="19" height="19" rx="5.5" fill="none" stroke="currentColor" stroke-width="2.2"/><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="2.2"/><circle cx="17.4" cy="6.6" r="1.4" fill="currentColor"/></svg>Instagram</a> <span class="and">and <a class="yt" href="https://www.youtube.com/@pricemybin" rel="noopener" target="_blank" aria-label="PriceMyBin on YouTube (opens in a new tab)"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M23.5 6.6a3 3 0 0 0-2.1-2.1C19.5 4 12 4 12 4s-7.5 0-9.4.5A3 3 0 0 0 .5 6.6C0 8.5 0 12 0 12s0 3.5.5 5.4a3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1c.5-1.9.5-5.4.5-5.4s0-3.5-.5-5.4z"/><path class="ytp" fill="#fff" d="M9.6 15.5V8.5l6.2 3.5z"/></svg>YouTube</a></span></p>
     </div>
     <div class="tubwrap">
@@ -718,6 +729,7 @@ ol.how li>div{overflow-wrap:break-word}
     <label class="figsearch"><span class="sr-only">Search figures by name</span><input id="figq" type="search" placeholder="Search, like Boba Fett" autocomplete="off" spellcheck="false"></label>
     <div class="chips2" role="group" aria-label="Filter by theme"><button type="button" class="chip2" aria-pressed="true" data-t="all">All</button><button type="button" class="chip2" aria-pressed="false" data-t="Star Wars">Star Wars</button><button type="button" class="chip2" aria-pressed="false" data-t="Batman">Batman</button><button type="button" class="chip2" aria-pressed="false" data-t="Super Heroes">Super Heroes</button><button type="button" class="chip2" aria-pressed="false" data-t="Castle">Castle</button><button type="button" class="chip2" aria-pressed="false" data-t="Minecraft">Minecraft</button><button type="button" class="chip2" aria-pressed="false" data-t="Lord of the Rings">Lord of the Rings</button><button type="button" class="chip2" aria-pressed="false" data-t="Ninjago">Ninjago</button><button type="button" class="chip2" aria-pressed="false" data-t="Pirates">Pirates</button><button type="button" class="chip2" aria-pressed="false" data-t="Harry Potter">Harry Potter</button><button type="button" class="chip2" aria-pressed="false" data-t="Minifigures">Minifigures</button><button type="button" class="chip2" aria-pressed="false" data-t="The Simpsons">The Simpsons</button></div>
     <div class="tally empty" id="tally"><p role="status" aria-live="polite"><span class="tempty">Got a bin? Tap <b>I have this</b> on the figures you find.</span><span class="tfull"><span class="tn" id="tnum">0 figures</span> <span class="tv">worth <b id="tsum">$0</b></span><span class="thid" id="thid"></span></span></p><button type="button" class="tjoin" id="tjoin">Save my spot</button><button type="button" class="tclear" id="tclear">Clear</button></div>
+    <div class="binest" id="binest"><label for="lbs">How heavy is your bin?<span class="lbw"><input id="lbs" type="number" inputmode="decimal" min="0" max="500" step="1" placeholder="20" aria-describedby="binout"><span aria-hidden="true">lb</span></span></label><p id="binout" role="status" aria-live="polite">Type the weight and tap the figures you find. You get a price for the whole bin, free.</p><div class="binways" id="binways" hidden><b>Two ways to sell the figures</b><span><i>Cash offer from a LEGO shop.</i> Mail only the figures and get paid in days. Offers show up in the app at launch.</span><span><i>Sell them yourself.</i> About <b id="binnet">$0</b> after roughly 13% in eBay fees, before shipping. It can take weeks.</span></div></div>
     <ul class="figgrid" id="figgrid">
 <li class="fcard" data-t="Star Wars"><div class="ftray"><img loading="lazy" decoding="async" src="img/figs/sw0107.webp" width="279" height="440" alt="LEGO Boba Fett minifigure"></div><a class="stk" href="https://brickset.com/minifigs/sw0107" target="_blank" rel="noopener" aria-label="$1,684 used, check the Boba Fett price on Brickset (opens in a new tab)">$1,684 <i>used</i></a><h3>Boba Fett</h3><p class="ffrom">2003, Cloud City (10123)</p><p class="flook"><b>Look for</b> printed arms and legs, not plain gray</p></li>
 <li class="fcard" data-t="Minifigures"><div class="ftray"><img loading="lazy" decoding="async" src="img/figs/col161.webp" width="254" height="440" alt="LEGO Mr. Gold minifigure"></div><a class="stk" href="https://brickset.com/minifigs/col161" target="_blank" rel="noopener" aria-label="$1,525 used, check the Mr. Gold price on Brickset (opens in a new tab)">$1,525 <i>used</i></a><h3>Mr. Gold</h3><p class="ffrom">2013, Minifigures Series 10, 5,000 made</p><p class="flook"><b>Look for</b> shiny chrome gold all over, top hat and monocle</p></li>
@@ -1617,6 +1629,23 @@ window.addEventListener("load", function () { setTimeout(function () {
   function priceOf(c) { var st = c.querySelector(".stk"); return st ? +st.textContent.replace(/used/, "").replace(/[^0-9]/g, "") : 0; }
   var stack = document.createElement("span"), SC = ["#ff5b14", "#2f6fd0", "#c6f432", "#ffd21f", "#e3000b"];
   stack.className = "tstack"; stack.setAttribute("aria-hidden", "true"); tally.appendChild(stack);
+  var lbs = document.getElementById("lbs"), binout = document.getElementById("binout"), binways = document.getElementById("binways"), binnet = document.getElementById("binnet"), figTotal = 0, figN = 0;
+  function usd(v) { return "$" + Math.round(v).toLocaleString("en-US"); }
+  function binEst() {
+    var w = Math.min(Math.max(parseFloat(lbs.value) || 0, 0), 500), lo = w * 5, hi = w * 12, out = "";
+    if (!w && !figN) out = "Type the weight and tap the figures you find. You get a price for the whole bin, free.";
+    else {
+      if (w) out += "Bricks: about <b>" + usd(lo) + " to " + usd(hi) + "</b>. ";
+      if (figN) out += (figN === 1 ? "The figure" : "The " + figN + " figures") + " you found: <b>" + usd(figTotal) + "</b> used. ";
+      if (w && figN) out += "Your bin: about <b>" + usd(lo + figTotal) + " to " + usd(hi + figTotal) + "</b>.";
+      else if (w) out += "Now tap the figures you find below.";
+      else out += "Add the weight to price the bricks too.";
+      if (w) out += '<span class="src">Loose mixed LEGO sells for about $5 to $12 a pound on eBay (2026 sold listings).</span>';
+    }
+    binout.innerHTML = out;
+    binways.hidden = !figN; binnet.textContent = usd(figTotal * 0.87);
+  }
+  lbs.addEventListener("input", binEst);
   function sumUp(pop) {
     var want = Math.min(have.length, 12);
     while (stack.children.length < want) { var bk = document.createElement("i"); bk.style.color = SC[stack.children.length % SC.length]; stack.appendChild(bk); }
@@ -1629,6 +1658,7 @@ window.addEventListener("load", function () { setTimeout(function () {
     document.getElementById("thid").textContent = hid ? " (" + hid + (filt ? " hidden by your filter)" : " not shown, tap Show more)") : "";
     tnum.textContent = n + (n === 1 ? " figure" : " figures");
     tsum.textContent = "$" + total.toLocaleString("en-US");
+    figTotal = total; figN = n; binEst();
     var bar = document.getElementById("sticky"); if (bar) bar.textContent = n ? "Save my spot to scan your bin" : "Save my spot";
     if (pop && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) { tally.classList.remove("pop"); void tally.offsetWidth; tally.classList.add("pop"); }
   }
